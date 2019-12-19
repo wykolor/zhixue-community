@@ -9,10 +9,10 @@ axios.defaults.timeout = 30000;
 
 // 请求头
 axios.defaults.headers.post["Content-Type"] =
-  "application/x-www-form-urlencoded;charset=UTF-8";
+  "application/json;charset=UTF-8";
 
 // 由于微信小程序需要用微信官方请求接口 wx.request，因此需要用adapter自定义
-axios.defaults.adapter = function(config) {
+axios.defaults.adapter = function (config) {
   return new Promise((resolve, reject) => {
     let data =
       config.method === "get" ? config.params : qs.stringify(config.data);
@@ -35,20 +35,20 @@ axios.defaults.adapter = function(config) {
 function Instance() {
   // 请求拦截器
   axios.interceptors.request.use(
-    function(request) {
+    function (request) {
       return request;
     },
-    function(error) {
+    function (error) {
       return Promise.reject(error);
     }
   );
-  
+
   // 添加响应拦截器
   axios.interceptors.response.use(
-    function(response) {
+    function (response) {
       return response;
     },
-    function(error) {
+    function (error) {
       return Promise.reject(error);
     }
   );

@@ -88,7 +88,9 @@ export default {
 
   created() {
     // let app = getApp()
-    this.$api.index.loginAddress({}).then(res => {
+    this.$api.index.loginAddress({
+      
+    }).then(res => {
       console.log(res);
     });
   }

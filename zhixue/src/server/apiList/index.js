@@ -4,9 +4,9 @@ import {
 } from "../axios";
 
 //
-let login = "http://mpestate.dev.smartyface.cn/api/v1/wechat/updateUserInfo";
+let login = "http://mpestate.dev.smartyface.cn/api/v1/esMember/list";
 export default {
   loginAddress: function (loginObj) {
-    return post(login, loginObj);
+    return get(login, loginObj);
   }
 };
