@@ -3,7 +3,11 @@
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{ // 首页
 		    "path" : "pages/index/index",
-		    "style" : {}
+		    "style" : {
+				"usingComponents": {
+				  "van-button": "/wxcomponents/vant/button/index"
+				}
+			}
 		},
 		{ // 服务
 		    "path" : "pages/server/server",
