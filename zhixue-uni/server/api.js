@@ -1,4 +1,4 @@
-import indexApi from './apiList/index.js';
+import testApi from './apiList/test.js';
 export const api = {
-	indexApi
+	testApi
 };

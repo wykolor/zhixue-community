@@ -15,20 +15,7 @@ export default {
 			title: 'Hello'
 		};
 	},
-	onLoad() {
-		this.getData();
-	},
-		
-	created(){
-		this.getData();
-	},
-	methods: {
-		getData(){
-			this.$api.indexApi.loginAddress().then(res => {
-				console.log("请求数据",res)
-			})
-		}
-	}
+	
 };
 </script>
 

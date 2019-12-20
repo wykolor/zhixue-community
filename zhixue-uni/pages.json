@@ -39,7 +39,7 @@
 			"style": {}
 		}
 	    ,{
-            "path" : "pages/index/index",
+            "path" : "pages/test/index",
             "style" : {}
         }
     ],
