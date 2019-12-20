@@ -1,97 +1,63 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
-			"path": "pages/tabbar/tabbar-1/tabbar-1",
-			"style": {
-				"navigationBarTitleText": "uni-app",
-				"usingComponents": {
-					"van-button": "/wxcomponents/vant/button/index"
-				}
-			}
+		{ // 首页
+		    "path" : "pages/index/index",
+		    "style" : {}
 		},
-		{
-			"path": "pages/tabbar/tabbar-2/tabbar-2",
-			"style": {}
+		{ // 服务
+		    "path" : "pages/server/server",
+		    "style" : {}
 		},
-		{
-			"path": "pages/tabbar/tabbar-3/tabbar-3",
-			"style": {}
-		},
-		{
-			"path": "pages/tabbar/tabbar-4/tabbar-4",
-			"style": {}
-		},
-		{
-			"path": "pages/tabbar/tabbar-5/tabbar-5",
-			"style": {}
-		},
-		{
-			"path": "pages/tabbar-3-detial/tabbar-3-release/tabbar-3-release",
-			"style": {}
-		},
-		{
-			"path": "pages/tabbar-3-detial/tabbar-3-video/tabbar-3-video",
-			"style": {}
-		},
-		{
-			"path": "pages/tabbar-3-detial/tabbar-3-qa/tabbar-3-qa",
-			"style": {}
-		}
-	    ,{
-            "path" : "pages/test/index",
+		{ // 消息
+            "path" : "pages/news/news",
             "style" : {}
-        }
+        },
+		{ // 我的
+		    "path" : "pages/mine/mine",
+		    "style" : {}
+		},
+		{ // 测试界面
+		    "path" : "pages/test/index",
+		    "style" : {}
+		}
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+		"navigationBarTitleText": "智旭APP", // 导航栏标题文字内容
+		"navigationBarBackgroundColor": "#07c160", // 导航栏背景颜色（同状态栏背景色
+		"backgroundColor": "#07c160" // 窗口背景色
 	},
 	"tabBar": {
-		"borderStyle": "black",
-		"backgroundColor": "#333",
-		"color": "#8F8F94",
-		"selectedColor": "#f33e54",
-		"list": [{
-				"pagePath": "pages/tabbar/tabbar-1/tabbar-1",
-				"iconPath": "static/img/tabbar/home.png",
-				"selectedIconPath": "static/img/tabbar/homeactive.png",
-				"text": "首页"
+		"borderStyle": "white",  // tabbar 上边框的颜色，仅支持 black/white
+		"backgroundColor": "#fff", // tab 的背景色
+		"color": "#000", // tab 上的文字默认颜色
+		"selectedColor": "#07c160",  // tab 上的文字选中时的颜色
+		"fontSize":"12px", // tab字体大小
+		"list": [
+			{
+				"pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
+				"iconPath": "static/img/tabbar/home.png", // 默认图标(未选中状态的图标)
+				"selectedIconPath": "static/img/tabbar/home-active.png", //  选中状态的图标
+				"text": "首页" // tab 上按钮文字
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-2/tabbar-2",
-				"iconPath": "static/img/tabbar/guanzhu.png",
-				"selectedIconPath": "static/img/tabbar/guanzhuactive.png",
-				"text": "关注"
+				"pagePath": "pages/server/server",
+				"iconPath": "static/img/tabbar/server.png",
+				"selectedIconPath": "static/img/tabbar/server-active.png",
+				"text": "服务"
 			},
-			//#ifdef MP-WEIXIN
 			{
-				"pagePath": "pages/tabbar/tabbar-3/tabbar-3",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png",
-				"text": "发布"
-			},
-			//#endif
-			//#ifndef MP-WEIXIN
-			{
-				"pagePath": "pages/tabbar/tabbar-3/tabbar-3",
-				"iconPath": "static/img/tabbar/add.png",
-				"selectedIconPath": "static/img/tabbar/addactive.png"
-			},
-			//#endif
-			{
-				"pagePath": "pages/tabbar/tabbar-4/tabbar-4",
+				"pagePath": "pages/news/news",
 				"iconPath": "static/img/tabbar/news.png",
-				"selectedIconPath": "static/img/tabbar/newsactive.png",
+				"selectedIconPath": "static/img/tabbar/news-active.png",
 				"text": "消息"
 			},
 			{
-				"pagePath": "pages/tabbar/tabbar-5/tabbar-5",
+				"pagePath": "pages/mine/mine",
 				"iconPath": "static/img/tabbar/me.png",
-				"selectedIconPath": "static/img/tabbar/meactive.png",
-				"text": "我"
+				"selectedIconPath": "static/img/tabbar/me-active.png",
+				"text": "我的"
 			}
 		]
 	}
