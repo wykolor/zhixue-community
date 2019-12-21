@@ -1,6 +1,14 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{ // 切换小区
+		    "path" : "pages/switchVillage/switchVillage",
+		    "style" : {
+				"usingComponents":{
+					"van-search": "/wxcomponents/vant/search/index"
+				}
+			}
+		},
 		{ // 首页
 		    "path" : "pages/index/index",
 		    "style" : {
@@ -29,11 +37,12 @@
 		{ // 测试界面
 		    "path" : "pages/test/index",
 		    "style" : {}
-		}
-        ,{
+		},
+		{ // 外部链接
             "path" : "pages/outUrl/outUrl",
             "style" : {}
         }
+		
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

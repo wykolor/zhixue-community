@@ -76,10 +76,10 @@
 						type: 1
 					},
 					{
-						appName:"切换百度",
+						appName:"切换小区",
 						image: "",
-						pageUrl: "https://www.baidu.com",
-						type: 2
+						pageUrl: "/pages/switchVillage/switchVillage",
+						type: 1
 					},
 					{
 						appName:"房产绑定",
@@ -238,7 +238,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../wxcomponents/vant/common/index.wxss";
 .home{
 	width: 100%;
