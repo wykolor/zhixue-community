@@ -33,7 +33,7 @@
 					{
 						communityName:"保利·锦江",
 						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
+						info:"位于天府五街位于天府五街位于天府五街位于天府位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
 					},
 					{
 						communityName:"锐利·领峰",
@@ -102,7 +102,7 @@
 		.village-list{
 			display: flex;
 			align-items: stretch;
-			margin-bottom: 0.5rem;
+			margin-bottom: 0.6rem;
 			padding: 0.5rem;
 			border-radius: 0.4rem;
 			box-shadow: 0 1px 3px #C0C0C0;
@@ -118,9 +118,14 @@
 				width: 60%;
 				font-size: 0.7rem;
 				color: #999;
+				line-height: 1.2rem;
 				.village-title{
 					font-size: 1rem;
+					line-height: 1.4rem;;
 					color: #666;
+				}
+				.village-desc{
+					@include letter-space-1;
 				}
 			}
 		}

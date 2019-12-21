@@ -302,7 +302,7 @@
 				width: 60%;
 				font-size: 0.7rem;
 				color: #aaa;
-				letter-spacing: 1px;
+				letter-space-1
 				& > view{
 					line-height: 2em;
 				}
@@ -310,9 +310,6 @@
 					@include wy-ellipsis;
 					font-size: 1rem;
 					color: #333;
-				}
-				.art-info-time{
-					
 				}
 				.art-info-content{
 					line-height: 1.2rem;
