@@ -12,12 +12,15 @@ export default {
 		// 		index: 3
 		// 	});
 		// }, 1000);
+		uni.login({
+		  provider: 'weixin',
+		  success: function (loginRes) {
+		    console.log('登录信息',loginRes);
+		  }
+		});
 	},
 	onShow: function() {
 		console.log('App Show');
-	},
-	onHide: function() {
-		console.log('App Hide');
 	}
 };
 </script>
