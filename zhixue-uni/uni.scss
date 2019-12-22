@@ -96,3 +96,10 @@ $zx-topic-color:#07c160;
 @mixin border-box {
  	box-sizing: border-box;
 }
+
+// 
+@mixin init-style {
+	width: 100%;
+	min-height: 100vh;
+	@include border-box;
+}
