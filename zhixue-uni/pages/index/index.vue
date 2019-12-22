@@ -90,8 +90,8 @@
 					{
 						appName:"家政服务",
 						image: "",
-						pageUrl: "",
-						type: 0
+						pageUrl: "/pages/homeHelp/homeHelp",
+						type: 1
 					},
 					{
 						appName:"意见建议",
@@ -125,15 +125,15 @@
 					}
 				],
 				banerImage:[
-					// {
-					// 	"image": require("../../static/img/index/u118.jpg")
-					// },
-					// {
-					// 	"image": require("../../static/img/index/u118.jpg")
-					// },
-					// {
-					// 	"image": require("../../static/img/index/u118.jpg")
-					// }
+					{
+						"image": require("../../static/img/index/u118.jpg")
+					},
+					{
+						"image": require("../../static/img/index/u118.jpg")
+					},
+					{
+						"image": require("../../static/img/index/u118.jpg")
+					}
 				],
 				homeServer:[
 					{
@@ -221,7 +221,7 @@
 			};
 		},
 		onLoad(){
-			this.getBannerData();
+			// this.getBannerData();
 		},
 		methods:{
 			// 获取轮播图数据

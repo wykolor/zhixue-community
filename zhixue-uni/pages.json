@@ -1,6 +1,7 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
 		{ // 首页
 		    "path" : "pages/index/index",
 		    "style" : {
@@ -33,7 +34,21 @@
         ,{
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		{ // 家政服务
+		    "path" : "pages/homeHelp/homeHelp",
+		    "style" : {
+				"usingComponents":{
+					"van-search": "/wxcomponents/vant/search/index",
+					"van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+					"van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+					"van-card": "/wxcomponents/vant/card/index",
+					"van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		}
+		
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
@@ -46,7 +61,6 @@
 		"backgroundColor": "#fff", // tab 的背景色
 		"color": "#000", // tab 上的文字默认颜色
 		"selectedColor": "#07c160",  // tab 上的文字选中时的颜色
-		"fontSize":"12px", // tab字体大小
 		"list": [
 			{
 				"pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
