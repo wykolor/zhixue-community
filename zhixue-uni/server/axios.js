@@ -14,20 +14,56 @@ const http = axios.create({
     },
 })
 
+function startLoading(){
+	uni.showLoading({
+	    title: '加载中',
+		mask:false
+	});
+}
+function endLoading(){
+	uni.hideLoading();
+}
+
+// 声明一个对象用于存储请求个数
+var needLoadingRequestCount = 0;
+function showFullScreenLoading() {
+  if (needLoadingRequestCount === 0) {
+    startLoading();
+  }
+  needLoadingRequestCount++;
+};
+function tryHideFullScreenLoading() {
+  if (needLoadingRequestCount <= 0) return;
+  needLoadingRequestCount--;
+  if (needLoadingRequestCount === 0) {
+    endLoading();
+  }
+};
+
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(config => {
+	// 加载样式开启
+	showFullScreenLoading();
     // 将令牌配置到请求头信息中
     const token = uni.getStorageSync("token");
+	const phone = uni.getStorageSync("phone");
     token && (config.headers.Authorization = token);
+	phone && (config.headers.phone = phone);
+	// if(!config.headers.phone){
+	// 	uni.redirectTo({
+	// 		url:"/pages/authPhone/authPhone"
+	// 	})
+	// }
     return config
 })
 
 // 响应拦截器 
 http.interceptors.response.use(response => {
-    // code...
-    
+	// 隐藏加载样式
+	tryHideFullScreenLoading();
     return response.data
 }, error => {
+	tryHideFullScreenLoading();
     return Promise.reject(error.message)
 })
 

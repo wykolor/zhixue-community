@@ -52,190 +52,193 @@
 </template>
 
 <script>
-	export default {
-		data() {
-			return {
-				artActive:0,
-				outUrl:"/pages/outUrl/outUrl?outUrl=",
-				webviewStyles: {
-					progress: {
-						color: '#FF3333'
-					}
-				},
-				appList:[
-					{
-						appName:"物业服务",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"人脸管理",
-						image: "",
-						pageUrl: "/pages/test/index",
-						type: 1
-					},
-					{
-						appName:"切换百度",
-						image: "",
-						pageUrl: "https://www.baidu.com",
-						type: 2
-					},
-					{
-						appName:"房产绑定",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"家政服务",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"意见建议",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"跳蚤市场",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"跑腿小哥",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"小区超市",
-						image: "",
-						pageUrl: "",
-						type: 0
-					},
-					{
-						appName:"周边商家",
-						image: "",
-						pageUrl: "",
-						type: 0
-					}
-				],
-				banerImage:[
-					{
-						"image": require("../../static/img/index/u118.jpg")
-					},
-					{
-						"image": require("../../static/img/index/u118.jpg")
-					},
-					{
-						"image": require("../../static/img/index/u118.jpg")
-					}
-				],
-				homeServer:[
-					{
-						"image": require("../../static/img/index/u62.jpg")
-					},
-					{
-						"image": require("../../static/img/index/u62.jpg")
-					},
-					{
-						"image": require("../../static/img/index/u62.jpg")
-					},
-				],
-				articleList:[
-					{
-						categrayName:"公告",
-						list:[
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					},
-					{
-						categrayName:"热点",
-						list:[
-							{
-								title:"热点！！某男子在",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					}
-				]
-			};
-		},
-		onLoad(){
-			// this.getBannerData();
-		},
-		methods:{
-			// 获取轮播图数据
-			getBannerData(){
-				this.$api.indexApi.esBannerReq({}).then(res => {
-					this.banerImage = res.data;
-					console.log("轮播图",res)
-				})
+import uniLofin from "../../utils/login.js"
+export default {
+	data() {
+		return {
+			artActive:0,
+			outUrl:"/pages/outUrl/outUrl?outUrl=",
+			webviewStyles: {
+				progress: {
+					color: '#FF3333'
+				}
 			},
-			tips(){
-				console.log("敬请期待")
-			}
+			appList:[
+				{
+					appName:"物业服务",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"人脸管理",
+					image: "",
+					pageUrl: "/pages/test/index",
+					type: 1
+				},
+				{
+					appName:"切换百度",
+					image: "",
+					pageUrl: "https://www.baidu.com",
+					type: 2
+				},
+				{
+					appName:"房产绑定",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"家政服务",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"意见建议",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"跳蚤市场",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"跑腿小哥",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"小区超市",
+					image: "",
+					pageUrl: "",
+					type: 0
+				},
+				{
+					appName:"周边商家",
+					image: "",
+					pageUrl: "",
+					type: 0
+				}
+			],
+			banerImage:[
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// }
+			],
+			homeServer:[
+				{
+					"image": require("../../static/img/index/u62.jpg")
+				},
+				{
+					"image": require("../../static/img/index/u62.jpg")
+				},
+				{
+					"image": require("../../static/img/index/u62.jpg")
+				},
+			],
+			articleList:[
+				{
+					categrayName:"公告",
+					list:[
+						{
+							title:"通知！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"通知！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"通知！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"通知！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"通知！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+					]
+				},
+				{
+					categrayName:"热点",
+					list:[
+						{
+							title:"热点！！某男子在",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"热点！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"热点！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"热点！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+						{
+							title:"热点！！某男子在办公司净做出",
+							createTime:"15:02 AM",
+							image:require('../../static/img/index/u62.jpg'),
+							content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+						},
+					]
+				}
+			]
+		};
+	},
+	onLoad(){
+		// 待登录回调之后
+		// uniLofin().then(res => {
+		// 	this.getBannerData();
+		// })
+	},
+	methods:{
+		// 获取轮播图数据
+		getBannerData(){
+			this.$api.indexApi.esBannerReq({}).then(res => {
+				this.banerImage = res.data;
+			})
+		},
+		tips(){
+			console.log("敬请期待")
 		}
 	}
+}
 </script>
 
 <style lang="scss">
