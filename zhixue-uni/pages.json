@@ -33,7 +33,15 @@
         ,{
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		{
+		    "path" : "pages/authUserInfo/authUserInfo",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/authPhone/authPhone",
+		    "style" : {}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
