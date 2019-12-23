@@ -23,8 +23,11 @@
 			}
 		},
 		methods: {
-			getUserInfo(detail){
-				console.log(detail)
+			getUserInfo(info){
+				uni.setStorageSync("userInfo",info.detail.userInfo)
+				uni.navigateBack({
+					delta:1
+				});
 			}
 			
 		}

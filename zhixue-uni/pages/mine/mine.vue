@@ -1,9 +1,13 @@
 <template>
 	<view class="mine">
 		<view class="mine-header">
-			<van-cell title="登录/注册"  size="large" isLink center :border="false">
+			<van-cell :title="userInfo.nickName" v-if="userInfo" size="large" center :border="false">
+				<van-icon slot="icon" :name="userInfo.avatarUrl" size="4rem" custom-style="margin-right:10px"></van-icon>
+			</van-cell>
+			<van-cell v-else title="登录/注册"  size="large" isLink center :border="false" url="/pages/authUserInfo/authUserInfo">
 				<van-icon slot="icon" name="smile" size="4rem" custom-style="margin-right:10px"></van-icon>
 			</van-cell>
+			
 		</view>
 		<van-cell-group :border="false">
 			<van-cell title="人脸管理"  isLink icon="coupon-o">
@@ -20,24 +24,14 @@
 	export default {
 		data() {
 			return {
-				
+				userInfo:null
 			};
 		},
 		onShow(){
-			// 待登录回调之后
-			uniLofin().then(res => {
-				// this.getBannerData();
-			})
-			
+			this.userInfo = uni.getStorageSync("userInfo") || null
 		},
 		methods:{
-			// 获取轮播图数据
-			getBannerData(){
-				this.$api.indexApi.esBannerReq({}).then(res => {
-					this.banerImage = res.data;
-				})
-				
-			},
+			
 		}
 	}
 </script>
@@ -56,6 +50,9 @@
 			color: #fff;
 			.van-cell__right-icon-wrap{
 				color: #fff;
+			}
+			image{
+				border-radius: 50%;
 			}
 		}
 	}
