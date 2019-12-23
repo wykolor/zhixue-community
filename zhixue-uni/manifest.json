@@ -51,7 +51,7 @@
         /* 小程序特有相关 */
         "appid" : "wx37c2708e7f0f92dd",
         "setting" : {
-            "urlCheck" : true,
+            "urlCheck" : false,
             "es6" : true
         },
         "usingComponents" : true,

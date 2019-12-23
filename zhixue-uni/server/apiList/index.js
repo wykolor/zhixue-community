@@ -7,5 +7,5 @@ export default {
 	// 轮播图
 	esBannerReq:function(esBannerObj){
 		return get(esBanner,esBannerObj)
-	}
+	},
 }
