@@ -24,7 +24,14 @@
         },
 		{ // 我的
 		    "path" : "pages/mine/mine",
-		    "style" : {}
+		    "style" : {
+				"navigationBarTitleText":"个人中心",
+				"usingComponents":{
+					"van-cell": "/wxcomponents/vant/cell/index",
+					"van-cell-group": "/wxcomponents/vant/cell-group/index",
+					"van-icon": "/wxcomponents/vant/icon/index"
+				}
+			}
 		},
 		{ // 测试界面
 		    "path" : "pages/test/index",
