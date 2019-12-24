@@ -75,22 +75,25 @@
           v-for="categray in articleList"
           :key="categray.id"
         >
-          <view
+          <!-- <view
             class="article-list"
             v-for="article in categray.list"
             :key="article.id"
-          >
+          > -->
+		  <navigator :url="'/pages/articleDetail/articleDetail?id=' + article.id" class="article-list"
+            v-for="article in categray.list"
+            :key="article.id">
             <view class="art-list-img">
               <image :src="article.image"></image>
             </view>
             <view class="art-list-info">
               <view class="art-info-title">{{ article.title }}</view>
               <view class="art-info-time">{{ article.createTime }}</view>
-              <view class="art-info-content van-multi-ellipsis--l2">{{
-                article.content
-              }}</view>
+			  <rich-text :nodes="article.content" class="art-info-content van-multi-ellipsis--l2"></rich-text>
+              <!-- <view class="art-info-content van-multi-ellipsis--l2" v-html="article.content"></view> -->
             </view>
-          </view>
+			</navigator>
+          <!-- </view> -->
         </van-tab>
       </van-tabs>
     </view>
@@ -306,7 +309,8 @@ export default {
 			this.$api.indexApi.esArticleReq().then(res => {
 				this.articleList = res.data;
 			})
-		}
+		},
+		
 	}
 }
 </script>
@@ -317,6 +321,7 @@ export default {
   width: 100%;
   min-height: 100vh;
   background-color: $uni-bg-color-page;
+  padding-bottom: 1rem;
   .home-server {
     width: 100%;
     height: 10rem;

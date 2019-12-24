@@ -7,8 +7,12 @@ import indexApi from "./apiList/index.js";
 // 授权登录模块
 import authApi from "./apiList/auth.js";
 
+// 文章详情模块
+import articleDetailApi from "./apiList/articleDetail.js";
+
 export const api = {
 	testApi,
 	indexApi,
-	authApi
+	authApi,
+	articleDetailApi
 };
