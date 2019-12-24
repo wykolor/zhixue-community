@@ -11,7 +11,7 @@
         indicator-active-color="pink"
         indicator-color="#fff"
       >
-        <swiper-item v-for="item in banerImage" :key="item.id">
+        <swiper-item v-for="item in bannerList" :key="item.id">
           <image :src="item.image" style="width: 100%;height: 100%;"></image>
         </swiper-item>
       </swiper>
@@ -19,11 +19,11 @@
     <!-- 服务 -->
     <view class="home-server">
       <view class="home-server-list">
-        <image :src="homeServer[0].image"></image>
+        <image :src="serverList[0].image"></image>
       </view>
       <view class="home-server-list">
-        <image :src="homeServer[1].image"></image>
-        <image :src="homeServer[2].image"></image>
+        <image :src="serverList[1].image"></image>
+        <image :src="serverList[2].image"></image>
       </view>
     </view>
     <!-- app模块 -->
@@ -32,30 +32,30 @@
         <template v-for="item in appList">
           <!-- 内部跳转 -->
           <van-grid-item
-            icon="photo-o"
+            :icon="item.image"
             link-tab="redirectTo"
             :text="item.appName"
             :url="item.pageUrl"
             :key="item.id"
-            v-if="item.type == 1"
+            v-if="item.sinkType == 'page'"
           />
           <!-- 外部跳转 -->
           <van-grid-item
-            icon="photo-o"
+            :icon="item.image"
             link-tab="redirectTo"
             :text="item.appName"
             :url="outUrl + item.pageUrl"
             :key="item.id"
-            v-if="item.type == 2"
+            v-if="item.sinkType == 'html'"
           />
           <!-- 空字符串 -->
           <van-grid-item
             @click="tips"
-            icon="photo-o"
+            :icon="item.image"
             link-tab="switchTab"
             :text="item.appName"
             :key="item.id"
-            v-if="item.type == 0"
+            v-if="item.type == 'no'"
           />
         </template>
       </van-grid>
@@ -110,79 +110,79 @@ export default {
 				}
 			},
 			appList:[
+				// {
+				// 	appName:"物业服务",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"人脸管理",
+				// 	image: "",
+				// 	pageUrl: "/pages/test/index",
+				// 	type: 1
+				// },
+				// {
+				// 	appName:"切换百度",
+				// 	image: "",
+				// 	pageUrl: "https://www.baidu.com",
+				// 	type: 2
+				// },
+				// {
+				// 	appName:"房产绑定",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"家政服务",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"意见建议",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"跳蚤市场",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"跑腿小哥",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"小区超市",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// },
+				// {
+				// 	appName:"周边商家",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	type: 0
+				// }
+			],
+			bannerList:[
 				{
-					appName:"物业服务",
-					image: "",
-					pageUrl: "",
-					type: 0
+					"image": require("../../static/img/index/u118.jpg")
 				},
 				{
-					appName:"人脸管理",
-					image: "",
-					pageUrl: "/pages/test/index",
-					type: 1
+					"image": require("../../static/img/index/u118.jpg")
 				},
 				{
-					appName:"切换百度",
-					image: "",
-					pageUrl: "https://www.baidu.com",
-					type: 2
-				},
-				{
-					appName:"房产绑定",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"家政服务",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"意见建议",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"跳蚤市场",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"跑腿小哥",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"小区超市",
-					image: "",
-					pageUrl: "",
-					type: 0
-				},
-				{
-					appName:"周边商家",
-					image: "",
-					pageUrl: "",
-					type: 0
+					"image": require("../../static/img/index/u118.jpg")
 				}
 			],
-			banerImage:[
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				}
-			],
-			homeServer:[
+			serverList:[
 				{
 					"image": require("../../static/img/index/u62.jpg")
 				},
@@ -267,7 +267,47 @@ export default {
 			],
 		}
 	},
-		
+	onLoad(){
+		uniLofin().then(()=>{
+			this.getBannerList();
+			this.getAppList();
+			this.getServerList();
+			this.getImageList();
+			this.getArticleList();
+		})
+	},
+	methods:{
+		// 获得轮播图
+		getBannerList(){
+			this.$api.indexApi.esBannerReq().then(res => {
+				this.bannerList = res.data;
+			})
+		},
+		// 获得app模块
+		getAppList(){
+			this.$api.indexApi.esAppIndexReq().then(res => {
+				this.appList = res.data;
+			})
+		},
+		// 服务模块
+		getServerList(){
+			this.$api.indexApi.esAppServiceReq().then(res => {
+				
+			})
+		},
+		// 中间图片模块
+		getImageList(){
+			this.$api.indexApi.esAppMiddleReq().then(res => {
+				
+			})
+		},
+		// 文章模块
+		getArticleList(){
+			this.$api.indexApi.esArticleReq().then(res => {
+				this.articleList = res.data;
+			})
+		}
+	}
 }
 </script>
 
@@ -306,6 +346,10 @@ export default {
       }
     }
   }
+  .home-app-list{
+	  background-color: #fff;
+  }
+	  
   .home-article {
     width: 100%;
     background-color: #fff;
