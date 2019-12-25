@@ -15,6 +15,18 @@
 				}
 			}
 		},
+		{ // 消息
+		    "path" : "pages/news/news",
+		    "style" : {
+				"usingComponents":{
+					"van-tab": "/wxcomponents/vant/tab/index",
+					"van-tabs": "/wxcomponents/vant/tabs/index",
+					"van-cell": "/wxcomponents/vant/cell/index",
+					"van-cell-group": "/wxcomponents/vant/cell-group/index",
+					"van-icon":"/wxcomponents/vant/icon/index"
+				}
+			}
+		},
 		{ // 切换小区
 		    "path" : "pages/switchVillage/switchVillage",
 		    "style" : {
@@ -27,10 +39,7 @@
 		    "path" : "pages/server/server",
 		    "style" : {}
 		},
-		{ // 消息
-            "path" : "pages/news/news",
-            "style" : {}
-        },
+		
 		{ // 我的
 		    "path" : "pages/mine/mine",
 		    "style" : {
