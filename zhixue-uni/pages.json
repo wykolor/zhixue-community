@@ -1,17 +1,6 @@
 {
   "pages": [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-	{
-		// 服务
-		"path": "pages/server/server",
-		"style": {
-			"usingComponents":{
-				"van-grid": "/wxcomponents/vant/grid/index",
-				"van-grid-item": "/wxcomponents/vant/grid-item/index",
-				"van-cell-group": "/wxcomponents/vant/cell-group/index"
-			}
-		}
-	},
     {
       // 首页
       "path": "pages/index/index",
@@ -26,6 +15,17 @@
         }
       }
     },
+	{
+		// 服务
+		"path": "pages/server/server",
+		"style": {
+			"usingComponents":{
+				"van-grid": "/wxcomponents/vant/grid/index",
+				"van-grid-item": "/wxcomponents/vant/grid-item/index",
+				"van-cell-group": "/wxcomponents/vant/cell-group/index"
+			}
+		}
+	},
     {
       // 消息
       "path": "pages/news/news",
@@ -39,24 +39,23 @@
         }
       }
     },
+	{
+	  // 我的
+	  "path": "pages/mine/mine",
+	  "style": {
+	    "usingComponents": {
+	      "van-cell-group": "/wxcomponents/vant/cell-group/index",
+	      "van-cell": "/wxcomponents/vant/cell/index",
+	      "van-icon": "/wxcomponents/vant/icon/index"
+	    }
+	  }
+	},
     {
       // 切换小区
       "path": "pages/switchVillage/switchVillage",
       "style": {
         "usingComponents": {
           "van-search": "/wxcomponents/vant/search/index"
-        }
-      }
-    },
-    
-    {
-      // 我的
-      "path": "pages/mine/mine",
-      "style": {
-        "usingComponents": {
-          "van-cell-group": "/wxcomponents/vant/cell-group/index",
-          "van-cell": "/wxcomponents/vant/cell/index",
-          "van-icon": "/wxcomponents/vant/icon/index"
         }
       }
     },

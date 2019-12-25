@@ -27,10 +27,11 @@
 				:desc="item.desc"
 				:title="item.title"
 				:thumb="item.image"
+				
 			>
-			<view slot="footer">
-			    <van-button size="small" type="primary" round icon="phone">立即订购</van-button>
-			  </view>
+				<view slot="footer">
+					<van-button size="small" type="primary" round icon="phone" @click="callUp" :id="item.phone">立即订购</van-button>
+				</view>
 			</van-card>
 		</view>
 	</view>
@@ -63,14 +64,32 @@
 						title:"和平保洁公司",
 						price:"100.00",
 						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验"
+						desc:"良心保洁 用心体验",
+						phone:"18208207457"
 					},
 					{
 						image:require('../../static/img/homeHelp/u195.jpg'),
 						title:"建设小区送水上门",
 						price:"19.00",
 						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用"
+						desc:"水质安全 放心饮用",
+						phone:"18283171252"
+					},
+					{
+						image:require('../../static/img/homeHelp/u186.jpg'),
+						title:"和平保洁公司",
+						price:"100.00",
+						time:"(营业时间 10:00-21:00)",
+						desc:"良心保洁 用心体验",
+						phone:"13649037730"
+					},
+					{
+						image:require('../../static/img/homeHelp/u195.jpg'),
+						title:"建设小区送水上门",
+						price:"19.00",
+						time:"(营业时间 10:00-21:00)",
+						desc:"水质安全 放心饮用",
+						phone:"18190282178"
 					},
 					{
 						image:require('../../static/img/homeHelp/u186.jpg'),
@@ -84,35 +103,24 @@
 						title:"建设小区送水上门",
 						price:"19.00",
 						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用"
+						desc:"水质安全 放心饮用",
+						phone:"18190282178"
 					},
 					{
 						image:require('../../static/img/homeHelp/u186.jpg'),
 						title:"和平保洁公司",
 						price:"100.00",
 						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验"
+						desc:"良心保洁 用心体验",
+						phone:"18190282178"
 					},
 					{
 						image:require('../../static/img/homeHelp/u195.jpg'),
 						title:"建设小区送水上门",
 						price:"19.00",
 						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用"
-					},
-					{
-						image:require('../../static/img/homeHelp/u186.jpg'),
-						title:"和平保洁公司",
-						price:"100.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验"
-					},
-					{
-						image:require('../../static/img/homeHelp/u195.jpg'),
-						title:"建设小区送水上门",
-						price:"19.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用"
+						desc:"水质安全 放心饮用",
+						phone:"18190282178"
 					}
 				]
 			}
@@ -124,6 +132,7 @@
 			searchHandle(event){
 				console.log("搜索服务",event.detail);
 			},
+			// 获取数据
 			getHelpList(){
 				
 				let params = {
@@ -141,6 +150,18 @@
 					type:"保洁"
 				}).then(res => {
 					
+				})
+			},
+			// 拨打电话
+			callUp(e){
+				uni.makePhoneCall({
+					phoneNumber:e.target.id,
+					success() {
+						
+					},
+					fail() {
+						console.log("失败")
+					}
 				})
 			}
 		}
