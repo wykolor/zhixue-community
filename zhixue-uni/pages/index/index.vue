@@ -359,7 +359,7 @@ export default {
     width: 100%;
     background-color: #fff;
     box-sizing: border-box;
-    padding: 0 20rpx;
+    padding: 0 20rpx 20rpx;
     margin-top: 5px;
     & /deep/ .van-tab__pane {
       padding: 0.8rem 0;
