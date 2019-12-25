@@ -77,6 +77,11 @@ $uni-font-size-paragraph: 30upx;
 
 // 智旭小程序主题色
 $zx-topic-color:#07c160;
+
+/**
+ * 常用样式组合混入
+ */ 
+
 // 单行文本超出打点显示
 @mixin wy-ellipsis {
 	white-space: nowrap;
@@ -84,15 +89,32 @@ $zx-topic-color:#07c160;
 	text-overflow: ellipsis;
 }
 
+// 开启弹性盒子
+@mixin flex-box {
+	display: flex;
+}
+
 // 内容盒
 @mixin content-box {
 	box-sizing: content-box;
 }
+
 // 填充盒
 @mixin padding-box {
 	box-sizing: padding-box;
 }
+
 // 边框盒
 @mixin border-box {
  	box-sizing: border-box;
+}
+
+// 字间距1px
+@mixin letter-space-1 {
+	letter-spacing: 1px;
+}
+
+// 字间距1px 
+@mixin letter-space-2 {
+	letter-spacing: 2px;
 }

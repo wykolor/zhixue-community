@@ -1,6 +1,7 @@
 {
 	"pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		
 		{ // 首页
 		    "path" : "pages/index/index",
 		    "style" : {
@@ -14,6 +15,14 @@
 				}
 			}
 		},
+		{ // 切换小区
+		    "path" : "pages/switchVillage/switchVillage",
+		    "style" : {
+				"usingComponents":{
+					"van-search": "/wxcomponents/vant/search/index"
+				}
+			}
+		},
 		{ // 服务
 		    "path" : "pages/server/server",
 		    "style" : {}
@@ -24,54 +33,80 @@
         },
 		{ // 我的
 		    "path" : "pages/mine/mine",
-		    "style" : {}
+		    "style" : {
+				"usingComponents":{
+					"van-cell-group":"/wxcomponents/vant/cell-group/index",
+					"van-cell":"/wxcomponents/vant/cell/index",
+					"van-icon":"/wxcomponents/vant/icon/index"
+				}
+			}
 		},
 		{ // 测试界面
 		    "path" : "pages/test/index",
 		    "style" : {}
-		}
-        ,{
+		},
+		{ // 外部链接
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		{
+			"path":"pages/authUserInfo/authUserInfo",
+			"style":{}
+		},
+		{
+			"path":"pages/authPhone/authPhone",
+			"style":{}
+		},
+        {
+          // 家政服务
+          "path": "pages/homeHelp/homeHelp",
+          "style": {
+            "usingComponents": {
+              "van-search": "/wxcomponents/vant/search/index",
+              "van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+              "van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+              "van-card": "/wxcomponents/vant/card/index",
+              "van-button": "/wxcomponents/vant/button/index"
+            }
+          }
+		}
     ],
-	"globalStyle": {
-		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
-		"navigationBarTitleText": "智旭APP", // 导航栏标题文字内容
-		"navigationBarBackgroundColor": "#07c160", // 导航栏背景颜色（同状态栏背景色
-		"backgroundColor": "#07c160" // 窗口背景色
-	},
-	"tabBar": {
-		"borderStyle": "white",  // tabbar 上边框的颜色，仅支持 black/white
-		"backgroundColor": "#fff", // tab 的背景色
-		"color": "#000", // tab 上的文字默认颜色
-		"selectedColor": "#07c160",  // tab 上的文字选中时的颜色
-		"fontSize":"12px", // tab字体大小
-		"list": [
-			{
-				"pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
-				"iconPath": "static/img/tabbar/home.png", // 默认图标(未选中状态的图标)
-				"selectedIconPath": "static/img/tabbar/home-active.png", //  选中状态的图标
-				"text": "首页" // tab 上按钮文字
-			},
-			{
-				"pagePath": "pages/server/server",
-				"iconPath": "static/img/tabbar/server.png",
-				"selectedIconPath": "static/img/tabbar/server-active.png",
-				"text": "服务"
-			},
-			{
-				"pagePath": "pages/news/news",
-				"iconPath": "static/img/tabbar/news.png",
-				"selectedIconPath": "static/img/tabbar/news-active.png",
-				"text": "消息"
-			},
-			{
-				"pagePath": "pages/mine/mine",
-				"iconPath": "static/img/tabbar/me.png",
-				"selectedIconPath": "static/img/tabbar/me-active.png",
-				"text": "我的"
-			}
-		]
-	}
+  "globalStyle": {
+    "navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
+    "navigationBarTitleText": "智旭APP", // 导航栏标题文字内容
+    "navigationBarBackgroundColor": "#07c160", // 导航栏背景颜色（同状态栏背景色
+    "backgroundColor": "#07c160" // 窗口背景色
+  },
+  "tabBar": {
+    "borderStyle": "white", // tabbar 上边框的颜色，仅支持 black/white
+    "backgroundColor": "#fff", // tab 的背景色
+    "color": "#000", // tab 上的文字默认颜色
+    "selectedColor": "#07c160", // tab 上的文字选中时的颜色
+    "list": [
+      {
+        "pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
+        "iconPath": "static/img/tabbar/home.png", // 默认图标(未选中状态的图标)
+        "selectedIconPath": "static/img/tabbar/home-active.png", //  选中状态的图标
+        "text": "首页" // tab 上按钮文字
+      },
+      {
+        "pagePath": "pages/server/server",
+        "iconPath": "static/img/tabbar/server.png",
+        "selectedIconPath": "static/img/tabbar/server-active.png",
+        "text": "服务"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "iconPath": "static/img/tabbar/news.png",
+        "selectedIconPath": "static/img/tabbar/news-active.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "static/img/tabbar/me.png",
+        "selectedIconPath": "static/img/tabbar/me-active.png",
+        "text": "我的"
+      }
+    ]
+  }
 }
