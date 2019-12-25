@@ -126,10 +126,10 @@ export default {
 					sinkType: "page"
 				},
 				{
-					appName:"切换百度",
+					appName:"切换小区",
 					image: "",
-					pageUrl: "https://www.baidu.com",
-					sinkType: "html"
+					pageUrl: "/pages/switchVillage/switchVillage",
+					sinkType: "page"
 				},
 				{
 					appName:"房产绑定",
@@ -315,7 +315,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "../../wxcomponents/vant/common/index.wxss";
 .home {
   width: 100%;
