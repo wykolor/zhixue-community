@@ -117,9 +117,31 @@
 				]
 			}
 		},
+		onShow(){
+			this.getHelpList();
+		},
 		methods: {
 			searchHandle(event){
 				console.log("搜索服务",event.detail);
+			},
+			getHelpList(){
+				
+				let params = {
+					keyWord:"",
+					page:1,
+					priceOrder:"desc",
+					size:10,
+					type:"保洁"
+				}
+				this.$api.homeHelpApi.eshourseKeepingReq({
+					keyWord:"false",
+					page:1,
+					priceOrder:"desc",
+					size:10,
+					type:"保洁"
+				}).then(res => {
+					
+				})
 			}
 		}
 	}
@@ -152,7 +174,6 @@
 			background-color: #fff;
 			margin-bottom: 8px;
 			border-radius: 5px;
-			box-shadow: 1px 3px 8px #ddd;
 		}
 	}
 }

@@ -9,7 +9,7 @@ const http = axios.create({
     withCredentials: true,
     // #endif
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        'Content-Type': 'application/json',
     },
 })
 

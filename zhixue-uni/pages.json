@@ -1,7 +1,7 @@
 {
   "pages": [
     // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-
+	
     {
       // 首页
       "path": "pages/index/index",
@@ -16,6 +16,19 @@
         }
       }
     },
+	{
+	  // 家政服务
+	  "path": "pages/homeHelp/homeHelp",
+	  "style": {
+	    "usingComponents": {
+	      "van-search": "/wxcomponents/vant/search/index",
+	      "van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+	      "van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+	      "van-card": "/wxcomponents/vant/card/index",
+	      "van-button": "/wxcomponents/vant/button/index"
+	    }
+	  }
+	},
     {
       "path": "pages/articleDetail/articleDetail",
       "style": {
@@ -60,20 +73,8 @@
     {
       "path": "pages/authPhone/authPhone",
       "style": {}
-    },
-    {
-      // 家政服务
-      "path": "pages/homeHelp/homeHelp",
-      "style": {
-        "usingComponents": {
-          "van-search": "/wxcomponents/vant/search/index",
-          "van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
-          "van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
-          "van-card": "/wxcomponents/vant/card/index",
-          "van-button": "/wxcomponents/vant/button/index"
-        }
-      }
     }
+    
   ],
   "globalStyle": {
     "navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

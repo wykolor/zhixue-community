@@ -55,7 +55,7 @@
             link-tab="switchTab"
             :text="item.appName"
             :key="item.id"
-            v-if="item.type == 'no'"
+            v-if="item.sinkType == 'no'"
           />
         </template>
       </van-grid>
@@ -113,66 +113,66 @@ export default {
 				}
 			},
 			appList:[
-				// {
-				// 	appName:"物业服务",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"人脸管理",
-				// 	image: "",
-				// 	pageUrl: "/pages/test/index",
-				// 	type: 1
-				// },
-				// {
-				// 	appName:"切换百度",
-				// 	image: "",
-				// 	pageUrl: "https://www.baidu.com",
-				// 	type: 2
-				// },
-				// {
-				// 	appName:"房产绑定",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"家政服务",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"意见建议",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"跳蚤市场",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"跑腿小哥",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"小区超市",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// },
-				// {
-				// 	appName:"周边商家",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	type: 0
-				// }
+				{
+					appName:"物业服务",
+					image: "",
+					pageUrl: "",
+					sinkType: "page"
+				},
+				{
+					appName:"人脸管理",
+					image: "",
+					pageUrl: "/pages/test/index",
+					sinkType: "page"
+				},
+				{
+					appName:"切换百度",
+					image: "",
+					pageUrl: "https://www.baidu.com",
+					sinkType: "html"
+				},
+				{
+					appName:"房产绑定",
+					image: "",
+					pageUrl: "",
+					sinkType: "page"
+				},
+				{
+					appName:"家政服务",
+					image: "",
+					pageUrl: "/pages/homeHelp/homeHelp",
+					sinkType: "page"
+				},
+				{
+					appName:"意见建议",
+					image: "",
+					pageUrl: "",
+					sinkType: "page"
+				},
+				{
+					appName:"跳蚤市场",
+					image: "",
+					pageUrl: "",
+					sinkType:"page"
+				},
+				{
+					appName:"跑腿小哥",
+					image: "",
+					pageUrl: "",
+					sinkType:"page"
+				},
+				{
+					appName:"小区超市",
+					image: "",
+					pageUrl: "",
+					sinkType:"page"
+				},
+				{
+					appName:"周边商家",
+					image: "",
+					pageUrl: "",
+					sinkType: "page"
+				}
 			],
 			bannerList:[
 				{
@@ -273,7 +273,7 @@ export default {
 	onLoad(){
 		uniLofin().then(()=>{
 			this.getBannerList();
-			this.getAppList();
+			// this.getAppList();
 			this.getServerList();
 			this.getImageList();
 			this.getArticleList();
