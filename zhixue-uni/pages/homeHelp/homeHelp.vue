@@ -134,7 +134,6 @@
 			},
 			// 获取数据
 			getHelpList(){
-				
 				let params = {
 					keyWord:"",
 					page:1,

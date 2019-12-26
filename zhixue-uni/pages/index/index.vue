@@ -75,25 +75,20 @@
           v-for="categray in articleList"
           :key="categray.id"
         >
-          <!-- <view
-            class="article-list"
-            v-for="article in categray.list"
-            :key="article.id"
-          > -->
-		  <navigator :url="'/pages/articleDetail/articleDetail?id=' + article.id" class="article-list"
+		  <navigator :url="'/pages/articleDetail/articleDetail?id='+article.id" class="article-list"
             v-for="article in categray.list"
             :key="article.id">
-            <view class="art-list-img">
-              <image :src="article.image"></image>
-            </view>
-            <view class="art-list-info">
-              <view class="art-info-title">{{ article.title }}</view>
-              <view class="art-info-time">{{ article.createTime }}</view>
-			  <rich-text :nodes="article.content" class="art-info-content van-multi-ellipsis--l2"></rich-text>
-              <!-- <view class="art-info-content van-multi-ellipsis--l2" v-html="article.content"></view> -->
-            </view>
+			<!-- <view class="article-list"  v-for="article in categray.list" :key="article.id" @click="goArticleDetail" :id="article.id"> -->
+				<view class="art-list-img">
+				  <image :src="article.image"></image>
+				</view>
+				<view class="art-list-info">
+				  <view class="art-info-title">{{ article.title }}</view>
+				  <view class="art-info-time">{{ article.createTime }}</view>
+				  <rich-text :nodes="article.summaryText" class="art-info-content van-multi-ellipsis--l2"></rich-text>
+				</view>
+			<!-- </view> -->
 			</navigator>
-          <!-- </view> -->
         </van-tab>
       </van-tabs>
     </view>
@@ -204,13 +199,15 @@ export default {
 								title:"通知！！某男子在办公司净做出",
 								createTime:"15:02 AM",
 								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
+								summaryText:"承载网页的容器。会自动铺满整个"
 							},
 							{
 								title:"通知！！某男子在办公司净做出",
 								createTime:"15:02 AM",
 								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
+								summaryText:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用"
 							},
 							{
 								title:"通知！！某男子在办公司净做出",
@@ -273,8 +270,7 @@ export default {
 	onLoad(){
 		uniLofin().then(()=>{
 			this.getBannerList();
-			// this.getAppList();
-			this.getServerList();
+			this.getAppList();
 			this.getImageList();
 			this.getArticleList();
 		})
@@ -292,16 +288,11 @@ export default {
 				this.appList = res.data;
 			})
 		},
-		// 服务模块
-		getServerList(){
-			this.$api.indexApi.esAppServiceReq().then(res => {
-				
-			})
-		},
+		
 		// 中间图片模块
 		getImageList(){
 			this.$api.indexApi.esAppMiddleReq().then(res => {
-				
+				this.serverList = res.data;
 			})
 		},
 		// 文章模块
@@ -310,6 +301,13 @@ export default {
 				this.articleList = res.data;
 			})
 		},
+		goArticleDetail(e){
+			const { id } = e.currentTarget;
+			console.log(e.currentTarget.id)
+			uni.navigateTo({
+				url:"/pages/articleDetail/articleDetail?id="+id
+			})
+		}
 		
 	}
 }
@@ -367,7 +365,7 @@ export default {
     .article-list {
       display: flex;
       padding: 10rpx;
-      align-items: stretch;
+	  height: 6rem;
       & > view {
         box-sizing: border-box;
       }

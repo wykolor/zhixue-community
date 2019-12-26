@@ -1,8 +1,8 @@
 <template>
 	<view class="server">
-		<van-cell-group :border="false" class="server-list" v-for="item in serverList" :key="item.id" :title="item.categrayName">
+		<van-cell-group :border="false" class="server-list" v-for="item in serverList" :key="item.id" :title="item.name">
 			<van-grid column-num="3" square clickable >
-			  <van-grid-item icon="photo-o" :text="list.title" v-for="list in item.list" :key="list.id"/>
+			  <van-grid-item :icon="list.image" :text="list.appName" v-for="list in item.esAppResps" :key="list.id"/>
 			</van-grid>
 		</van-cell-group>
 	</view>
@@ -14,47 +14,58 @@
 			return {
 				serverList:[
 					{
-						categrayName:"物业服务",
-						list:[
+						name:"物业服务",
+						esAppResps:[
 							{
-								title:"小区公告"
+								appName:"小区公告"
 							},
 							{
-								title:"小区报修"
+								appName:"小区报修"
 							},
 							{
-								title:"意见建议"
+								appName:"意见建议"
 							},
 							{
-								title:"物业缴费"
+								appName:"物业缴费"
 							},
 							{
-								title:"手机开门"
+								appName:"手机开门"
 							},
 							{
-								title:"便民号码"
+								appName:"便民号码"
 							}
 						]
 					},
 					{
-						categrayName:"小区互动",
-						list:[
+						name:"小区互动",
+						esAppResps:[
 							{
-								title:"小区活动"
+								appName:"小区活动"
 							},
 							{
-								title:"小区家政"
+								appName:"小区家政"
 							},
 							{
-								title:"房屋租售"
+								appName:"房屋租售"
 							},
 							{
-								title:"小区拼车"
+								appName:"小区拼车"
 							},
 						]
 					}
 				]
 			};
+		},
+		onShow() {
+			this.getServerList();
+		},
+		methods:{
+			// 服务模块
+			getServerList(){
+				this.$api.serverApi.esAppServiceReq().then(res => {
+					this.serverList = res.data;
+				})
+			},
 		}
 	}
 </script>

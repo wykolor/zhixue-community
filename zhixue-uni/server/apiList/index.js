@@ -6,8 +6,7 @@ const esBanner = "/api/v1/estate/esBanner/list";
 const esAppIndex = "/api/v1/estate/esAppIndex/list";
 
 const esAppFacility = "/api/v1/estate/esAppFacility/list";
-// 服务模块
-const esAppService = "/api/v1/estate/esAppService/list";
+
 // 中间区域图片
 const esAppMiddle = "/api/v1/estate/esAppMiddle/list";
 // 文章模块
@@ -23,9 +22,6 @@ export default {
 	},
 	esAppFacilityReq:function(esAppFacilityObj){
 		return get(esAppFacility,esAppFacilityObj)
-	},
-	esAppServiceReq:function(esAppServiceObj){
-		return get(esAppService,esAppServiceObj)
 	},
 	esAppMiddleReq:function(esAppMiddleObj){
 		return get(esAppMiddle,esAppMiddleObj)

@@ -69,14 +69,18 @@
       "path": "pages/outUrl/outUrl",
       "style": {}
     },
-    {
+    { // 授权用户信息
       "path": "pages/authUserInfo/authUserInfo",
       "style": {}
     },
-    {
+    { // 授权手机号
       "path": "pages/authPhone/authPhone",
       "style": {}
     },
+	{
+		"path":"pages/articleDetail/articleDetail",
+		"style":{}
+	},
     {
       // 家政服务
       "path": "pages/homeHelp/homeHelp",

@@ -13,10 +13,14 @@ import articleDetailApi from "./apiList/articleDetail.js";
 // 家政服务模块
 import homeHelpApi from "./apiList/homeHelp.js";
 
+// 服务模块
+import serverApi from "./apiList/server.js";
+
 export const api = {
 	testApi,
 	indexApi,
 	authApi,
 	articleDetailApi,
-	homeHelpApi
+	homeHelpApi,
+	serverApi
 };

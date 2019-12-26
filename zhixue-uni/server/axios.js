@@ -9,13 +9,13 @@ const http = axios.create({
     withCredentials: true,
     // #endif
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
     },
 })
 
 function startLoading(){
 	uni.showLoading({
-	    title: '加载中',
+	  title: '加载中',
 		mask:false
 	});
 }
@@ -81,10 +81,11 @@ export function get(url, params) {
  * @param {*} params 请求参数
  * @returns
  */
-export function post(url, params) {
+export function post(url, params,headers) {
   return http({
     method: "post",
     url: url,
-    data: QS.stringify(params)
+    data: QS.stringify(params),
+	headers
   });
 }
