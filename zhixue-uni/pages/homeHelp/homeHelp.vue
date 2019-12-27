@@ -126,7 +126,8 @@
 			}
 		},
 		onShow(){
-			this.getHelpList();
+			// this.getHelpList();
+			this.gettypeList();
 		},
 		methods: {
 			searchHandle(event){
@@ -149,6 +150,19 @@
 					type:"保洁"
 				}).then(res => {
 					
+				})
+			},
+			// 服务类型
+			gettypeList(){
+				this.$api.homeHelpApi.typeListReq().then(res => {
+					this.option1 = res.data.map(item => {
+						return {
+							text:item.categrayName,
+							value:item.value
+						}
+					});
+					// 筛选默认选中
+					this.value1 = this.option1[0].value;
 				})
 			},
 			// 拨打电话
