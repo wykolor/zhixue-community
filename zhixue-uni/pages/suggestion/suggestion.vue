@@ -2,8 +2,8 @@
 	<view class="suggestion">
 		<van-field label="意见反馈:" type="textarea"  autosize :border="false" placeholder="请输入您的宝贵意见" :maxlength="100"  left-icon="edit" @change="inputHandle"></van-field>
 		<view class="text-len">{{textLen}}/100</view>
-		<view class="">
-			<van-button type="primary">提交反馈</van-button>
+		<view class="submit-btn">
+			<van-button custom-class="btn-self" type="primary" round size="small">提交反馈</van-button>
 		</view>
 	</view>
 </template>
@@ -34,6 +34,11 @@
 		font-size: 12px;
 		color: #666;
 		text-align: right;
+	}
+	.submit-btn{
+		width: 100%;
+		@include  border-box;
+		padding:1rem;
 	}
 }
 </style>
