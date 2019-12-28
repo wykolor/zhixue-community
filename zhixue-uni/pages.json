@@ -33,7 +33,14 @@
         ,{
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		// 物业介绍
+		{
+		    "path" : "pages/wuyeIntro/wuyeIntro",
+		    "style" : {
+				"navigationBarTitleText": "物业简介"
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

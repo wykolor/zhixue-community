@@ -66,8 +66,8 @@
 					{
 						appName:"物业服务",
 						image: "",
-						pageUrl: "",
-						type: 0
+						pageUrl: "/pages/wuyeIntro/wuyeIntro",
+						type: 1
 					},
 					{
 						appName:"人脸管理",

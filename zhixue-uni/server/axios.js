@@ -17,7 +17,7 @@ const http = axios.create({
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(config => {
     // 将令牌配置到请求头信息中
-	const testToken = "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzY5NTE4ODEsInVzZXJfbmFtZSI6Im9hU1FCNWVwN3ltMzhqTTdXdU91SlV2eTB2UTAiLCJqdGkiOiIxNWE5MTg3ZC1lMDNmLTQzZTQtYmE1ZC0yN2ZiODBjMzUwYjgiLCJjbGllbnRfaWQiOiJ3ZWJBcHAiLCJzY29wZSI6W119.RwCrwkmYiBwHH0IOtQaE2S4lwbUTCTnD8R5EGzF4JOk"
+	const testToken = "test_token"
     const token = uni.getStorageSync("token") || testToken;
     token && (config.headers.Authorization = token);
     return config
