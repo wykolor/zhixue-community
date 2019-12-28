@@ -1,5 +1,6 @@
 import axios from '@/js_sdk/gangdiedao-uni-axios';
 import QS from "qs";
+import uniLofin from "../utils/login.js";
 // 创建自定义接口服务实例
 const http = axios.create({
     baseURL: "http://mpestate.dev.smartyface.cn", // 测试服务器
@@ -45,10 +46,7 @@ http.interceptors.request.use(config => {
 	showFullScreenLoading();
     // 将令牌配置到请求头信息中
     const token = uni.getStorageSync("token");
-	const phone = uni.getStorageSync("phone");
-	// const testToken = "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzczMDY5MDIsInVzZXJfbmFtZSI6Im9ZbHhMNU1ubWVKci1oX1hWSThnQkVZcjVtRTQiLCJqdGkiOiJkNWUxZDYwOS0wNjZiLTQ5YjQtOWY3OS0xYTRjZWRiNmJjOTEiLCJjbGllbnRfaWQiOiJ3ZWJBcHAiLCJzY29wZSI6W119.be28HCZWcECxuIJxBq9WOZXTyC1la78beaTnG9Y71eI"
     token && (config.headers.Authorization = token);
-	phone && (config.headers.phone = phone);
     return config
 })
 // 响应拦截器 
