@@ -33,7 +33,17 @@
         ,{
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		{
+		    "path" : "pages/facemag/facemag",
+		    "style" : {
+				"navigationBarTitleText": "人脸管理",
+				"usingComponents":{
+					"van-uploader":"/wxcomponents/vant/uploader/index"
+				}
+				
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

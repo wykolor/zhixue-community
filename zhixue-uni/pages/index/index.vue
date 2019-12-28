@@ -72,7 +72,7 @@
 					{
 						appName:"人脸管理",
 						image: "",
-						pageUrl: "/pages/test/index",
+						pageUrl: "/pages/facemag/facemag",
 						type: 1
 					},
 					{
