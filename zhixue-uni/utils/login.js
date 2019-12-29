@@ -30,6 +30,13 @@
 			success:function(){
 				// 登录未过期
 				resolve("登录未过期,执行该有的逻辑");
+				// uni.login({
+				// 	  provider: 'weixin',
+				// 	  success: function (loginRes) {
+				// 		const { code } = loginRes;
+				// 		zxLogin(code,resolve,reject);
+				// 	}
+				// });
 			},
 			// 登录过期
 			fail:function(){

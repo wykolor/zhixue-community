@@ -13,9 +13,8 @@
 			/>
 			<!-- 筛选 -->
 			<van-dropdown-menu active-color="#07c160">
-			  <van-dropdown-item :value="value1" :options="option1" />
-			  <van-dropdown-item :value="value2" :options="option2" />
-			  <van-dropdown-item :value="value3" :options="option3" />
+			  <van-dropdown-item :value="type" :options="option1" @change="changeType"/>
+			  <van-dropdown-item :value="priceOrder" :options="option2" @change="changeOrder"/>
 			</van-dropdown-menu>
 		</view>
 		<!-- 服务商品列表 -->
@@ -23,14 +22,13 @@
 			<van-card
 				v-for="item in helpList"
 				:key="item.id"
-				:price="item.price"
-				:desc="item.desc"
-				:title="item.title"
+				:price="item.priceinfo"
+				:desc="item.info"
+				:title="item.name"
 				:thumb="item.image"
-				
 			>
 				<view slot="footer">
-					<van-button size="small" type="primary" round icon="phone" @click="callUp" :id="item.phone">立即订购</van-button>
+					<van-button size="small" type="primary" round icon="phone" @click="callUp" :id="item.mobile">立即订购</van-button>
 				</view>
 			</van-card>
 		</view>
@@ -41,128 +39,69 @@
 	export default {
 		data() {
 			return {
-				value1:0,
-				value2:"a",
-				value3:"open",
-				option1:[
-					{ text: '全部商品', value: 0 },
-					{ text: '新款商品', value: 1 },
-					{ text: '活动商品', value: 2 }
-				],
+				keyWord:null,
+				type:'',
+				priceOrder:'',
+				option1:[{
+					text:'全部商品',
+					value:''
+				}],
+				currentPage:1,
 				option2:[
-					{ text: '默认排序', value: 'a' },
-					{ text: '好评排序', value: 'b' },
-					{ text: '销量排序', value: 'c' }
+					{ text: '默认排序', value:''},
+					{ text: '降序', value: 'desc' },
+					{ text: '升序', value: 'asc' }
 				],
-				option3:[
-					{text:"正在营业",value: "open"},
-					{text:"停止营业",value: "close"}
-				],
-				helpList:[
-					{
-						image:require('../../static/img/homeHelp/u186.jpg'),
-						title:"和平保洁公司",
-						price:"100.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验",
-						phone:"18208207457"
-					},
-					{
-						image:require('../../static/img/homeHelp/u195.jpg'),
-						title:"建设小区送水上门",
-						price:"19.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用",
-						phone:"18283171252"
-					},
-					{
-						image:require('../../static/img/homeHelp/u186.jpg'),
-						title:"和平保洁公司",
-						price:"100.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验",
-						phone:"13649037730"
-					},
-					{
-						image:require('../../static/img/homeHelp/u195.jpg'),
-						title:"建设小区送水上门",
-						price:"19.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用",
-						phone:"18190282178"
-					},
-					{
-						image:require('../../static/img/homeHelp/u186.jpg'),
-						title:"和平保洁公司",
-						price:"100.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验"
-					},
-					{
-						image:require('../../static/img/homeHelp/u195.jpg'),
-						title:"建设小区送水上门",
-						price:"19.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用",
-						phone:"18190282178"
-					},
-					{
-						image:require('../../static/img/homeHelp/u186.jpg'),
-						title:"和平保洁公司",
-						price:"100.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"良心保洁 用心体验",
-						phone:"18190282178"
-					},
-					{
-						image:require('../../static/img/homeHelp/u195.jpg'),
-						title:"建设小区送水上门",
-						price:"19.00",
-						time:"(营业时间 10:00-21:00)",
-						desc:"水质安全 放心饮用",
-						phone:"18190282178"
-					}
-				]
+				helpList:[]
 			}
 		},
 		onShow(){
-			// this.getHelpList();
+			// 获得服务数据列表
+			this.getHelpList();
+			// 获得服务类型
 			this.gettypeList();
 		},
+		onPullDownRefresh(){
+			this.type = "";
+			this.priceOrder = "";
+			this.getHelpList();
+		},
+
 		methods: {
-			searchHandle(event){
-				console.log("搜索服务",event.detail);
+			changeType(value){
+				this.type = value.detail;
+				this.getHelpList();
 			},
-			// 获取数据
+			changeOrder(value){
+				this.priceOrder = value.detail;
+				this.getHelpList();
+			},
+			searchHandle(event){
+				this.keyWord = event.detail;
+				this.getHelpList();
+			},
+			// 获取服务数据列表
 			getHelpList(){
 				let params = {
-					keyWord:"",
-					page:1,
-					priceOrder:"desc",
+					keyWord:this.keyWord,
+					page:this.currentPage,
+					priceOrder:this.priceOrder,
 					size:10,
-					type:"保洁"
+					type:this.type
 				}
-				this.$api.homeHelpApi.eshourseKeepingReq({
-					keyWord:"false",
-					page:1,
-					priceOrder:"desc",
-					size:10,
-					type:"保洁"
-				}).then(res => {
-					
+				this.$api.homeHelpApi.eshourseKeepingReq(params).then(res => {
+					this.helpList = res.listData;
 				})
 			},
 			// 服务类型
 			gettypeList(){
 				this.$api.homeHelpApi.typeListReq().then(res => {
-					this.option1 = res.data.map(item => {
+					this.option1 = this.option1.concat(res.data.map(item => {
 						return {
 							text:item.categrayName,
 							value:item.value
 						}
-					});
-					// 筛选默认选中
-					this.value1 = this.option1[0].value;
+					}))
 				})
 			},
 			// 拨打电话

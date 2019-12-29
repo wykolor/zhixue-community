@@ -16,11 +16,19 @@ import homeHelpApi from "./apiList/homeHelp.js";
 // 服务模块
 import serverApi from "./apiList/server.js";
 
+// 意见建议
+import suggestionApi from "./apiList/suggestion.js";
+
+// 切换小区
+import switchVillageApi from "./apiList/switchVillage.js";
+
 export const api = {
 	testApi,
 	indexApi,
 	authApi,
 	articleDetailApi,
 	homeHelpApi,
-	serverApi
+	serverApi,
+	suggestionApi,
+	switchVillageApi
 };

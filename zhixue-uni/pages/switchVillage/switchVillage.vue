@@ -2,7 +2,6 @@
 	<view class="switch-village">
 		<view class="village-header">
 			<van-search
-			  :value="searchValue"
 			  placeholder="搜索小区"
 			  show-action
 			  shape="round"
@@ -73,9 +72,22 @@
 				]
 			};
 		},
+		onShow() {
+			this.getVillageList();
+		},
 		methods:{
 			searchHandle(event){
+				this.searchValue = event.detail;
+				this.getVillageList();
 				console.log(event.detail)
+			},
+			// 获取小区列表
+			getVillageList(){
+				this.$api.switchVillageApi.enableListReq({
+					keyWord:this.searchValue
+				}).then(res => {
+					this.villageList = res.data;
+				})
 			}
 		}
 	}
@@ -104,6 +116,7 @@
 			align-items: stretch;
 			margin-bottom: 0.6rem;
 			padding: 0.5rem;
+			min-height: 200rpx;
 			border-radius: 0.4rem;
 			box-shadow: 0 1px 3px #C0C0C0;
 			.village-img{

@@ -1,6 +1,5 @@
 import axios from '@/js_sdk/gangdiedao-uni-axios';
-import QS from "qs";
-import uniLofin from "../utils/login.js";
+import uniLogin from "../utils/login.js";
 // 创建自定义接口服务实例
 const http = axios.create({
     baseURL: "http://mpestate.dev.smartyface.cn", // 测试服务器
@@ -55,6 +54,12 @@ http.interceptors.response.use(response => {
 	tryHideFullScreenLoading();
     return response.data
 }, error => {
+	let { status } = error.response;
+	// 登录过期
+	if(status === 401){
+		uni.clearStorageSync("token");
+		uniLogin();
+	}
 	tryHideFullScreenLoading();
     return Promise.reject(error.message)
 })
@@ -83,7 +88,7 @@ export function post(url, params,headers) {
   return http({
     method: "post",
     url: url,
-    data: QS.stringify(params),
+    data:params,
 	headers
   });
 }
