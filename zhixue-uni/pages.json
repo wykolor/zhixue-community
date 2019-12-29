@@ -1,7 +1,16 @@
 {
   "pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
+		{// 意见建议
+			"path" : "pages/suggestion/suggestion",
+			"style" : {
+				"navigationBarTitleText":"意见反馈",
+				"usingComponents":{
+					"van-field": "/wxcomponents/vant/field/index",
+					"van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		},
 		{
 		  // 首页
 		  "path": "pages/index/index",
@@ -71,20 +80,11 @@
 			  "van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
 			  "van-card": "/wxcomponents/vant/card/index",
 			  "van-button": "/wxcomponents/vant/button/index"
-			},
-			"enablePullDownRefresh": true
+			}
+			// "enablePullDownRefresh": true
 		  }
 		},
-		{// 意见建议
-			"path" : "pages/suggestion/suggestion",
-			"style" : {
-				"navigationBarTitleText":"意见反馈",
-				"usingComponents":{
-					"van-field": "/wxcomponents/vant/field/index",
-					"van-button": "/wxcomponents/vant/button/index"
-				}
-			}
-		},
+		
 		{
 		  // 测试界面
 		  "path": "pages/test/index",

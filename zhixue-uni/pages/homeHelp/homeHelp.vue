@@ -61,12 +61,11 @@
 			// 获得服务类型
 			this.gettypeList();
 		},
-		onPullDownRefresh(){
-			this.type = "";
-			this.priceOrder = "";
-			this.getHelpList();
-		},
-
+		// onPullDownRefresh(){
+		// 	this.type = "";
+		// 	this.priceOrder = "";
+		// 	this.getHelpList();
+		// },
 		methods: {
 			changeType(value){
 				this.type = value.detail;

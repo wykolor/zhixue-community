@@ -27,7 +27,11 @@
 				this.$api.suggestionApi.esAdviceReq({
 					content:this.value
 				}).then(res => {
-					
+					if(res.code===100000){
+						
+					}else{
+						
+					}
 				})
 			}
 		}
