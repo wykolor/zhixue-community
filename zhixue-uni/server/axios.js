@@ -15,8 +15,8 @@ const http = axios.create({
 
 function startLoading(){
 	uni.showLoading({
-	  title: '加载中',
-		mask:false
+		title: '加载中',
+		mask:true
 	});
 }
 function endLoading(){

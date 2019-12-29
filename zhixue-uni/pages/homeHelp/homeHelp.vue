@@ -10,6 +10,7 @@
 			  background="#07c160"
 			  cancel-class="cancel-text"
 			  @search="searchHandle"
+			  @change="changehandle"
 			/>
 			<!-- 筛选 -->
 			<van-dropdown-menu active-color="#07c160">
@@ -47,6 +48,7 @@
 					value:''
 				}],
 				currentPage:1,
+				totalPages:2,
 				option2:[
 					{ text: '默认排序', value:''},
 					{ text: '降序', value: 'desc' },
@@ -61,13 +63,22 @@
 			// 获得服务类型
 			this.gettypeList();
 		},
+		onReachBottom(){
+			this.currentPage++;
+			this.getHelpList();
+		},
+		
 		// onPullDownRefresh(){
 		// 	this.type = "";
 		// 	this.priceOrder = "";
 		// 	this.getHelpList();
 		// },
 		methods: {
+			resetData(){
+				this.currentPage = 1;
+			},
 			changeType(value){
+				
 				this.type = value.detail;
 				this.getHelpList();
 			},
@@ -75,25 +86,38 @@
 				this.priceOrder = value.detail;
 				this.getHelpList();
 			},
+			changehandle(event){
+				this.keyWord = event.detail;
+			},
 			searchHandle(event){
 				this.keyWord = event.detail;
 				this.getHelpList();
 			},
 			// 获取服务数据列表
 			getHelpList(){
+				if(this.currentPage>this.totalPages){
+					return false;
+				}
 				let params = {
 					keyWord:this.keyWord,
 					page:this.currentPage,
 					priceOrder:this.priceOrder,
-					size:10,
+					size:5,
 					type:this.type
 				}
 				this.$api.homeHelpApi.eshourseKeepingReq(params).then(res => {
-					this.helpList = res.listData;
+					if(this.currentPage === 1){
+						this.helpList = res.listData;
+					}else{
+						this.helpList = this.helpList.concat(res.listData)
+					}
+					
+					// this.totalPages = res.paginationData.totalPages;
 				})
 			},
 			// 服务类型
 			gettypeList(){
+				
 				this.$api.homeHelpApi.typeListReq().then(res => {
 					this.option1 = this.option1.concat(res.data.map(item => {
 						return {

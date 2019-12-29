@@ -22,6 +22,9 @@ import suggestionApi from "./apiList/suggestion.js";
 // 切换小区
 import switchVillageApi from "./apiList/switchVillage.js";
 
+// 消息模块
+import newApi from "./apiList/news.js";
+
 export const api = {
 	testApi,
 	indexApi,
@@ -30,5 +33,6 @@ export const api = {
 	homeHelpApi,
 	serverApi,
 	suggestionApi,
-	switchVillageApi
+	switchVillageApi,
+	newApi
 };

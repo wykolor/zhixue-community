@@ -108,162 +108,162 @@ export default {
 				}
 			},
 			appList:[
-				{
-					appName:"物业服务",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"人脸管理",
-					image: "",
-					pageUrl: "/pages/test/index",
-					sinkType: "page"
-				},
-				{
-					appName:"切换小区",
-					image: "",
-					pageUrl: "/pages/switchVillage/switchVillage",
-					sinkType: "page"
-				},
-				{
-					appName:"房产绑定",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"家政服务",
-					image: "",
-					pageUrl: "/pages/homeHelp/homeHelp",
-					sinkType: "page"
-				},
-				{
-					appName:"意见建议",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"跳蚤市场",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"跑腿小哥",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"小区超市",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"周边商家",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				}
+				// {
+				// 	appName:"物业服务",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"人脸管理",
+				// 	image: "",
+				// 	pageUrl: "/pages/test/index",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"切换小区",
+				// 	image: "",
+				// 	pageUrl: "/pages/switchVillage/switchVillage",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"房产绑定",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"家政服务",
+				// 	image: "",
+				// 	pageUrl: "/pages/homeHelp/homeHelp",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"意见建议",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType: "page"
+				// },
+				// {
+				// 	appName:"跳蚤市场",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType:"page"
+				// },
+				// {
+				// 	appName:"跑腿小哥",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType:"page"
+				// },
+				// {
+				// 	appName:"小区超市",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType:"page"
+				// },
+				// {
+				// 	appName:"周边商家",
+				// 	image: "",
+				// 	pageUrl: "",
+				// 	sinkType: "page"
+				// }
 			],
 			bannerList:[
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				}
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u118.jpg")
+				// }
 			],
 			serverList:[
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
+				// {
+				// 	"image": require("../../static/img/index/u62.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u62.jpg")
+				// },
+				// {
+				// 	"image": require("../../static/img/index/u62.jpg")
+				// },
 			],
 			articleList:[
-					{
-						categrayName:"公告",
-						list:[
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
-								summaryText:"承载网页的容器。会自动铺满整个"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
-								summaryText:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					},
-					{
-						categrayName:"热点",
-						list:[
-							{
-								title:"热点！！某男子在",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					}
+					// {
+					// 	categrayName:"公告",
+					// 	list:[
+					// 		{
+					// 			title:"通知！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
+					// 			summaryText:"承载网页的容器。会自动铺满整个"
+					// 		},
+					// 		{
+					// 			title:"通知！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
+					// 			summaryText:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用"
+					// 		},
+					// 		{
+					// 			title:"通知！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"通知！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"通知！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 	]
+					// },
+					// {
+					// 	categrayName:"热点",
+					// 	list:[
+					// 		{
+					// 			title:"热点！！某男子在",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"热点！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"热点！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"热点！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 		{
+					// 			title:"热点！！某男子在办公司净做出",
+					// 			createTime:"15:02 AM",
+					// 			image:require('../../static/img/index/u62.jpg'),
+					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
+					// 		},
+					// 	]
+					// }
 			],
 		}
 	},

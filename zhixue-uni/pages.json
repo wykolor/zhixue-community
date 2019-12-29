@@ -1,15 +1,18 @@
 {
   "pages": [
 		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{// 意见建议
-			"path" : "pages/suggestion/suggestion",
-			"style" : {
-				"navigationBarTitleText":"意见反馈",
-				"usingComponents":{
-					"van-field": "/wxcomponents/vant/field/index",
-					"van-button": "/wxcomponents/vant/button/index"
-				}
+		{
+		  // 消息
+		  "path": "pages/news/news",
+		  "style": {
+			"usingComponents": {
+			  "van-tab": "/wxcomponents/vant/tab/index",
+			  "van-tabs": "/wxcomponents/vant/tabs/index",
+			  "van-cell": "/wxcomponents/vant/cell/index",
+			  "van-cell-group": "/wxcomponents/vant/cell-group/index",
+			  "van-icon": "/wxcomponents/vant/icon/index"
 			}
+		  }
 		},
 		{
 		  // 首页
@@ -36,20 +39,17 @@
 				}
 			}
 		},
-		{
-		  // 消息
-		  "path": "pages/news/news",
-		  "style": {
-			"usingComponents": {
-			  "van-tab": "/wxcomponents/vant/tab/index",
-			  "van-tabs": "/wxcomponents/vant/tabs/index",
-			  "van-cell": "/wxcomponents/vant/cell/index",
-			  "van-cell-group": "/wxcomponents/vant/cell-group/index",
-			  "van-icon": "/wxcomponents/vant/icon/index"
-			}
-		  }
-		},
 		
+		{// 意见建议
+			"path" : "pages/suggestion/suggestion",
+			"style" : {
+				"navigationBarTitleText":"意见反馈",
+				"usingComponents":{
+					"van-field": "/wxcomponents/vant/field/index",
+					"van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		},
 		{
 		  // 我的
 		  "path": "pages/mine/mine",
@@ -108,6 +108,14 @@
 			"style":{}
 		}
 		
+        ,{
+            "path" : "pages/newsDetail/newsDetail",
+            "style" : {
+				"usingComponents":{
+					"van-cell":"/wxcomponents/vant/cell/index"
+				}
+			}
+        }
     ],
   "globalStyle": {
     "navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
