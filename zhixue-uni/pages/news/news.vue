@@ -1,6 +1,6 @@
 <template>
 	<view class="news">
-		<van-tabs :active="active" sticky animated swipeable :line-width="15" :z-index="99" color="#07c160">
+		<van-tabs :active="active" :sticky="true" :animated="true" :swipeable="true" :line-width="15" :z-index="99" color="#07c160">
 		  <van-tab :title="item.title" v-for="item in allList" :key="item.id">
 			 <van-cell-group>
 				 <navigator :url="'/pages/newsDetail/newsDetail?messageCode='+value.code"  v-for="value in item.list" :key="value.id">

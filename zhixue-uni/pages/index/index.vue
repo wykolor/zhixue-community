@@ -107,164 +107,10 @@ export default {
 					color: '#FF3333'
 				}
 			},
-			appList:[
-				// {
-				// 	appName:"物业服务",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"人脸管理",
-				// 	image: "",
-				// 	pageUrl: "/pages/test/index",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"切换小区",
-				// 	image: "",
-				// 	pageUrl: "/pages/switchVillage/switchVillage",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"房产绑定",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"家政服务",
-				// 	image: "",
-				// 	pageUrl: "/pages/homeHelp/homeHelp",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"意见建议",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType: "page"
-				// },
-				// {
-				// 	appName:"跳蚤市场",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType:"page"
-				// },
-				// {
-				// 	appName:"跑腿小哥",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType:"page"
-				// },
-				// {
-				// 	appName:"小区超市",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType:"page"
-				// },
-				// {
-				// 	appName:"周边商家",
-				// 	image: "",
-				// 	pageUrl: "",
-				// 	sinkType: "page"
-				// }
-			],
-			bannerList:[
-				// {
-				// 	"image": require("../../static/img/index/u118.jpg")
-				// },
-				// {
-				// 	"image": require("../../static/img/index/u118.jpg")
-				// },
-				// {
-				// 	"image": require("../../static/img/index/u118.jpg")
-				// }
-			],
-			serverList:[
-				// {
-				// 	"image": require("../../static/img/index/u62.jpg")
-				// },
-				// {
-				// 	"image": require("../../static/img/index/u62.jpg")
-				// },
-				// {
-				// 	"image": require("../../static/img/index/u62.jpg")
-				// },
-			],
-			articleList:[
-					// {
-					// 	categrayName:"公告",
-					// 	list:[
-					// 		{
-					// 			title:"通知！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
-					// 			summaryText:"承载网页的容器。会自动铺满整个"
-					// 		},
-					// 		{
-					// 			title:"通知！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效",
-					// 			summaryText:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用"
-					// 		},
-					// 		{
-					// 			title:"通知！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"通知！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"通知！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 	]
-					// },
-					// {
-					// 	categrayName:"热点",
-					// 	list:[
-					// 		{
-					// 			title:"热点！！某男子在",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"热点！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"热点！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"热点！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 		{
-					// 			title:"热点！！某男子在办公司净做出",
-					// 			createTime:"15:02 AM",
-					// 			image:require('../../static/img/index/u62.jpg'),
-					// 			content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-					// 		},
-					// 	]
-					// }
-			],
+			appList:[], // app列表
+			bannerList:[], // 轮播图列表
+			serverList:[], // 服务列表
+			articleList:[], // 文章列表
 		}
 	},
 	onLoad(){
@@ -273,7 +119,10 @@ export default {
 			this.getAppList();
 			this.getImageList();
 			this.getArticleList();
+			this.getnotReadNum();
 		})
+	},
+	onShow() {
 	},
 	methods:{
 		// 获得轮播图
@@ -303,9 +152,24 @@ export default {
 		},
 		goArticleDetail(e){
 			const { id } = e.currentTarget;
-			console.log(e.currentTarget.id)
 			uni.navigateTo({
 				url:"/pages/articleDetail/articleDetail?id="+id
+			})
+		},
+		// 获取未读数据
+		getnotReadNum(){
+			this.$api.newApi.notReadNumReq().then(res => {
+				getApp().globalData.notReadNum = res.data;
+				if(!getApp().globalData.notReadNum){
+					uni.removeTabBarBadge({
+						index:2
+					})
+				}else{
+					uni.setTabBarBadge({
+						index:2,
+						text:String(getApp().globalData.notReadNum),
+					})
+				}
 			})
 		}
 		

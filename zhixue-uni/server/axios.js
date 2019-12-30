@@ -58,7 +58,6 @@ http.interceptors.response.use(response => {
 	// 登录过期
 	if(status === 401){
 		uni.clearStorageSync("token");
-		uniLogin();
 	}
 	tryHideFullScreenLoading();
     return Promise.reject(error.message)

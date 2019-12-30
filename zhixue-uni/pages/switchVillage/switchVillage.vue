@@ -28,48 +28,7 @@
 		data() {
 			return {
 				searchValue:"",
-				villageList:[
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-				]
+				villageList:[] // 小区列表
 			};
 		},
 		onShow() {
@@ -110,7 +69,7 @@
 	.village-show{
 		width: 100%;
 		@include border-box;
-		padding: 0.8rem;
+		padding: 0.6rem;
 		.village-list{
 			display: flex;
 			align-items: stretch;
@@ -118,7 +77,7 @@
 			padding: 0.5rem;
 			min-height: 200rpx;
 			border-radius: 0.4rem;
-			box-shadow: 0 1px 3px #C0C0C0;
+			box-shadow: 0 0 10px #f0f0f0;
 			.village-img{
 				width: 40%;
 				padding-right:20rpx;

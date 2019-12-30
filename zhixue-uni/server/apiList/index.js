@@ -9,8 +9,12 @@ const esAppFacility = "/api/v1/estate/esAppFacility/list";
 
 // 中间区域图片
 const esAppMiddle = "/api/v1/estate/esAppMiddle/list";
+
 // 文章模块
 const esArticle = "/api/v1/esArticle/allList";
+
+// 社区信息
+const communityDetail = "/api/v1/estateCommunity/detail";
 
 export default {
 	// 轮播图
@@ -28,5 +32,8 @@ export default {
 	},
 	esArticleReq:function(esArticleObj){
 		return post(esArticle,esArticleObj)
+	},
+	communityDetailReq:function(communityDetailObj){
+		return get(communityDetail,communityDetailObj)
 	}
 }

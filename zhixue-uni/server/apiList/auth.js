@@ -2,6 +2,7 @@ import { get, post} from '../axios.js';
 
 // 登录 
 const login = "/api/v1/wechat/login";
+
 // 获取用户信息
 const detail = "/api/v1/wechat/detail";
 
