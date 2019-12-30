@@ -52,6 +52,11 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use(response => {
 	// 隐藏加载样式
 	tryHideFullScreenLoading();
+	if(response.data.code == 100001){
+		uni.navigateTo({
+			url:"/pages/authPhone/authPhone"
+		})
+	}
     return response.data
 }, error => {
 	let { status } = error.response;

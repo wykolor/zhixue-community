@@ -9,7 +9,7 @@
 			/>
 		</view>
 		<view class="village-show">
-			<view class="village-list " v-for="item in villageList" :key="item.id">
+			<view class="village-list " v-for="item in villageList" :key="item.id" :id="item.code" @click="clickHandle">
 				<view class="village-img">
 					<image :src="item.image"></image>
 				</view>
@@ -46,6 +46,24 @@
 					keyWord:this.searchValue
 				}).then(res => {
 					this.villageList = res.data;
+				})
+			},
+			// 切换小区
+			changeCommunity(communityCode){
+				this.$api.switchVillageApi.changeCommunityReq({communityCode}).then(res => {
+					if(res.code === 100000){
+						
+					}
+				})
+			},
+			clickHandle(e){
+				let communityCode = e.currentTarget.id;
+				uni.showModal({
+					title:"确认切换小区吗?",
+					confirmColor:"#07c160",
+					success:() => {
+						this.changeCommunity(communityCode)
+					}
 				})
 			}
 		}
