@@ -72,7 +72,7 @@
 					{
 						appName:"人脸管理",
 						image: "",
-						pageUrl: "/pages/test/index",
+						pageUrl: "/pages/smartdoor/upFace",
 						type: 1
 					},
 					{
@@ -84,8 +84,8 @@
 					{
 						appName:"房产绑定",
 						image: "",
-						pageUrl: "",
-						type: 0
+						pageUrl: "/pages/housebind/housebind",
+						type: 1
 					},
 					{
 						appName:"家政服务",

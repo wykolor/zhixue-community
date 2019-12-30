@@ -33,7 +33,71 @@
         ,{
             "path" : "pages/outUrl/outUrl",
             "style" : {}
-        }
+        },
+		// 房产绑定
+		{
+		    "path" : "pages/housebind/housebind",
+		    "style" : {
+				"navigationBarTitleText": "房产绑定",
+				"usingComponents": {
+				  "van-picker": "/wxcomponents/vant/picker/index",
+				  "van-button": "/wxcomponents/vant/button/index",
+				  "van-divider": "/wxcomponents/vant/divider/index"
+				}
+			}
+		},
+		// 房产绑定-密钥绑定
+		{
+			"path" : "pages/housebind/pwdBind",
+			"style" : {
+				"navigationBarTitleText": "房产绑定",
+				"usingComponents": {
+				  "van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		},
+		// 房产绑定-具体绑定
+		{
+		    "path" : "pages/housebind/detailBind",
+		    "style" : {
+				"navigationBarTitleText": "房产绑定",
+				"usingComponents": {
+				  "van-picker": "/wxcomponents/vant/picker/index",
+				  "van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		},
+		// 房产绑定-成功信息
+		{
+		    "path" : "pages/housebind/successInfo",
+		    "style" : {
+				"navigationBarTitleText": "房产绑定"
+			}
+		},
+		// 智能门禁——上传人脸
+		{
+		    "path" : "pages/smartdoor/upFace",
+		    "style" : {
+				"navigationBarTitleText": "智能门禁",
+				"usingComponents": {
+				  "van-dialog": "/wxcomponents/vant/dialog/index",
+				  "van-button": "/wxcomponents/vant/button/index"
+				}
+			}
+		},
+		// 智能门禁——身份注册
+		{
+		    "path" : "pages/smartdoor/indentify",
+		    "style" : {
+				"navigationBarTitleText": "智能门禁",
+				"usingComponents": {
+				  "van-dialog": "/wxcomponents/vant/dialog/index",
+				  "van-button": "/wxcomponents/vant/button/index",
+				  "van-picker": "/wxcomponents/vant/picker/index",
+				  "van-popup": "/wxcomponents/vant/popup/index"
+				}
+			}
+		}
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
