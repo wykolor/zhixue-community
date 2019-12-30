@@ -85,7 +85,40 @@
           "van-button": "/wxcomponents/vant/button/index"
         }
       }
-    }
+    },
+	// 访客功能
+	{
+		"path": "pages/visitor/visitor",
+		"style": {
+			"navigationBarTitleText": "访客功能",
+			"usingComponents": {
+			  "van-picker": "/wxcomponents/vant/picker/index",
+			  "van-button": "/wxcomponents/vant/button/index",
+			  "van-divider": "/wxcomponents/vant/divider/index"
+			}
+		}
+	},
+	// 访客功能——身份验证
+	{
+		"path": "pages/visitor/indentify",
+		"style": {
+			"navigationBarTitleText": "访客功能",
+			"usingComponents": {
+			  "van-button": "/wxcomponents/vant/button/index",
+			  "van-toast": "/wxcomponents/vant/toast/index"
+			}
+		}
+	},
+	// 访客功能——人脸上传
+	{
+		"path": "pages/visitor/scanQR",
+		"style": {
+			"navigationBarTitleText": "访客功能",
+			"usingComponents": {
+			  "van-button": "/wxcomponents/vant/button/index"
+			}
+		}
+	}
   ],
   "globalStyle": {
     "navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

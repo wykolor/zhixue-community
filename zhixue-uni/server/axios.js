@@ -44,9 +44,9 @@ http.interceptors.request.use(config => {
 	// 加载样式开启
 	showFullScreenLoading();
     // 将令牌配置到请求头信息中
-    const token = uni.getStorageSync("token");
+    // const token = uni.getStorageSync("token");
 	const phone = uni.getStorageSync("phone");
-	// const testToken = "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzczMDY5MDIsInVzZXJfbmFtZSI6Im9ZbHhMNU1ubWVKci1oX1hWSThnQkVZcjVtRTQiLCJqdGkiOiJkNWUxZDYwOS0wNjZiLTQ5YjQtOWY3OS0xYTRjZWRiNmJjOTEiLCJjbGllbnRfaWQiOiJ3ZWJBcHAiLCJzY29wZSI6W119.be28HCZWcECxuIJxBq9WOZXTyC1la78beaTnG9Y71eI"
+	const token = "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Nzc2NTIzNTUsInVzZXJfbmFtZSI6Im9ZbHhMNUhxTXR4Z0RzTnFXUnpvSUhEUlBvMW8iLCJqdGkiOiJhOGIyMDhiZC1hZDZhLTRlZmYtYTJmYS04MDgyNDA0YjE2OTIiLCJjbGllbnRfaWQiOiJ3ZWJBcHAiLCJzY29wZSI6W119.ia-Y85HGQkibGp418VAI04LWNbZxI1lAUapVpGrmH9M"
     token && (config.headers.Authorization = token);
 	phone && (config.headers.phone = phone);
     return config
@@ -86,5 +86,13 @@ export function post(url, params) {
     method: "post",
     url: url,
     data: QS.stringify(params)
+  });
+}
+// json格式发送
+export function JSpost(url, params) {
+  return http({
+    method: "post",
+    url: url,
+    data: params
   });
 }

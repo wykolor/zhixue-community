@@ -113,10 +113,11 @@ export default {
 				}
 			},
 			appList:[
+				// 先暂时跳转到访客功能
 				{
 					appName:"物业服务",
 					image: "",
-					pageUrl: "",
+					pageUrl: "/pages/visitor/visitor",
 					sinkType: "page"
 				},
 				{
