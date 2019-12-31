@@ -3,6 +3,7 @@ import testApi from "./apiList/test.js";
 
 // 首页模块
 import indexApi from "./apiList/index.js";
+
 import hsbindApi from "./apiList/housebind.js";
 
 // 授权登录模块
@@ -28,6 +29,8 @@ import newApi from "./apiList/news.js";
 // 访客模块
 import visitorApi from "./apiList/visitor.js";
 
+import wyintroApi from "./apiList/wyintro.js";
+
 export const api = {
   testApi,
   indexApi,
@@ -39,5 +42,6 @@ export const api = {
   switchVillageApi,
   newApi,
   visitorApi,
-  hsbindApi
+  hsbindApi,
+  wyintroApi
 };

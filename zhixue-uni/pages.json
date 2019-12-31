@@ -1,7 +1,7 @@
 {
   "pages": [
     //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-    
+
     {
       // 首页
       "path": "pages/index/index",
@@ -110,15 +110,15 @@
       "path": "pages/articleDetail/articleDetail",
       "style": {}
     },
-	{
-	  "path": "pages/facemag/facemag",
-	  "style": {
-	    "navigationBarTitleText": "人脸管理",
-	    "usingComponents": {
-	      "van-uploader": "/wxcomponents/vant/uploader/index"
-	    }
-	  }
-	},
+    {
+      "path": "pages/facemag/facemag",
+      "style": {
+        "navigationBarTitleText": "人脸管理",
+        "usingComponents": {
+          "van-uploader": "/wxcomponents/vant/uploader/index"
+        }
+      }
+    },
     {
       "path": "pages/newsDetail/newsDetail",
       "style": {
@@ -221,6 +221,13 @@
           "van-picker": "/wxcomponents/vant/picker/index",
           "van-popup": "/wxcomponents/vant/popup/index"
         }
+      }
+    },
+    // 物业介绍
+    {
+      "path": "pages/wuyeIntro/wuyeIntro",
+      "style": {
+        "navigationBarTitleText": "物业简介"
       }
     }
   ],
