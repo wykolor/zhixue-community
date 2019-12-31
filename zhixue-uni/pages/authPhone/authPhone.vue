@@ -23,8 +23,29 @@
 			}
 		},
 		methods: {
-			getPhoneNumber(phone){
-				console.log(phone)
+			getPhoneNumber(info){
+				console.log(info)
+				let [ failMsg, okMsg ] = ["getPhoneNumber:fail user deny","getPhoneNumber:ok"];
+				let { errMsg } = info.detail;
+				if(errMsg === failMsg){
+					// 拒绝授权 ...
+				}else if(errMsg === okMsg){
+					// 更新用户手机
+					this.updatePhone(info.detail);
+				}
+				// 返回上一步
+				uni.navigateBack({
+					delta:1
+				});
+				
+			},
+			updatePhone(options){
+				this.$api.authApi.updateUserMobileReq({
+					openId:getApp().globalData.openId,
+					...options
+				}).then(res => {
+					 //  ... 更新用户信息
+				})
 			}
 			
 		}

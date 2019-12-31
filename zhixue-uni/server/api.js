@@ -13,10 +13,26 @@ import articleDetailApi from "./apiList/articleDetail.js";
 // 家政服务模块
 import homeHelpApi from "./apiList/homeHelp.js";
 
+// 服务模块
+import serverApi from "./apiList/server.js";
+
+// 意见建议
+import suggestionApi from "./apiList/suggestion.js";
+
+// 切换小区
+import switchVillageApi from "./apiList/switchVillage.js";
+
+// 消息模块
+import newApi from "./apiList/news.js";
+
 export const api = {
 	testApi,
 	indexApi,
 	authApi,
 	articleDetailApi,
-	homeHelpApi
+	homeHelpApi,
+	serverApi,
+	suggestionApi,
+	switchVillageApi,
+	newApi
 };

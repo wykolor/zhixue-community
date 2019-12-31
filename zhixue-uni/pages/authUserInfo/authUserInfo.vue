@@ -24,12 +24,30 @@
 		},
 		methods: {
 			getUserInfo(info){
-				uni.setStorageSync("userInfo",info.detail.userInfo)
+				let [ failMsg, okMsg ] = ["getUserInfo:fail auth deny","getUserInfo:ok"];
+				let { errMsg, userInfo } = info.detail;
+				if(errMsg === failMsg){
+					// 拒绝授权 ...
+				}else if(errMsg === okMsg){
+					// 授权成功
+					uni.setStorageSync("userInfo",userInfo);
+					// 更新用户信息
+					this.updateUseInfo(userInfo);
+				}
+				// 返回上一步
 				uni.navigateBack({
 					delta:1
 				});
+			},
+			// 更新用户信息
+			updateUseInfo(userInfo){
+				this.$api.authApi.updateUserInfoReq({
+					openId:getApp().globalData.openId,
+					...userInfo
+				}).then(res => {
+					
+				})
 			}
-			
 		}
 	}
 </script>

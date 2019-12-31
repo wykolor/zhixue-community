@@ -1,6 +1,6 @@
 <template>
 	<view class="article-detail">
-		<view class="article-detail-title">{{articleDetail.title}}大白菜哈哈哈哈哈哈哈哈而分解为复活节房产税的漫长历史的才离开</view>
+		<view class="article-detail-title">{{articleDetail.title}}</view>
 		<view class="article-detail-time">{{articleDetail.createTime}}</view>
 		<rich-text :nodes="articleDetail.content" class="article-detail-content"></rich-text>
 	</view>

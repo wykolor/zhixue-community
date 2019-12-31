@@ -1,5 +1,17 @@
 <template>
   <view class="home">
+	<!-- 头部 -->
+	<van-nav-bar
+	  title="智旭"
+	  :border="false"
+	  fixed
+	>
+		<view class="nav-left" slot="left">
+			<text class="iconfont iconweizhi1"></text>
+			<text class="address">保利锦江里</text>
+		</view>
+		<text class="nav-right iconfont iconzuji" slot="right"></text>
+	</van-nav-bar>
     <!-- 轮播图 -->
     <view class="home-banner">
       <swiper
@@ -75,25 +87,20 @@
           v-for="categray in articleList"
           :key="categray.id"
         >
-          <!-- <view
-            class="article-list"
-            v-for="article in categray.list"
-            :key="article.id"
-          > -->
-		  <navigator :url="'/pages/articleDetail/articleDetail?id=' + article.id" class="article-list"
+		  <navigator :url="'/pages/articleDetail/articleDetail?id='+article.id" class="article-list"
             v-for="article in categray.list"
             :key="article.id">
-            <view class="art-list-img">
-              <image :src="article.image"></image>
-            </view>
-            <view class="art-list-info">
-              <view class="art-info-title">{{ article.title }}</view>
-              <view class="art-info-time">{{ article.createTime }}</view>
-			  <rich-text :nodes="article.content" class="art-info-content van-multi-ellipsis--l2"></rich-text>
-              <!-- <view class="art-info-content van-multi-ellipsis--l2" v-html="article.content"></view> -->
-            </view>
+			<!-- <view class="article-list"  v-for="article in categray.list" :key="article.id" @click="goArticleDetail" :id="article.id"> -->
+				<view class="art-list-img">
+				  <image :src="article.image"></image>
+				</view>
+				<view class="art-list-info">
+				  <view class="art-info-title">{{ article.title }}</view>
+				  <view class="art-info-time">{{ article.createTime }}</view>
+				  <rich-text :nodes="article.summaryText" class="art-info-content van-multi-ellipsis--l2"></rich-text>
+				</view>
+			<!-- </view> -->
 			</navigator>
-          <!-- </view> -->
         </van-tab>
       </van-tabs>
     </view>
@@ -101,7 +108,7 @@
 </template>
 
 <script>
-import uniLofin from "../../utils/login.js"
+import uniLogin from "../../utils/login.js"
 export default {
 	data() {
 		return {
@@ -112,172 +119,26 @@ export default {
 					color: '#FF3333'
 				}
 			},
-			appList:[
-				{
-					appName:"物业服务",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"人脸管理",
-					image: "",
-					pageUrl: "/pages/test/index",
-					sinkType: "page"
-				},
-				{
-					appName:"切换小区",
-					image: "",
-					pageUrl: "/pages/switchVillage/switchVillage",
-					sinkType: "page"
-				},
-				{
-					appName:"房产绑定",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"家政服务",
-					image: "",
-					pageUrl: "/pages/homeHelp/homeHelp",
-					sinkType: "page"
-				},
-				{
-					appName:"意见建议",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				},
-				{
-					appName:"跳蚤市场",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"跑腿小哥",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"小区超市",
-					image: "",
-					pageUrl: "",
-					sinkType:"page"
-				},
-				{
-					appName:"周边商家",
-					image: "",
-					pageUrl: "",
-					sinkType: "page"
-				}
-			],
-			bannerList:[
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u118.jpg")
-				}
-			],
-			serverList:[
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
-				{
-					"image": require("../../static/img/index/u62.jpg")
-				},
-			],
-			articleList:[
-					{
-						categrayName:"公告",
-						list:[
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"通知！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					},
-					{
-						categrayName:"热点",
-						list:[
-							{
-								title:"热点！！某男子在",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-							{
-								title:"热点！！某男子在办公司净做出",
-								createTime:"15:02 AM",
-								image:require('../../static/img/index/u62.jpg'),
-								content:"承载网页的容器。会自动铺满整个小程序页面，个人类型的小程序暂不支持使用。navigationStyle: custom 对 web-view 组件无效"
-							},
-						]
-					}
-			],
+			esCode:null,
+			appList:[], // app列表
+			bannerList:[], // 轮播图列表
+			serverList:[], // 服务列表
+			articleList:[], // 文章列表
 		}
 	},
 	onLoad(){
-		uniLofin().then(()=>{
+		uniLogin().then(()=>{
 			this.getBannerList();
-			// this.getAppList();
-			this.getServerList();
+			this.getAppList();
 			this.getImageList();
 			this.getArticleList();
+			this.getnotReadNum();
 		})
+	},
+	onShow() {
+		// this.esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
+		// console.log(this.esCode)
+		
 	},
 	methods:{
 		// 获得轮播图
@@ -292,16 +153,11 @@ export default {
 				this.appList = res.data;
 			})
 		},
-		// 服务模块
-		getServerList(){
-			this.$api.indexApi.esAppServiceReq().then(res => {
-				
-			})
-		},
+		
 		// 中间图片模块
 		getImageList(){
 			this.$api.indexApi.esAppMiddleReq().then(res => {
-				
+				this.serverList = res.data;
 			})
 		},
 		// 文章模块
@@ -310,6 +166,40 @@ export default {
 				this.articleList = res.data;
 			})
 		},
+		// 去文章详情
+		goArticleDetail(e){
+			const { id } = e.currentTarget;
+			uni.navigateTo({
+				url:"/pages/articleDetail/articleDetail?id="+id
+			})
+		},
+		// 获取未读数据
+		getnotReadNum(){
+			this.$api.newApi.notReadNumReq().then(res => {
+				getApp().globalData.notReadNum = res.data;
+				if(!getApp().globalData.notReadNum){
+					uni.removeTabBarBadge({
+						index:2
+					})
+				}else{
+					uni.setTabBarBadge({
+						index:2,
+						text:String(getApp().globalData.notReadNum),
+					})
+				}
+			})
+		},
+		// 获取小区信息
+		getCommunity(esCode){
+			this.$api.switchVillageApi.communityDetailReq({
+				esCode
+			}).then(res => {
+					
+				if(res.code === 100000){
+					
+				}
+			})
+		}
 		
 	}
 }
@@ -321,7 +211,24 @@ export default {
   width: 100%;
   min-height: 100vh;
   background-color: $uni-bg-color-page;
+  padding-top: 2.7rem;
   padding-bottom: 1rem;
+  & /deep/ .van-nav-bar{
+	  color: #fff;
+	  background-color: $zx-topic-color;
+	  padding: 0 !important;
+	  .van-nav-bar__title {
+		  color: #fff;
+	  }
+	  .nav-left{
+		  .address{
+			  margin-left: 5px;
+		  }
+	  }
+	  .nav-right{
+		  font-size: 20px;
+	  }
+  }
   .home-server {
     width: 100%;
     height: 10rem;
@@ -367,7 +274,7 @@ export default {
     .article-list {
       display: flex;
       padding: 10rpx;
-      align-items: stretch;
+	  height: 6rem;
       & > view {
         box-sizing: border-box;
       }

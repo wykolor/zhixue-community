@@ -1,5 +1,5 @@
 import axios from '@/js_sdk/gangdiedao-uni-axios';
-import QS from "qs";
+import uniLogin from "../utils/login.js";
 // 创建自定义接口服务实例
 const http = axios.create({
     baseURL: "http://mpestate.dev.smartyface.cn", // 测试服务器
@@ -9,14 +9,14 @@ const http = axios.create({
     withCredentials: true,
     // #endif
     headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json;charset=UTF-8',
     },
 })
 
 function startLoading(){
 	uni.showLoading({
-	    title: '加载中',
-		mask:false
+		title: '加载中',
+		mask:true
 	});
 }
 function endLoading(){
@@ -38,25 +38,37 @@ function tryHideFullScreenLoading() {
     endLoading();
   }
 };
+// 接口白名单
+let _login = "/api/v1/wechat/login";
 
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(config => {
 	// 加载样式开启
 	showFullScreenLoading();
-    // 将令牌配置到请求头信息中
-    const token = uni.getStorageSync("token");
-	const phone = uni.getStorageSync("phone");
-	// const testToken = "BearereyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NzczMDY5MDIsInVzZXJfbmFtZSI6Im9ZbHhMNU1ubWVKci1oX1hWSThnQkVZcjVtRTQiLCJqdGkiOiJkNWUxZDYwOS0wNjZiLTQ5YjQtOWY3OS0xYTRjZWRiNmJjOTEiLCJjbGllbnRfaWQiOiJ3ZWJBcHAiLCJzY29wZSI6W119.be28HCZWcECxuIJxBq9WOZXTyC1la78beaTnG9Y71eI"
-    token && (config.headers.Authorization = token);
-	phone && (config.headers.phone = phone);
-    return config
+	const token = uni.getStorageSync("token");
+	token && (config.headers.Authorization = token);
+	return config
+	
+},error => {
+	// 请求错误
+	return Promise.reject(error);
 })
 // 响应拦截器 
 http.interceptors.response.use(response => {
 	// 隐藏加载样式
 	tryHideFullScreenLoading();
+	if(response.data.code == 100001){
+		uni.navigateTo({
+			url:"/pages/authPhone/authPhone"
+		})
+	}
     return response.data
 }, error => {
+	let { status } = error.response;
+	// 登录过期
+	if(status === 401){
+		uni.clearStorageSync("token");
+	}
 	tryHideFullScreenLoading();
     return Promise.reject(error.message)
 })
@@ -81,10 +93,11 @@ export function get(url, params) {
  * @param {*} params 请求参数
  * @returns
  */
-export function post(url, params) {
+export function post(url, params,headers) {
   return http({
     method: "post",
     url: url,
-    data: QS.stringify(params)
+    data:params,
+	headers
   });
 }

@@ -2,7 +2,6 @@
 	<view class="switch-village">
 		<view class="village-header">
 			<van-search
-			  :value="searchValue"
 			  placeholder="搜索小区"
 			  show-action
 			  shape="round"
@@ -10,7 +9,7 @@
 			/>
 		</view>
 		<view class="village-show">
-			<view class="village-list " v-for="item in villageList" :key="item.id">
+			<view class="village-list " v-for="item in villageList" :key="item.id" :id="item.code" @click="clickHandle">
 				<view class="village-img">
 					<image :src="item.image"></image>
 				</view>
@@ -29,53 +28,43 @@
 		data() {
 			return {
 				searchValue:"",
-				villageList:[
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"保利·锦江",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-					{
-						communityName:"锐利·领峰",
-						image:require('../../static/img/index/u62.jpg'),
-						info:"位于华府大道位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街位于天府五街"
-					},
-				]
+				villageList:[] // 小区列表
 			};
+		},
+		onShow() {
+			this.getVillageList();
 		},
 		methods:{
 			searchHandle(event){
+				this.searchValue = event.detail;
+				this.getVillageList();
 				console.log(event.detail)
+			},
+			// 获取小区列表
+			getVillageList(){
+				this.$api.switchVillageApi.enableListReq({
+					keyWord:this.searchValue
+				}).then(res => {
+					this.villageList = res.data;
+				})
+			},
+			// 切换小区
+			changeCommunity(communityCode){
+				this.$api.switchVillageApi.changeCommunityReq({communityCode}).then(res => {
+					if(res.code === 100000){
+						
+					}
+				})
+			},
+			clickHandle(e){
+				let communityCode = e.currentTarget.id;
+				uni.showModal({
+					title:"确认切换小区吗?",
+					confirmColor:"#07c160",
+					success:() => {
+						this.changeCommunity(communityCode)
+					}
+				})
 			}
 		}
 	}
@@ -98,14 +87,15 @@
 	.village-show{
 		width: 100%;
 		@include border-box;
-		padding: 0.8rem;
+		padding: 0.6rem;
 		.village-list{
 			display: flex;
 			align-items: stretch;
 			margin-bottom: 0.6rem;
 			padding: 0.5rem;
+			min-height: 200rpx;
 			border-radius: 0.4rem;
-			box-shadow: 0 1px 3px #C0C0C0;
+			box-shadow: 0 0 10px #f0f0f0;
 			.village-img{
 				width: 40%;
 				padding-right:20rpx;
