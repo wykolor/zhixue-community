@@ -72,8 +72,8 @@
 					{
 						appName:"人脸管理",
 						image: "",
-						pageUrl: "/pages/smartdoor/upFace",
-						type: 1
+						pageUrl: "",
+						type: 0
 					},
 					{
 						appName:"切换百度",
