@@ -29,7 +29,7 @@
 				:thumb="item.image"
 			>
 				<view slot="footer">
-					<van-button size="small" type="primary" round icon="phone" @click="callUp" :id="item.mobile">立即订购</van-button>
+					<van-button size="small" type="primary" round icon="phone">立即订购</van-button>
 				</view>
 			</van-card>
 		</view>

@@ -3,6 +3,7 @@ import testApi from "./apiList/test.js";
 
 // 首页模块
 import indexApi from "./apiList/index.js";
+import hsbindApi from "./apiList/housebind.js";
 
 // 授权登录模块
 import authApi from "./apiList/auth.js";
@@ -37,5 +38,6 @@ export const api = {
   suggestionApi,
   switchVillageApi,
   newApi,
-  visitorApi
+  visitorApi,
+  hsbindApi
 };
