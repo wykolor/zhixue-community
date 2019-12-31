@@ -38,15 +38,20 @@ function tryHideFullScreenLoading() {
     endLoading();
   }
 };
+// 接口白名单
+let _login = "/api/v1/wechat/login";
 
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(config => {
 	// 加载样式开启
 	showFullScreenLoading();
-    // 将令牌配置到请求头信息中
-    const token = uni.getStorageSync("token");
-    token && (config.headers.Authorization = token);
-    return config
+	const token = uni.getStorageSync("token");
+	token && (config.headers.Authorization = token);
+	return config
+	
+},error => {
+	// 请求错误
+	return Promise.reject(error);
 })
 // 响应拦截器 
 http.interceptors.response.use(response => {

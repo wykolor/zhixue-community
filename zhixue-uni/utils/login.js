@@ -17,6 +17,7 @@
 				// 存入全局globalData
 				if(res.code === 100000){
 					getApp().globalData.userInfo = res.data;
+					// console.log(getApp().globalData.userInfo)
 				}
 			})
 			

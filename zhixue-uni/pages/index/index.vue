@@ -1,5 +1,17 @@
 <template>
   <view class="home">
+	<!-- 头部 -->
+	<van-nav-bar
+	  title="智旭"
+	  :border="false"
+	  fixed
+	>
+		<view class="nav-left" slot="left">
+			<text class="iconfont iconweizhi1"></text>
+			<text class="address">保利锦江里</text>
+		</view>
+		<text class="nav-right iconfont iconzuji" slot="right"></text>
+	</van-nav-bar>
     <!-- 轮播图 -->
     <view class="home-banner">
       <swiper
@@ -96,7 +108,7 @@
 </template>
 
 <script>
-import uniLofin from "../../utils/login.js"
+import uniLogin from "../../utils/login.js"
 export default {
 	data() {
 		return {
@@ -107,6 +119,7 @@ export default {
 					color: '#FF3333'
 				}
 			},
+			esCode:null,
 			appList:[], // app列表
 			bannerList:[], // 轮播图列表
 			serverList:[], // 服务列表
@@ -114,7 +127,7 @@ export default {
 		}
 	},
 	onLoad(){
-		uniLofin().then(()=>{
+		uniLogin().then(()=>{
 			this.getBannerList();
 			this.getAppList();
 			this.getImageList();
@@ -123,6 +136,9 @@ export default {
 		})
 	},
 	onShow() {
+		// this.esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
+		// console.log(this.esCode)
+		
 	},
 	methods:{
 		// 获得轮播图
@@ -150,6 +166,7 @@ export default {
 				this.articleList = res.data;
 			})
 		},
+		// 去文章详情
 		goArticleDetail(e){
 			const { id } = e.currentTarget;
 			uni.navigateTo({
@@ -171,6 +188,17 @@ export default {
 					})
 				}
 			})
+		},
+		// 获取小区信息
+		getCommunity(esCode){
+			this.$api.switchVillageApi.communityDetailReq({
+				esCode
+			}).then(res => {
+					
+				if(res.code === 100000){
+					
+				}
+			})
 		}
 		
 	}
@@ -183,7 +211,24 @@ export default {
   width: 100%;
   min-height: 100vh;
   background-color: $uni-bg-color-page;
+  padding-top: 2.7rem;
   padding-bottom: 1rem;
+  & /deep/ .van-nav-bar{
+	  color: #fff;
+	  background-color: $zx-topic-color;
+	  padding: 0 !important;
+	  .van-nav-bar__title {
+		  color: #fff;
+	  }
+	  .nav-left{
+		  .address{
+			  margin-left: 5px;
+		  }
+	  }
+	  .nav-right{
+		  font-size: 20px;
+	  }
+  }
   .home-server {
     width: 100%;
     height: 10rem;
