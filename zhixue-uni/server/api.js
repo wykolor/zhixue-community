@@ -24,15 +24,18 @@ import switchVillageApi from "./apiList/switchVillage.js";
 
 // 消息模块
 import newApi from "./apiList/news.js";
+// 访客模块
+import visitorApi from "./apiList/visitor.js";
 
 export const api = {
-	testApi,
-	indexApi,
-	authApi,
-	articleDetailApi,
-	homeHelpApi,
-	serverApi,
-	suggestionApi,
-	switchVillageApi,
-	newApi
+  testApi,
+  indexApi,
+  authApi,
+  articleDetailApi,
+  homeHelpApi,
+  serverApi,
+  suggestionApi,
+  switchVillageApi,
+  newApi,
+  visitorApi
 };

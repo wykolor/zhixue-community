@@ -1,17 +1,13 @@
 <template>
   <view class="home">
-	<!-- 头部 -->
-	<van-nav-bar
-	  title="智旭"
-	  :border="false"
-	  fixed
-	>
-		<view class="nav-left" slot="left">
-			<text class="iconfont iconweizhi1"></text>
-			<text class="address">保利锦江里</text>
-		</view>
-		<text class="nav-right iconfont iconzuji" slot="right"></text>
-	</van-nav-bar>
+    <!-- 头部 -->
+    <van-nav-bar title="智旭" :border="false" fixed>
+      <view class="nav-left" slot="left">
+        <text class="iconfont iconweizhi1"></text>
+        <text class="address">保利锦江里</text>
+      </view>
+      <text class="nav-right iconfont iconzuji" slot="right"></text>
+    </van-nav-bar>
     <!-- 轮播图 -->
     <view class="home-banner">
       <swiper
@@ -87,20 +83,26 @@
           v-for="categray in articleList"
           :key="categray.id"
         >
-		  <navigator :url="'/pages/articleDetail/articleDetail?id='+article.id" class="article-list"
+          <navigator
+            :url="'/pages/articleDetail/articleDetail?id=' + article.id"
+            class="article-list"
             v-for="article in categray.list"
-            :key="article.id">
-			<!-- <view class="article-list"  v-for="article in categray.list" :key="article.id" @click="goArticleDetail" :id="article.id"> -->
-				<view class="art-list-img">
-				  <image :src="article.image"></image>
-				</view>
-				<view class="art-list-info">
-				  <view class="art-info-title">{{ article.title }}</view>
-				  <view class="art-info-time">{{ article.createTime }}</view>
-				  <rich-text :nodes="article.summaryText" class="art-info-content van-multi-ellipsis--l2"></rich-text>
-				</view>
-			<!-- </view> -->
-			</navigator>
+            :key="article.id"
+          >
+            <!-- <view class="article-list"  v-for="article in categray.list" :key="article.id" @click="goArticleDetail" :id="article.id"> -->
+            <view class="art-list-img">
+              <image :src="article.image"></image>
+            </view>
+            <view class="art-list-info">
+              <view class="art-info-title">{{ article.title }}</view>
+              <view class="art-info-time">{{ article.createTime }}</view>
+              <rich-text
+                :nodes="article.summaryText"
+                class="art-info-content van-multi-ellipsis--l2"
+              ></rich-text>
+            </view>
+            <!-- </view> -->
+          </navigator>
         </van-tab>
       </van-tabs>
     </view>
@@ -108,101 +110,99 @@
 </template>
 
 <script>
-import uniLogin from "../../utils/login.js"
+import uniLogin from "../../utils/login.js";
 export default {
-	data() {
-		return {
-			artActive:0,
-			outUrl:"/pages/outUrl/outUrl?outUrl=",
-			webviewStyles: {
-				progress: {
-					color: '#FF3333'
-				}
-			},
-			esCode:null,
-			appList:[], // app列表
-			bannerList:[], // 轮播图列表
-			serverList:[], // 服务列表
-			articleList:[], // 文章列表
-		}
-	},
-	onLoad(){
-		uniLogin().then(()=>{
-			this.getBannerList();
-			this.getAppList();
-			this.getImageList();
-			this.getArticleList();
-			this.getnotReadNum();
-		})
-	},
-	onShow() {
-		// this.esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
-		// console.log(this.esCode)
-		
-	},
-	methods:{
-		// 获得轮播图
-		getBannerList(){
-			this.$api.indexApi.esBannerReq().then(res => {
-				this.bannerList = res.data;
-			})
-		},
-		// 获得app模块
-		getAppList(){
-			this.$api.indexApi.esAppIndexReq().then(res => {
-				this.appList = res.data;
-			})
-		},
-		
-		// 中间图片模块
-		getImageList(){
-			this.$api.indexApi.esAppMiddleReq().then(res => {
-				this.serverList = res.data;
-			})
-		},
-		// 文章模块
-		getArticleList(){
-			this.$api.indexApi.esArticleReq().then(res => {
-				this.articleList = res.data;
-			})
-		},
-		// 去文章详情
-		goArticleDetail(e){
-			const { id } = e.currentTarget;
-			uni.navigateTo({
-				url:"/pages/articleDetail/articleDetail?id="+id
-			})
-		},
-		// 获取未读数据
-		getnotReadNum(){
-			this.$api.newApi.notReadNumReq().then(res => {
-				getApp().globalData.notReadNum = res.data;
-				if(!getApp().globalData.notReadNum){
-					uni.removeTabBarBadge({
-						index:2
-					})
-				}else{
-					uni.setTabBarBadge({
-						index:2,
-						text:String(getApp().globalData.notReadNum),
-					})
-				}
-			})
-		},
-		// 获取小区信息
-		getCommunity(esCode){
-			this.$api.switchVillageApi.communityDetailReq({
-				esCode
-			}).then(res => {
-					
-				if(res.code === 100000){
-					
-				}
-			})
-		}
-		
-	}
-}
+  data() {
+    return {
+      artActive: 0,
+      outUrl: "/pages/outUrl/outUrl?outUrl=",
+      webviewStyles: {
+        progress: {
+          color: "#FF3333"
+        }
+      },
+      esCode: null,
+      appList: [], // app列表
+      bannerList: [], // 轮播图列表
+      serverList: [], // 服务列表
+      articleList: [] // 文章列表
+    };
+  },
+  onLoad() {
+    uniLogin().then(() => {
+      this.getBannerList();
+      this.getAppList();
+      this.getImageList();
+      this.getArticleList();
+      this.getnotReadNum();
+    });
+  },
+  onShow() {
+    // this.esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
+    // console.log(this.esCode)
+  },
+  methods: {
+    // 获得轮播图
+    getBannerList() {
+      this.$api.indexApi.esBannerReq().then(res => {
+        this.bannerList = res.data;
+      });
+    },
+    // 获得app模块
+    getAppList() {
+      this.$api.indexApi.esAppIndexReq().then(res => {
+        this.appList = res.data;
+      });
+    },
+
+    // 中间图片模块
+    getImageList() {
+      this.$api.indexApi.esAppMiddleReq().then(res => {
+        this.serverList = res.data;
+      });
+    },
+    // 文章模块
+    getArticleList() {
+      this.$api.indexApi.esArticleReq().then(res => {
+        this.articleList = res.data;
+      });
+    },
+    // 去文章详情
+    goArticleDetail(e) {
+      const { id } = e.currentTarget;
+      uni.navigateTo({
+        url: "/pages/articleDetail/articleDetail?id=" + id
+      });
+    },
+    // 获取未读数据
+    getnotReadNum() {
+      this.$api.newApi.notReadNumReq().then(res => {
+        getApp().globalData.notReadNum = res.data;
+        if (!getApp().globalData.notReadNum) {
+          uni.removeTabBarBadge({
+            index: 2
+          });
+        } else {
+          uni.setTabBarBadge({
+            index: 2,
+            text: String(getApp().globalData.notReadNum)
+          });
+        }
+      });
+    },
+    // 获取小区信息
+    getCommunity(esCode) {
+      this.$api.switchVillageApi
+        .communityDetailReq({
+          esCode
+        })
+        .then(res => {
+          if (res.code === 100000) {
+          }
+        });
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -213,21 +213,21 @@ export default {
   background-color: $uni-bg-color-page;
   padding-top: 2.7rem;
   padding-bottom: 1rem;
-  & /deep/ .van-nav-bar{
-	  color: #fff;
-	  background-color: $zx-topic-color;
-	  padding: 0 !important;
-	  .van-nav-bar__title {
-		  color: #fff;
-	  }
-	  .nav-left{
-		  .address{
-			  margin-left: 5px;
-		  }
-	  }
-	  .nav-right{
-		  font-size: 20px;
-	  }
+  & /deep/ .van-nav-bar {
+    color: #fff;
+    background-color: $zx-topic-color;
+    padding: 0 !important;
+    .van-nav-bar__title {
+      color: #fff;
+    }
+    .nav-left {
+      .address {
+        margin-left: 5px;
+      }
+    }
+    .nav-right {
+      font-size: 20px;
+    }
   }
   .home-server {
     width: 100%;
@@ -258,10 +258,10 @@ export default {
       }
     }
   }
-  .home-app-list{
-	  background-color: #fff;
+  .home-app-list {
+    background-color: #fff;
   }
-	  
+
   .home-article {
     width: 100%;
     background-color: #fff;
@@ -274,7 +274,7 @@ export default {
     .article-list {
       display: flex;
       padding: 10rpx;
-	  height: 6rem;
+      height: 6rem;
       & > view {
         box-sizing: border-box;
       }
@@ -300,8 +300,8 @@ export default {
           font-size: 1rem;
           color: #333;
         }
-        .art-info-time {
-        }
+        // .art-info-time {
+        // }
         .art-info-content {
           line-height: 1.2rem;
         }
