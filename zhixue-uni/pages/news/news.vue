@@ -36,6 +36,14 @@
 						
 					}
 				],
+				newsInfo:{
+					currentPage:1,
+					totalPages:Number
+				},
+				noticeInfo:{
+					currentPage:1,
+					totalPages:Number
+				},
 				newsList:[],
 				noticeList:[]
 			};
@@ -66,8 +74,8 @@
 			getNewsList(){
 				this.$api.newApi.messageListReq({
 					keyWord:"",
-					page:1,
-					size:5
+					page:this.newsInfo.currentPage,
+					size:10
 				}).then(res => {
 					this.newsList = res.listData;
 					this.allList[0].list = this.newsList;
@@ -77,8 +85,8 @@
 			getNoticeList(){
 				this.$api.newApi.noticeListReq({
 					keyWord:"",
-					page:1,
-					size:5
+					page:this.noticeInfo.currentPage,
+					size:10
 				}).then(res => {
 					this.noticeList = res.listData;
 					this.allList[1].list = this.noticeList;

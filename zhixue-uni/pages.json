@@ -67,12 +67,12 @@
       }
     },
 	{
-		  // 文章详情
-	      "path": "pages/articleDetail/articleDetail",
-	      "style": {
-			  "navigationBarTitleText": "详情"
-		  }
-	    },
+	  // 文章详情
+	  "path": "pages/articleDetail/articleDetail",
+	  "style": {
+		  "navigationBarTitleText": "详情"
+	  }
+	},
     {
       // 切换小区
       "path": "pages/switchVillage/switchVillage",

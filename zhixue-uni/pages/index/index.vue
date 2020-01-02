@@ -140,7 +140,17 @@ export default {
     });
   },
   onShow() {
-	 
+	 uniLogin().then(() => {
+	 //  this.$api.indexApi.rollBackUserInfoReq({
+	 		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
+	 //  })
+	 		this.getBannerList();
+	 		this.getAppList();
+	 		this.getImageList();
+	 		this.getArticleList();
+	 		this.getnotReadNum();
+	 		
+	  });
   },
   methods: {
     // 获得轮播图

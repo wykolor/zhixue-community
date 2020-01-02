@@ -48,7 +48,7 @@
 					value:''
 				}],
 				currentPage:1,
-				totalPages:2,
+				totalPages:Number,
 				option2:[
 					{ text: '默认排序', value:''},
 					{ text: '降序', value: 'desc' },
@@ -67,22 +67,19 @@
 			this.currentPage++;
 			this.getHelpList();
 		},
-		
-		// onPullDownRefresh(){
-		// 	this.type = "";
-		// 	this.priceOrder = "";
-		// 	this.getHelpList();
-		// },
 		methods: {
+			// 重置分页数据
 			resetData(){
 				this.currentPage = 1;
+				this.totalPages = Number;
 			},
 			changeType(value){
-				
+				this.resetData();
 				this.type = value.detail;
 				this.getHelpList();
 			},
 			changeOrder(value){
+				this.resetData();
 				this.priceOrder = value.detail;
 				this.getHelpList();
 			},
@@ -90,34 +87,35 @@
 				this.keyWord = event.detail;
 			},
 			searchHandle(event){
+				this.resetData();
 				this.keyWord = event.detail;
 				this.getHelpList();
 			},
 			// 获取服务数据列表
 			getHelpList(){
-				if(this.currentPage>this.totalPages){
+				// 如果当前页码大于总页数
+				if(this.currentPage > this.totalPages){
 					return false;
 				}
 				let params = {
 					keyWord:this.keyWord,
 					page:this.currentPage,
 					priceOrder:this.priceOrder,
-					size:5,
+					size:10,
 					type:this.type
 				}
 				this.$api.homeHelpApi.eshourseKeepingReq(params).then(res => {
+					// 获取总页数
+					this.totalPages = res.paginationData.totalPages;
 					if(this.currentPage === 1){
 						this.helpList = res.listData;
 					}else{
 						this.helpList = this.helpList.concat(res.listData)
 					}
-					
-					// this.totalPages = res.paginationData.totalPages;
 				})
 			},
 			// 服务类型
 			gettypeList(){
-				
 				this.$api.homeHelpApi.typeListReq().then(res => {
 					this.option1 = this.option1.concat(res.data.map(item => {
 						return {
@@ -132,7 +130,6 @@
 				uni.makePhoneCall({
 					phoneNumber:e.target.id,
 					success() {
-						
 					},
 					fail() {
 						console.log("失败")

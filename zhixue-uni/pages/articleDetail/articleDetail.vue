@@ -100,7 +100,6 @@
 			}
 			& /deep/ .img-width{
 				width: 100% !important;
-				// max-height: 400px;
 			}
 		}
 		.article-detail-footer{
