@@ -4,7 +4,7 @@ export default {
 	globalData:{
 		notReadNum:0,
 		openId:null,
-		userInfo:{}
+		userInfo:{},
 	},
 	onLaunch() {
 	},

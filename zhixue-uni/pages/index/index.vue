@@ -26,12 +26,12 @@
     </view>
     <!-- 服务 -->
     <view class="home-server">
-      <view class="home-server-list">
-        <image :src="serverList[0].image"></image>
+      <view class="home-server-list" >
+        <image :src="serverList[0].image" @click="goSecond(serverList[0])"></image>
       </view>
       <view class="home-server-list">
-        <image :src="serverList[1].image"></image>
-        <image :src="serverList[2].image"></image>
+        <image :src="serverList[1].image" @click="goSecond(serverList[1])"></image>
+        <image :src="serverList[2].image" @click="goSecond(serverList[2])"></image>
       </view>
     </view>
     <!-- app模块 -->
@@ -41,30 +41,28 @@
           <!-- 内部跳转 -->
           <van-grid-item
             :icon="item.image"
-            link-tab="redirectTo"
             :text="item.appName"
-            :url="item.pageUrl"
             :key="item.id"
-            v-if="item.sinkType == 'page'"
+			@click="goSecond(item)"
           />
           <!-- 外部跳转 -->
-          <van-grid-item
+          <!-- <van-grid-item
             :icon="item.image"
             link-tab="redirectTo"
             :text="item.appName"
             :url="outUrl + item.pageUrl"
             :key="item.id"
-            v-if="item.sinkType == 'html'"
-          />
+            
+          /> -->
           <!-- 空字符串 -->
-          <van-grid-item
+          <!-- <van-grid-item
             @click="tips"
             :icon="item.image"
             link-tab="switchTab"
             :text="item.appName"
             :key="item.id"
-            v-if="item.sinkType == 'no'"
-          />
+            
+          /> -->
         </template>
       </van-grid>
     </view>
@@ -111,11 +109,11 @@
 
 <script>
 import uniLogin from "../../utils/login.js";
+import { _goSecond } from "../../utils/base.js";
 export default {
   data() {
     return {
       artActive: 0,
-      outUrl: "/pages/outUrl/outUrl?outUrl=",
       webviewStyles: {
         progress: {
           color: "#FF3333"
@@ -129,17 +127,16 @@ export default {
     };
   },
   onLoad() {
-    uniLogin().then(() => {
-      this.getBannerList();
-      this.getAppList();
-      this.getImageList();
-      this.getArticleList();
-      this.getnotReadNum();
-    });
+   
   },
   onShow() {
-    // this.esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
-    // console.log(this.esCode)
+	  uniLogin().then(() => {
+		this.getBannerList();
+		this.getAppList();
+		this.getImageList();
+		this.getArticleList();
+		this.getnotReadNum();
+	  });
   },
   methods: {
     // 获得轮播图
@@ -154,7 +151,6 @@ export default {
         this.appList = res.data;
       });
     },
-
     // 中间图片模块
     getImageList() {
       this.$api.indexApi.esAppMiddleReq().then(res => {
@@ -200,7 +196,11 @@ export default {
           if (res.code === 100000) {
           }
         });
-    }
+    },
+	// 进入二级界面
+	goSecond(item){
+		_goSecond(item);
+	},
   }
 };
 </script>
@@ -261,7 +261,6 @@ export default {
   .home-app-list {
     background-color: #fff;
   }
-
   .home-article {
     width: 100%;
     background-color: #fff;

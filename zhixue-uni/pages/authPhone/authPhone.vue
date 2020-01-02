@@ -19,26 +19,33 @@
 	export default {
 		data() {
 			return {
-				
+				redirectUrl:null
 			}
+		},
+		onLoad(option){
+			let { redirectUrl,outUrl  } = option;
+			this.redirectUrl = outUrl ? `${redirectUrl}?outUrl=${outUrl}` : redirectUrl;
 		},
 		methods: {
 			getPhoneNumber(info){
-				console.log(info)
 				let [ failMsg, okMsg ] = ["getPhoneNumber:fail user deny","getPhoneNumber:ok"];
 				let { errMsg } = info.detail;
 				if(errMsg === failMsg){
 					// 拒绝授权 ...
+					uni.navigateBack({
+						delta:1
+					});
 				}else if(errMsg === okMsg){
 					// 更新用户手机
 					this.updatePhone(info.detail);
+					uni.redirectTo({
+						url:this.redirectUrl
+					})
 				}
-				// 返回上一步
-				uni.navigateBack({
-					delta:1
-				});
+				
 				
 			},
+			// 更新用户手机
 			updatePhone(options){
 				this.$api.authApi.updateUserMobileReq({
 					openId:getApp().globalData.openId,

@@ -31,6 +31,9 @@ import visitorApi from "./apiList/visitor.js";
 
 import wyintroApi from "./apiList/wyintro.js";
 
+// 我的模块
+import mineApi from "./apiList/mine.js";
+
 export const api = {
   testApi,
   indexApi,
@@ -43,5 +46,6 @@ export const api = {
   newApi,
   visitorApi,
   hsbindApi,
-  wyintroApi
+  wyintroApi,
+  mineApi
 };
