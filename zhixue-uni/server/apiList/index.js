@@ -16,6 +16,8 @@ const esArticle = "/api/v1/esArticle/allList";
 // 社区信息
 const communityDetail = "/api/v1/estateCommunity/detail";
 
+// 回滚用户信息
+const rollBackUserInfo ="/api/v1/wechat/rollBackUserInfo";
 export default {
 	// 轮播图
 	esBannerReq:function(esBannerObj){
@@ -35,5 +37,8 @@ export default {
 	},
 	communityDetailReq:function(communityDetailObj){
 		return get(communityDetail,communityDetailObj)
+	},
+	rollBackUserInfoReq:function(rollBackUserInfoObj){
+		return get(rollBackUserInfo,rollBackUserInfoObj)
 	}
 }

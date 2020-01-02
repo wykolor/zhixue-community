@@ -13,11 +13,11 @@ export function	_goSecond(item){
 	let outUrl = isBindMobile ? "/pages/outUrl/outUrl?outUrl=":"/pages/outUrl/outUrl&outUrl=";
 	switch (item.sinkType){
 		case "page":
-			bindMobile(item.bindMobile,item.pageUrl)
+			bindMobile(item.needMobile,item.pageUrl)
 			break;
 		case "html":
 			let redirectUrl = `${outUrl}${encodeURI(item.pageUrl)}`;
-			bindMobile(item.bindMobile,redirectUrl)
+			bindMobile(item.needMobile,redirectUrl)
 			break;
 		case "no":
 			funWaitTips();
@@ -30,7 +30,7 @@ export function	_goSecond(item){
 function bindMobile(needMobile,redirectUrl){
 	let isBindMobile = getApp().globalData.userInfo.wxUserEstateConfResp.bindMobile;
 	// 如果需要用户绑定手机并且暂时还没有绑定的时候
-	if(needMobile === "esNeedMobile" || !isBindMobile){
+	if(!isBindMobile && needMobile === "esNeedMobile"){
 		uni.navigateTo({
 			url:"/pages/authPhone/authPhone?redirectUrl="+redirectUrl
 		})

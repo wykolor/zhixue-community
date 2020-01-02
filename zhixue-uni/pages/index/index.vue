@@ -95,7 +95,7 @@
               <view class="art-info-title">{{ article.title }}</view>
               <view class="art-info-time">{{ article.createTime }}</view>
               <rich-text
-                :nodes="article.summaryText"
+                :nodes="article.subTitle"
                 class="art-info-content van-multi-ellipsis--l2"
               ></rich-text>
             </view>
@@ -127,16 +127,20 @@ export default {
     };
   },
   onLoad() {
-   
+   uniLogin().then(() => {
+   //  this.$api.indexApi.rollBackUserInfoReq({
+   		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
+   //  })
+   		this.getBannerList();
+   		this.getAppList();
+   		this.getImageList();
+   		this.getArticleList();
+   		this.getnotReadNum();
+   		
+    });
   },
   onShow() {
-	  uniLogin().then(() => {
-		this.getBannerList();
-		this.getAppList();
-		this.getImageList();
-		this.getArticleList();
-		this.getnotReadNum();
-	  });
+	 
   },
   methods: {
     // 获得轮播图
