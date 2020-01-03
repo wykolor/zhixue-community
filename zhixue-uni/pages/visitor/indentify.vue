@@ -4,7 +4,7 @@
 		<input type="text" value="" placeholder="请输入真实姓名" v-model="name"/>
 		<textarea value="" placeholder="请输入理由" v-model="reason"/>
 		<view class="button_box">
-			<van-button type="primary" size="large" round @click="goSubmit">提交</van-button>
+			<van-button type="primary" size="large" round @click="goSubmit" :disabled="numberCode==null">提交</van-button>
 		</view>
 		<van-toast id="van-toast" />
 	</view>
@@ -34,6 +34,9 @@
 				}).then(res=>{
 					if(res.code == 100000){
 						// 成功
+						uni.navigateTo({
+							url:"../housebind/successInfo"
+						})
 					}else{
 						Toast.fail(res.message);
 					}
@@ -53,7 +56,7 @@
 			height: 100rpx;
 			line-height:100rpx;
 			outline: none;
-			text-indent:34rpx;
+			padding-left:34rpx;
 			border-radius:50rpx;
 			margin-bottom:30rpx;
 		}
@@ -66,7 +69,7 @@
 			height:300rpx;
 			margin-bottom:50rpx;
 			border: 1px solid #ddd;
-			text-indent:34rpx;
+			padding-left:34rpx;
 			border-radius:10rpx;
 		}
 		.button_box{

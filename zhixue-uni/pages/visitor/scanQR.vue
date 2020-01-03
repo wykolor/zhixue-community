@@ -2,12 +2,13 @@
 	<view class="scan_QR">
 		<!-- 上传人脸 -->
 		<view class="scanbox" @click="upload">
+			<text v-show="img==null">+</text>
 			<!-- 人头 -->
 			<image :src="img" mode=""></image>
 		</view>
 		<text>点击上传人像</text>
 		<view class="button_box">
-			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
+			<van-button type="primary" size="large" round @click="goNextbind" :disabled="img==null">下一步</van-button>
 		</view>
 	</view>
 </template>
@@ -16,7 +17,7 @@
 	export default{
 		data(){
 			return{
-				img:"",
+				img:null,
 				base64:""
 			}
 		},
@@ -26,21 +27,9 @@
 					count: 1,
 					sourceType:['camera'],
 					success: (res) => {
-						console.log(res)
+						console.log(wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64"))
 						this.img = res.tempFilePaths[0]
-						this.urlTobase64(res.tempFilePaths[0])
-					}
-				})
-			},
-			urlTobase64(url){
-				uni.request({
-					url: url,
-					method:'GET',
-					responseType: 'arraybuffer',
-					success: ress => {
-						let base64 = wx.arrayBufferToBase64(ress.data); //把arraybuffer转成base64 
-						this.base64 = 'data:image/jpeg;base64,' + base64 //不加上这串字符，在页面无法显示的哦
-						
+						this.base64 = 'data:image/jpeg;base64,'+wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64")
 					}
 				})
 			},
@@ -63,6 +52,12 @@
 			border: 1px dashed #ddd;
 			border-radius:10rpx;
 			margin: 100rpx auto 2rem;
+			line-height: 290rpx;
+			text-align: center;
+			text{
+				font-size:140rpx;
+				color:#ddd;
+			}
 			image{
 				width:300rpx;
 				height:300rpx;

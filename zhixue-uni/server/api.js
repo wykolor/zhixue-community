@@ -28,8 +28,10 @@ import switchVillageApi from "./apiList/switchVillage.js";
 import newApi from "./apiList/news.js";
 // 访客模块
 import visitorApi from "./apiList/visitor.js";
-
+// 物业介绍
 import wyintroApi from "./apiList/wyintro.js";
+// 人脸管理
+import faceApi from "./apiList/facemag.js"
 
 // 我的模块
 import mineApi from "./apiList/mine.js";
@@ -47,5 +49,6 @@ export const api = {
   visitorApi,
   hsbindApi,
   wyintroApi,
-  mineApi
+  mineApi,
+  faceApi
 };

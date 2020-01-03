@@ -6,7 +6,7 @@
         <text class="iconfont iconweizhi1"></text>
         <text class="address">{{position}}</text>
       </view>
-      <text class="nav-right iconfont iconzuji" slot="right"></text>
+      <text class="nav-right iconfont iconzuji" slot="right" @click="goVisitor"></text>
     </van-nav-bar>
     <!-- 轮播图 -->
     <view class="home-banner">
