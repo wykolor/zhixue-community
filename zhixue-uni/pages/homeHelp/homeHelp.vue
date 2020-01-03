@@ -32,6 +32,7 @@
 					<van-button size="small" type="primary" round icon="phone">立即订购</van-button>
 				</view>
 			</van-card>
+			<van-divider content-position="center" custom-style="width:70%;margin:20px auto" v-if="finished">没有更多了~</van-divider>
 		</view>
 	</view>
 </template>
@@ -49,6 +50,7 @@
 				}],
 				currentPage:1,
 				totalPages:Number,
+				finished:false,
 				option2:[
 					{ text: '默认排序', value:''},
 					{ text: '降序', value: 'desc' },
@@ -63,6 +65,13 @@
 			// 获得服务类型
 			this.gettypeList();
 		},
+		onPullDownRefresh(){
+			this.currentPage = 1;
+			this.totalPages = Number;
+			this.finished = false;
+			this.getHelpList();
+		},
+		// 上拉加载
 		onReachBottom(){
 			this.currentPage++;
 			this.getHelpList();
@@ -95,6 +104,7 @@
 			getHelpList(){
 				// 如果当前页码大于总页数
 				if(this.currentPage > this.totalPages){
+					this.finished = true;
 					return false;
 				}
 				let params = {
@@ -105,6 +115,8 @@
 					type:this.type
 				}
 				this.$api.homeHelpApi.eshourseKeepingReq(params).then(res => {
+					// 停止下拉刷新
+					uni.stopPullDownRefresh();
 					// 获取总页数
 					this.totalPages = res.paginationData.totalPages;
 					if(this.currentPage === 1){

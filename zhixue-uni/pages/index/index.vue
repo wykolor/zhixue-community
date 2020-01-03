@@ -127,17 +127,17 @@ export default {
     };
   },
   onLoad() {
-   uniLogin().then(() => {
-   //  this.$api.indexApi.rollBackUserInfoReq({
-   		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
-   //  })
-   		this.getBannerList();
-   		this.getAppList();
-   		this.getImageList();
-   		this.getArticleList();
-   		this.getnotReadNum();
+   // uniLogin().then(() => {
+   // //  this.$api.indexApi.rollBackUserInfoReq({
+   // 		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
+   // //  })
+   // 		this.getBannerList();
+   // 		this.getAppList();
+   // 		this.getImageList();
+   // 		this.getArticleList();
+   // 		this.getnotReadNum();
    		
-    });
+   //  });
   },
   onShow() {
 	 uniLogin().then(() => {
