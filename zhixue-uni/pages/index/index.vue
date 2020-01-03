@@ -178,6 +178,11 @@ export default {
 		goSecond(item){
 			_goSecond(item);
 		},
+		goVisitor(){
+			uni.navigateTo({
+				url:"../visitor/visitor"
+			})
+		}
 	}
 };
 </script>
