@@ -99,7 +99,7 @@ export default {
 					color: "#FF3333"
 				}
 			},
-			position:null, // 小区地址
+			position:"", // 小区地址
 			appList: [], // app列表
 			bannerList: [], // 轮播图列表
 			serverList: [], // 服务列表
@@ -112,11 +112,9 @@ export default {
 	   this.getImageList();
 	   this.getArticleList();
 	   this.getnotReadNum();
-	   this.getCommunity();
 	},
 	onShow(){
-		
-		
+		 this.getCommunity();
 	},
 	methods: {
 		// 获得轮播图
@@ -168,7 +166,7 @@ export default {
 		},
 		// 获取小区信息
 		getCommunity() {
-			let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate
+			let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
 			this.$api.switchVillageApi.communityDetailReq({esCode}).then(res => {
 				if (res.code === 100000) {
 					getApp().globalData.communityInfo = res.data;

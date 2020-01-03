@@ -11,20 +11,18 @@
 	api.authApi.loginReq({ code }).then(res => {
 		if(res.code === 100000){
 			let { openId,token,userCode } = res.data;
+			// 将令牌存入本地
+			uni.setStorageSync("token",`Bearer${token}`);
+			// 将openid存入全局
 			getApp().globalData.openId = openId;
 			// 通过openId获取用户信息
 			api.authApi.detailReq({ openId }).then(res => {
 				// 存入全局globalData
 				if(res.code === 100000){
 					getApp().globalData.userInfo = res.data;
-					// console.log(getApp().globalData.userInfo)
+					resolve(res.code);
 				}
 			})
-			
-			// 将令牌存入本地
-			uni.setStorageSync("token",`Bearer${token}`);
-			
-			resolve(res.data);
 		}else{
 			reject("error");
 		}
