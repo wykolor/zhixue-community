@@ -19,17 +19,22 @@
 					<view class="village-desc van-multi-ellipsis--l3">{{item.info}}</view>
 				</view>
 			</view>
+			<error-tip v-if="!villageList.length"></error-tip>
 		</view>
 	</view>
 </template>
 
 <script>
+	import ErrorTip from "../../components/error/error.vue";
 	export default {
 		data() {
 			return {
 				searchValue:"",
 				villageList:[] // 小区列表
 			};
+		},
+		components:{
+			"error-tip":ErrorTip,
 		},
 		onShow() {
 			this.getVillageList();

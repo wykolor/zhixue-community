@@ -32,12 +32,14 @@
 					<van-button size="small" type="primary" round icon="phone">立即订购</van-button>
 				</view>
 			</van-card>
+			<error-tip v-if="!helpList.length"></error-tip>
 			<van-divider content-position="center" custom-style="width:70%;margin:20px auto" v-if="finished">没有更多了~</van-divider>
 		</view>
 	</view>
 </template>
 
 <script>
+	import ErrorTip from "../../components/error/error.vue";
 	export default {
 		data() {
 			return {
@@ -75,6 +77,9 @@
 		onReachBottom(){
 			this.currentPage++;
 			this.getHelpList();
+		},
+		components:{
+			"error-tip":ErrorTip,
 		},
 		methods: {
 			// 重置分页数据

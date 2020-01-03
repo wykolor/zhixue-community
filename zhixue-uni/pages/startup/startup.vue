@@ -17,10 +17,13 @@ export default {
 	},
 	onLoad() {
 		uniLogin().then(res => {
-			// 跳转到首页
-			uni.switchTab({
-				url:"/pages/index/index"
-			})
+			if(res === 100000){
+				// 跳转到首页
+				uni.switchTab({
+					url:"/pages/index/index"
+				})
+			}
+			
 		});
 	}
 }
