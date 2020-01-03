@@ -10,6 +10,8 @@ const isBindUrl = '/api/v1/esHourseConf/detail'
 const addMberUrl = "/api/v1/esMember/add"
 // 智能门禁 人员类型
 const peopleType = "/personTypeList"
+// 提示内容
+const infoUrl = "/api/v1/esConfig/committxt"
 export default {
 	// 楼栋列表
 	buildReq:function(Obj){
@@ -26,5 +28,8 @@ export default {
 	},
 	peopleTypeReq:function(Obj){
 		return post(peopleType,Obj)
+	},
+	infoMesReq:function(Obj){
+		return get(infoUrl,Obj)
 	}
 }

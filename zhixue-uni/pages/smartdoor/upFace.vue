@@ -3,6 +3,7 @@
 		<!-- 上传人脸 -->
 		<view class="scanbox" @click="upload">
 			<!-- 人头 -->
+			<text v-show="img==''">+</text>
 			<image :src="img" mode=""></image>
 		</view>
 		<text>点击上传人像</text>
@@ -35,10 +36,11 @@
 					  	url:"../housebind/housebind"
 					  })
 					}).catch(() => {
-					  //不进行绑定
+						//不进行绑定
+						uni.navigateBack({
+							delta:1
+						});
 					});
-				}else{
-					// 已经绑定了
 				}
 			})
 			
@@ -51,19 +53,7 @@
 					success: (res) => {
 						console.log(res)
 						this.img = res.tempFilePaths[0]
-						this.urlTobase64(res.tempFilePaths[0])
-					}
-				})
-			},
-			urlTobase64(url){
-				uni.request({
-					url: url,
-					method:'GET',
-					responseType: 'arraybuffer',
-					success: ress => {
-						let base64 = wx.arrayBufferToBase64(ress.data); //把arraybuffer转成base64 
-						this.base64 = 'data:image/jpeg;base64,' + base64 //不加上这串字符，在页面无法显示的哦
-						
+						this.base64 = 'data:image/jpeg;base64,'+wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64")
 					}
 				})
 			},
@@ -86,6 +76,12 @@
 			border: 1px dashed #ddd;
 			border-radius:10rpx;
 			margin: 100rpx auto 2rem;
+			line-height: 290rpx;
+			text-align: center;
+			text{
+				font-size:140rpx;
+				color:#ddd;
+			}
 			image{
 				width:300rpx;
 				height:300rpx;

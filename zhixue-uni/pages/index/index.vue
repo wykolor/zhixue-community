@@ -6,7 +6,7 @@
         <text class="iconfont iconweizhi1"></text>
         <text class="address">保利锦江里</text>
       </view>
-      <text class="nav-right iconfont iconzuji" slot="right"></text>
+      <text class="nav-right iconfont iconzuji" slot="right" @click="goVisitor"></text>
     </van-nav-bar>
     <!-- 轮播图 -->
     <view class="home-banner">
@@ -200,7 +200,13 @@ export default {
           if (res.code === 100000) {
           }
         });
-    }
+    },
+	// 访客模式
+	goVisitor(){
+		uni.navigateTo({
+			url:'../visitor/visitor'
+		})
+	}
   }
 };
 </script>

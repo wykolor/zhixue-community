@@ -2,32 +2,45 @@
 	<view class="pwd_bind">
 		<text>输入密钥</text>
 		<view class="pwd_inpt">
-			<input type="tel" :value="iptValue.length>=index+1?pwdArr[index]:''" :key="i" class="input" v-for="(v,i) in 5" @input="inputchange"/>
+			<input class="input" maxlength="1" :value="code[0]"></input>
+			<input class="input" maxlength="1" :value="code[1]"></input>
+			<input class="input" maxlength="1" :value="code[2]"></input>
+			<input class="input" maxlength="1" :value="code[3]"></input>
+			<input class="input" maxlength="1" :value="code[4]"></input>
 		</view>
+		<input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="number" />
 		<van-button type="primary" size="large" round @click="goNext">下一步</van-button>
 	</view>
 </template>
 
 <script>
+	import Toast from '../../wxcomponents/vant/toast/toast';
 	export default{
 		data(){
 			return{
-				pwdArr:["","","","",""],
-				isFocus:false
+				isFocus:false,
+				code: '',
+				pwd:""
 			}
 		},
 		methods:{
 			goNext(){
 				console.log(this.pwdArr)
 				this.$api.hsbindApi.roomcodeReq({
-					"passwd":"12345" 
+					"passwd":this.pwd
 				}).then(res=>{
-					console.log(res)
+					if(res.code == 100000){
+						uni.navigateTo({
+							url:"successInfo"
+						})
+					}else{
+						Toast.fail(res.message);
+					}
 				})
 			},
-			inputchange(e){
-
-				// this.$refs.input[this.index].focus()
+			inputEvent(res){
+				console.log("input 1 input code  components : ", res.detail.value);	
+				this.pwd = res.detail.value
 			}
 		}
 	}
@@ -49,5 +62,14 @@
 				border: 1px solid #ddd;
 			}
 		}
+	}
+	.code-input-input {
+		height:250rpx;
+		position: absolute;
+		width: 100%;
+		outline: none;
+		color: transparent;
+		text-shadow: 0 0 0 transparent;
+		top: 150rpx;
 	}
 </style>

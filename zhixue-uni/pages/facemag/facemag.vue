@@ -1,14 +1,21 @@
 <template>
 	<view id="face_box">
 		<view class="content">
-			<view class="up_face" v-for="v in 4">
-				<image src="../../static/img/index/u62.jpg"></image>
-				<text>张三</text>
-				<text>状态：审核中</text>
+			<view class="up_face" v-for="(v,i) in imgList" :key="i">
+				<image :src="v.image"></image>
+				<text class="name">{{v.memberName}}</text>
+				<text class="status">
+					状态：
+					<text class="passing" v-if="v.status=='checkIng'">审核中</text> 
+					<text class="nopass" v-if="v.status=='checkFail'">未通过</text> 
+					<text class="nopass" v-if="v.status=='notCheck'">未审核</text> 
+					<text class="passed" v-if="v.status=='checkSuccess'">已通过</text> 
+				</text>
+				<text>有效期:{{v.endTime}}</text>
 			</view>
 		</view>
-		<view class="uploader">
-			<van-uploader :file-list="fileList" bind:after-read="afterRead" />
+		<view class="uploader" @click="upload">
+			<text>+</text>
 		</view>
 	</view>
 </template>
@@ -17,35 +24,21 @@
 	export default {
 		data() {
 			return {
-				fileList: []
+				imgList:[]
 			}
 		},
+		onLoad() {
+			// 获取人脸列表
+			this.$api.faceApi.facelistReq({}).then(res=>{
+				console.log(res)
+				this.imgList = res.data
+			})
+		},
 		methods: {
-			afterRead(event) {
-				const {
-					file
-				} = event.detail;
-				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-				wx.uploadFile({
-					url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-					filePath: file.path,
-					name: 'file',
-					formData: {
-						user: 'test'
-					},
-					success(res) {
-						// 上传完成需要更新 fileList
-						const {
-							fileList = []
-						} = this.data;
-						fileList.push({ ...file,
-							url: res.data
-						});
-						this.setData({
-							fileList
-						});
-					}
-				});
+			upload(){
+				uni.navigateTo({
+					url:"../smartdoor/upFace"
+				})
 			}
 		}
 	}
@@ -63,23 +56,37 @@
 		font-size:1rem;
 
 		.content {
-			width: 90%;
+			width:100%;
 			margin: 0 auto;
 			padding:2% 0;
 			display: flex;
-			justify-content: space-between;
+			justify-content:flex-start;
 			flex-wrap: wrap;
 			.up_face {
-				width: 29%;
-				display: inline-block;
+				width:31%;
+				margin:20rpx 1.15% 0;
+				font-size: 12px;
 				image {
 					width: 100%;
 					height: 8rem;
 				}
-
-				text {
+				.name{
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				.status,.name {
 					display: block;
 					text-align: center;
+					.passing{
+						color: #409EFF;
+					}
+					.passed{
+						color: #67C23A;
+					}
+					.nopass{
+						color: #F56C6C;
+					}
 				}
 			}
 		}
@@ -87,6 +94,16 @@
 			position: absolute;
 			bottom:1rem;
 			right: 1rem;
+			border: 1px solid #ebedf0;
+			border-radius:50%;
+			height: 60px;
+			width: 60px;
+			text-align: center;
+			line-height: 60px;
+			text{
+				font-size:34px;
+				color:#ddd;
+			}
 		}
 	}
 </style>

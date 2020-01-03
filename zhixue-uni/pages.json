@@ -110,6 +110,7 @@
       "path": "pages/articleDetail/articleDetail",
       "style": {}
     },
+	// 人脸管理
     {
       "path": "pages/facemag/facemag",
       "style": {
@@ -160,6 +161,7 @@
         }
       }
     },
+	// 房产绑定
     {
       "path": "pages/housebind/housebind",
       "style": {
@@ -177,7 +179,8 @@
       "style": {
         "navigationBarTitleText": "房产绑定",
         "usingComponents": {
-          "van-button": "/wxcomponents/vant/button/index"
+          "van-button": "/wxcomponents/vant/button/index",
+		  "van-toast": "/wxcomponents/vant/toast/index"
         }
       }
     },
@@ -188,7 +191,8 @@
         "navigationBarTitleText": "房产绑定",
         "usingComponents": {
           "van-picker": "/wxcomponents/vant/picker/index",
-          "van-button": "/wxcomponents/vant/button/index"
+          "van-button": "/wxcomponents/vant/button/index",
+		  "van-toast": "/wxcomponents/vant/toast/index"
         }
       }
     },
@@ -196,7 +200,7 @@
     {
       "path": "pages/housebind/successInfo",
       "style": {
-        "navigationBarTitleText": "房产绑定"
+        "navigationBarTitleText": "绑定成功"
       }
     },
     // 智能门禁——上传人脸
@@ -219,7 +223,8 @@
           "van-dialog": "/wxcomponents/vant/dialog/index",
           "van-button": "/wxcomponents/vant/button/index",
           "van-picker": "/wxcomponents/vant/picker/index",
-          "van-popup": "/wxcomponents/vant/popup/index"
+          "van-popup": "/wxcomponents/vant/popup/index",
+		  "van-datetime-picker": "/wxcomponents/vant/datetime-picker/index"
         }
       }
     },

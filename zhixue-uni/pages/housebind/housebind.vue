@@ -8,8 +8,8 @@
 		<view class="pwd_bind">
 			<van-divider contentPosition="center">通过秘钥绑定</van-divider>
 			<!-- <i>&#xe612</i> -->
-			<view @click="goBindPwd">
-				跳转
+			<view @click="goBindPwd" class="pwd_icon">
+				<text class="iconfont iconyuechi"></text>
 			</view>
 		</view>
 	</view>
@@ -63,6 +63,15 @@
 	.housbind{
 		.button_box{
 			padding:0 5%;
+		}
+		.pwd_bind{
+			.pwd_icon{
+				text-align: center;
+				padding-top: 2%;
+				text{
+					font-size: 70rpx;
+				}
+			}
 		}
 	}
 </style>

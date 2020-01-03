@@ -28,6 +28,7 @@
 </template>
 
 <script>
+	import Toast from '../../wxcomponents/vant/toast/toast'
 	export default{
 		data(){
 			return{				
@@ -64,6 +65,9 @@
 						break;
 					case 4:
 						// 跳转
+						uni.navigateTo({
+							url:"successInfo"
+						})
 						break;
 					default:
 						break;
@@ -79,11 +83,15 @@
 					"type":type,
 					"code":this.code
 				}).then(res=>{
-					this.columns = res.data.map((v,i)=>{
-						return {"type":v.type,"text":v.name,"code":v.code}
-					})
-					// 默认情况
-					this.code = this.columns[0].code
+					if(res.data.length!=0){
+						this.columns = res.data.map((v,i)=>{
+							return {"type":v.type,"text":v.name,"code":v.code}
+						})
+						// 默认情况
+						this.code = this.columns[0].code
+					}else{
+						Toast.fail("暂无数据")
+					}					
 				})
 			}
 		}
