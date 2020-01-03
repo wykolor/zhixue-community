@@ -12,6 +12,9 @@ const updateUserInfo = "/api/v1/wechat/updateUserInfo";
 // 更新用户电话号码
 const updateUserMobile = "/api/v1/wechat/updateUserMobile";
 
+// 获取logo
+const esConfig = "/api/v1/esConfig/committxt";
+
 export default {
 	// 登录
 	loginReq:function(loginObj) {
@@ -28,5 +31,8 @@ export default {
 	// 更新用户电话号码
 	updateUserMobileReq:function(updateUserMobileObj){
 		return post(updateUserMobile,updateUserMobileObj)
+	},
+	esConfigReq:function(esConfigObj){
+		return get(esConfig,esConfigObj)
 	}
 }

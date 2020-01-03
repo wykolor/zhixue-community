@@ -10,30 +10,41 @@
 			
 		</view>
 		<van-cell-group :border="false">
-			<van-cell title="人脸管理"  isLink icon="coupon-o">
-			</van-cell>
-			<van-cell title="物业电话"  isLink icon="phone"/>
-			<van-cell title="智能门禁"  isLink icon="smile-o"/>
-			<van-cell title="意见反馈" isLink icon="ellipsis"/>
+			<template v-for="item in appList">
+				<van-cell  :title="item.appName" :icon="item.image" isLink @click="goSecond(item)" :key="item.id"></van-cell>
+			</template>
 		</van-cell-group>
 	</view>
 </template>
 
 <script>
-	import uniLofin from "../../utils/login.js"
-	export default {
-		data() {
-			return {
-				userInfo:null
-			};
+import uniLofin from "../../utils/login.js";
+import { _goSecond } from "../../utils/base.js";
+export default {
+	data() {
+		return {
+			userInfo:null,
+			appList:[]
+		};
+	},
+	onShow(){
+		this.userInfo = uni.getStorageSync("userInfo") || null;
+		this.getAppList();
+	},
+	methods:{
+		getAppList(){
+			this.$api.mineApi.esAppMineReq().then(res => {
+				if(res.code === 100000){
+					this.appList = res.data;
+				}
+			})
 		},
-		onShow(){
-			this.userInfo = uni.getStorageSync("userInfo") || null
-		},
-		methods:{
-			
+		// 二级界面
+		goSecond(item){
+			_goSecond(item);
 		}
 	}
+}
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,8 @@ export default {
 	globalData:{
 		notReadNum:0,
 		openId:null,
-		userInfo:{}
+		userInfo:{}, // 用户信息
+		communityInfo:{} // 小区信息
 	},
 	onLaunch() {
 	},

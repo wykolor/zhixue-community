@@ -2,7 +2,7 @@
 	<view class="auth-user-phone">
 		<view class="auth-tips">
 			<view class="tips-list">
-				<image src="../../static/img/video.png" alt="logo" mode="aspectFit"></image>
+				<image :src="logoUrl" alt="logo" mode="aspectFit"></image>
 				<text class="iconfont iconbangding"></text>
 				<text class="iconfont iconweixin wx-logo"></text>
 			</view>
@@ -19,26 +19,43 @@
 	export default {
 		data() {
 			return {
-				
+				redirectUrl:null,
+				logoUrl:null
 			}
 		},
+		onLoad(option){
+			let { redirectUrl,outUrl  } = option;
+			this.redirectUrl = outUrl ? `${redirectUrl}?outUrl=${outUrl}` : redirectUrl;
+			this.getLogo();
+		},
 		methods: {
+			// 获得logo
+			getLogo(){
+				this.$api.authApi.esConfigReq({
+					keyWord:"logo"
+				}).then(res => {
+					if(res.code===100000){
+						this.logoUrl = res.data.value;
+					}
+				})
+			},
 			getPhoneNumber(info){
-				console.log(info)
 				let [ failMsg, okMsg ] = ["getPhoneNumber:fail user deny","getPhoneNumber:ok"];
 				let { errMsg } = info.detail;
 				if(errMsg === failMsg){
 					// 拒绝授权 ...
+					uni.navigateBack({
+						delta:1
+					});
 				}else if(errMsg === okMsg){
 					// 更新用户手机
 					this.updatePhone(info.detail);
+					uni.redirectTo({
+						url:this.redirectUrl
+					})
 				}
-				// 返回上一步
-				uni.navigateBack({
-					delta:1
-				});
-				
 			},
+			// 更新用户手机
 			updatePhone(options){
 				this.$api.authApi.updateUserMobileReq({
 					openId:getApp().globalData.openId,

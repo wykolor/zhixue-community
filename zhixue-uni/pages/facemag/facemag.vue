@@ -61,7 +61,6 @@
 	#face_box {
 		width: 100%;
 		font-size:1rem;
-
 		.content {
 			width: 90%;
 			margin: 0 auto;

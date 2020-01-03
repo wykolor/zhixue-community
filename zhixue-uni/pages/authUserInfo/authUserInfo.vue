@@ -2,7 +2,7 @@
 	<view class="auth-user-info">
 		<view class="auth-tips">
 			<view class="tips-list">
-				<image src="../../static/img/video.png" alt="logo" mode="aspectFit"></image>
+				<image :src="logoUrl" alt="logo" mode="aspectFit"></image>
 				<text class="iconfont iconbangding"></text>
 				<text class="iconfont iconweixin wx-logo"></text>
 			</view>
@@ -19,10 +19,23 @@
 	export default {
 		data() {
 			return {
-				
+				logoUrl:null
 			}
 		},
+		onLoad() {
+			this.getLogo();
+		},
 		methods: {
+			// 获得logo
+			getLogo(){
+				this.$api.authApi.esConfigReq({
+					keyWord:"logo"
+				}).then(res => {
+					if(res.code===100000){
+						this.logoUrl = res.data.value;
+					}
+				})
+			},
 			getUserInfo(info){
 				let [ failMsg, okMsg ] = ["getUserInfo:fail auth deny","getUserInfo:ok"];
 				let { errMsg, userInfo } = info.detail;
