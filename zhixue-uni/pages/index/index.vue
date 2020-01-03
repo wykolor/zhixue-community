@@ -4,7 +4,7 @@
     <van-nav-bar title="智旭" :border="false" fixed>
       <view class="nav-left" slot="left">
         <text class="iconfont iconweizhi1"></text>
-        <text class="address">保利锦江里</text>
+        <text class="address">{{position}}</text>
       </view>
       <text class="nav-right iconfont iconzuji" slot="right"></text>
     </van-nav-bar>
@@ -26,7 +26,7 @@
     </view>
     <!-- 服务 -->
     <view class="home-server">
-      <view class="home-server-list" >
+      <view class="home-server-list">
         <image :src="serverList[0].image" @click="goSecond(serverList[0])"></image>
       </view>
       <view class="home-server-list">
@@ -45,24 +45,6 @@
             :key="item.id"
 			@click="goSecond(item)"
           />
-          <!-- 外部跳转 -->
-          <!-- <van-grid-item
-            :icon="item.image"
-            link-tab="redirectTo"
-            :text="item.appName"
-            :url="outUrl + item.pageUrl"
-            :key="item.id"
-            
-          /> -->
-          <!-- 空字符串 -->
-          <!-- <van-grid-item
-            @click="tips"
-            :icon="item.image"
-            link-tab="switchTab"
-            :text="item.appName"
-            :key="item.id"
-            
-          /> -->
         </template>
       </van-grid>
     </view>
@@ -87,7 +69,6 @@
             v-for="article in categray.list"
             :key="article.id"
           >
-            <!-- <view class="article-list"  v-for="article in categray.list" :key="article.id" @click="goArticleDetail" :id="article.id"> -->
             <view class="art-list-img">
               <image :src="article.image"></image>
             </view>
@@ -99,7 +80,6 @@
                 class="art-info-content van-multi-ellipsis--l2"
               ></rich-text>
             </view>
-            <!-- </view> -->
           </navigator>
         </van-tab>
       </van-tabs>
@@ -111,111 +91,96 @@
 import uniLogin from "../../utils/login.js";
 import { _goSecond } from "../../utils/base.js";
 export default {
-  data() {
-    return {
-      artActive: 0,
-      webviewStyles: {
-        progress: {
-          color: "#FF3333"
-        }
-      },
-      esCode: null,
-      appList: [], // app列表
-      bannerList: [], // 轮播图列表
-      serverList: [], // 服务列表
-      articleList: [] // 文章列表
-    };
-  },
-  onLoad() {
-   // uniLogin().then(() => {
-   // //  this.$api.indexApi.rollBackUserInfoReq({
-   // 		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
-   // //  })
-   // 		this.getBannerList();
-   // 		this.getAppList();
-   // 		this.getImageList();
-   // 		this.getArticleList();
-   // 		this.getnotReadNum();
-   		
-   //  });
-  },
-  onShow() {
-	 uniLogin().then(() => {
-	 //  this.$api.indexApi.rollBackUserInfoReq({
-	 		// openId: "oYlxL5MnmeJr-h_XVI8gBEYr5mE4"
-	 //  })
-	 		this.getBannerList();
-	 		this.getAppList();
-	 		this.getImageList();
-	 		this.getArticleList();
-	 		this.getnotReadNum();
-	 		
-	  });
-  },
-  methods: {
-    // 获得轮播图
-    getBannerList() {
-      this.$api.indexApi.esBannerReq().then(res => {
-        this.bannerList = res.data;
-      });
-    },
-    // 获得app模块
-    getAppList() {
-      this.$api.indexApi.esAppIndexReq().then(res => {
-        this.appList = res.data;
-      });
-    },
-    // 中间图片模块
-    getImageList() {
-      this.$api.indexApi.esAppMiddleReq().then(res => {
-        this.serverList = res.data;
-      });
-    },
-    // 文章模块
-    getArticleList() {
-      this.$api.indexApi.esArticleReq().then(res => {
-        this.articleList = res.data;
-      });
-    },
-    // 去文章详情
-    goArticleDetail(e) {
-      const { id } = e.currentTarget;
-      uni.navigateTo({
-        url: "/pages/articleDetail/articleDetail?id=" + id
-      });
-    },
-    // 获取未读数据
-    getnotReadNum() {
-      this.$api.newApi.notReadNumReq().then(res => {
-        getApp().globalData.notReadNum = res.data;
-        if (!getApp().globalData.notReadNum) {
-          uni.removeTabBarBadge({
-            index: 2
-          });
-        } else {
-          uni.setTabBarBadge({
-            index: 2,
-            text: String(getApp().globalData.notReadNum)
-          });
-        }
-      });
-    },
-    // 获取小区信息
-    getCommunity(esCode) {
-      this.$api.switchVillageApi
-        .communityDetailReq({
-          esCode
-        })
-        .then(res => {
-          if (res.code === 100000) {
-          }
-        });
-    },
-	// 进入二级界面
-	goSecond(item){
-		_goSecond(item);
+	data() {
+		return {
+			artActive: 0,
+			webviewStyles: {
+				progress: {
+					color: "#FF3333"
+				}
+			},
+			position:null, // 小区地址
+			appList: [], // app列表
+			bannerList: [], // 轮播图列表
+			serverList: [], // 服务列表
+			articleList: [] // 文章列表
+		};
 	},
-  }
+	onLoad() {
+	   this.getBannerList();
+	   this.getAppList();
+	   this.getImageList();
+	   this.getArticleList();
+	   this.getnotReadNum();
+	   this.getCommunity();
+	},
+	onShow(){
+		
+		
+	},
+	methods: {
+		// 获得轮播图
+		getBannerList() {
+		  this.$api.indexApi.esBannerReq().then(res => {
+			this.bannerList = res.data;
+		  });
+		},
+		// 获得app模块
+		getAppList() {
+		  this.$api.indexApi.esAppIndexReq().then(res => {
+			this.appList = res.data;
+		  });
+		},
+		// 中间图片模块
+		getImageList() {
+		  this.$api.indexApi.esAppMiddleReq().then(res => {
+			this.serverList = res.data;
+		  });
+		},
+		// 文章模块
+		getArticleList() {
+		  this.$api.indexApi.esArticleReq().then(res => {
+			this.articleList = res.data;
+		  });
+		},
+		// 去文章详情
+		goArticleDetail(e) {
+		  const { id } = e.currentTarget;
+		  uni.navigateTo({
+			url: "/pages/articleDetail/articleDetail?id=" + id
+		  });
+		},
+		// 获取未读数据
+		getnotReadNum() {
+		  this.$api.newApi.notReadNumReq().then(res => {
+			getApp().globalData.notReadNum = res.data;
+			if (!getApp().globalData.notReadNum) {
+			  uni.removeTabBarBadge({
+				index: 2
+			  });
+			} else {
+			  uni.setTabBarBadge({
+				index: 2,
+				text: String(getApp().globalData.notReadNum)
+			  });
+			}
+		  });
+		},
+		// 获取小区信息
+		getCommunity() {
+			let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate
+			this.$api.switchVillageApi.communityDetailReq({esCode}).then(res => {
+				if (res.code === 100000) {
+					getApp().globalData.communityInfo = res.data;
+					this.position = getApp().globalData.communityInfo.position;
+				}
+			});
+		},
+		// 进入二级界面
+		goSecond(item){
+			_goSecond(item);
+		},
+	}
 };
 </script>
 

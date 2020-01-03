@@ -1,89 +1,96 @@
 {
   "pages": [
-    //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-
-    {
-      // 首页
-      "path": "pages/index/index",
-      "style": {
-        "usingComponents": {
-          // 该页面需要用的组件
-          "van-button": "/wxcomponents/vant/button/index",
-          "van-grid": "/wxcomponents/vant/grid/index",
-          "van-grid-item": "/wxcomponents/vant/grid-item/index",
-          "van-tab": "/wxcomponents/vant/tab/index",
-          "van-tabs": "/wxcomponents/vant/tabs/index",
-          "van-nav-bar": "/wxcomponents/vant/nav-bar/index"
-        }
-      }
-    },
-    {
-      // 消息
-      "path": "pages/news/news",
-      "style": {
-		"navigationBarTitleText": "消息通知",
-		"enablePullDownRefresh": true,
-        "usingComponents": {
-          "van-tab": "/wxcomponents/vant/tab/index",
-          "van-tabs": "/wxcomponents/vant/tabs/index",
-          "van-cell": "/wxcomponents/vant/cell/index",
-          "van-cell-group": "/wxcomponents/vant/cell-group/index",
-          "van-icon": "/wxcomponents/vant/icon/index",
-		  "van-divider":"/wxcomponents/vant/divider/index"
-        }
-      }
-    },
-    {
-      // 服务
-      "path": "pages/server/server",
-      "style": {
-        "usingComponents": {
-          "van-grid": "/wxcomponents/vant/grid/index",
-          "van-grid-item": "/wxcomponents/vant/grid-item/index",
-          "van-cell-group": "/wxcomponents/vant/cell-group/index"
-        }
-      }
-    },
-
-    {
-      // 意见建议
-      "path": "pages/suggestion/suggestion",
-      "style": {
-        "navigationBarTitleText": "意见反馈",
-        "usingComponents": {
-          "van-field": "/wxcomponents/vant/field/index",
-          "van-button": "/wxcomponents/vant/button/index"
-        }
-      }
-    },
-    {
-      // 我的
-      "path": "pages/mine/mine",
-      "style": {
-		"navigationBarTitleText": "个人中心",
-        "usingComponents": {
-          "van-cell-group": "/wxcomponents/vant/cell-group/index",
-          "van-cell": "/wxcomponents/vant/cell/index",
-          "van-icon": "/wxcomponents/vant/icon/index"
-        }
-      }
-    },
-	{
-	  // 文章详情
-	  "path": "pages/articleDetail/articleDetail",
-	  "style": {
-		  "navigationBarTitleText": "详情"
-	  }
+    // pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	{ // 启动页
+		"path" : "pages/startup/startup",
+		"style" : {}
 	},
     {
-      // 切换小区
-      "path": "pages/switchVillage/switchVillage",
-      "style": {
-		"navigationBarTitleText": "切换小区",
-        "usingComponents": {
-          "van-search": "/wxcomponents/vant/search/index"
-        }
-      }
+		// 首页
+		"path": "pages/index/index",
+		"style": {
+			"usingComponents": {
+			  // 该页面需要用的组件
+			  "van-button": "/wxcomponents/vant/button/index",
+			  "van-grid": "/wxcomponents/vant/grid/index",
+			  "van-grid-item": "/wxcomponents/vant/grid-item/index",
+			  "van-tab": "/wxcomponents/vant/tab/index",
+			  "van-tabs": "/wxcomponents/vant/tabs/index",
+			  "van-nav-bar": "/wxcomponents/vant/nav-bar/index"
+			}
+		}
+    },
+    {
+		// 消息
+		"path": "pages/news/news",
+		"style": {
+			"navigationBarTitleText": "消息通知",
+			"enablePullDownRefresh": true,
+			"usingComponents": {
+			  "van-tab": "/wxcomponents/vant/tab/index",
+			  "van-tabs": "/wxcomponents/vant/tabs/index",
+			  "van-cell": "/wxcomponents/vant/cell/index",
+			  "van-cell-group": "/wxcomponents/vant/cell-group/index",
+			  "van-icon": "/wxcomponents/vant/icon/index",
+			  "van-divider":"/wxcomponents/vant/divider/index"
+			}
+		}
+    },
+    {
+		// 服务
+		"path": "pages/server/server",
+		"style": {
+			"usingComponents": {
+			  "van-grid": "/wxcomponents/vant/grid/index",
+			  "van-grid-item": "/wxcomponents/vant/grid-item/index",
+			  "van-cell-group": "/wxcomponents/vant/cell-group/index"
+			}
+		}
+    },
+    {
+		// 意见建议
+		"path": "pages/suggestion/suggestion",
+		"style": {
+			"navigationBarTitleText": "意见反馈",
+			"usingComponents": {
+			  "van-field": "/wxcomponents/vant/field/index",
+			  "van-button": "/wxcomponents/vant/button/index"
+			}
+		}
+    },
+    {
+		// 我的
+		"path": "pages/mine/mine",
+		"style": {
+			"navigationBarTitleText": "个人中心",
+			"usingComponents": {
+			  "van-cell-group": "/wxcomponents/vant/cell-group/index",
+			  "van-cell": "/wxcomponents/vant/cell/index",
+			  "van-icon": "/wxcomponents/vant/icon/index"
+			}
+		}
+    },
+	{
+		// 文章详情
+		"path": "pages/articleDetail/articleDetail",
+		"style": {
+			"navigationBarTitleText": "详情"
+		}
+	},
+	{
+	  // 授权手机号
+	  "path": "pages/authPhone/authPhone",
+	  "style": {}
+	},
+    {
+		// 切换小区
+		"path": "pages/switchVillage/switchVillage",
+		"style": {
+			"navigationBarTitleText": "切换小区",
+			"usingComponents": {
+			  "van-search": "/wxcomponents/vant/search/index"
+			}
+		}
     },
     {
       // 家政服务
@@ -118,11 +125,7 @@
 		
 	  }
     },
-    {
-      // 授权手机号
-      "path": "pages/authPhone/authPhone",
-      "style": {}
-    },
+   
     
     {
 	  //人脸管理
@@ -244,7 +247,7 @@
         "navigationBarTitleText": "物业简介"
       }
     }
-  ],
+    ],
 
   "globalStyle": {
     "navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white

@@ -2,7 +2,7 @@
 	<view class="auth-user-phone">
 		<view class="auth-tips">
 			<view class="tips-list">
-				<image src="../../static/img/video.png" alt="logo" mode="aspectFit"></image>
+				<image :src="logoUrl" alt="logo" mode="aspectFit"></image>
 				<text class="iconfont iconbangding"></text>
 				<text class="iconfont iconweixin wx-logo"></text>
 			</view>
@@ -19,14 +19,26 @@
 	export default {
 		data() {
 			return {
-				redirectUrl:null
+				redirectUrl:null,
+				logoUrl:null
 			}
 		},
 		onLoad(option){
 			let { redirectUrl,outUrl  } = option;
 			this.redirectUrl = outUrl ? `${redirectUrl}?outUrl=${outUrl}` : redirectUrl;
+			this.getLogo();
 		},
 		methods: {
+			// 获得logo
+			getLogo(){
+				this.$api.authApi.esConfigReq({
+					keyWord:"logo"
+				}).then(res => {
+					if(res.code===100000){
+						this.logoUrl = res.data.value;
+					}
+				})
+			},
 			getPhoneNumber(info){
 				let [ failMsg, okMsg ] = ["getPhoneNumber:fail user deny","getPhoneNumber:ok"];
 				let { errMsg } = info.detail;
@@ -42,8 +54,6 @@
 						url:this.redirectUrl
 					})
 				}
-				
-				
 			},
 			// 更新用户手机
 			updatePhone(options){
