@@ -72,7 +72,7 @@
 					if(res.code == 100000){
 						// 成功
 						uni.navigateTo({
-							url:"../housebind/successInfo"
+							url:"../housebind/successInfo?type=1"
 						})
 					}else{
 						Toast.fail(res.message);

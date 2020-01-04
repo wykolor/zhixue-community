@@ -10,10 +10,15 @@
 	}
 </script>
 
-<style style="scss" scoped>
+<style lang="scss" scoped>
 .error-tips{
 	width: 100%;
+	margin-top: 5%;
 	box-sizing: border-box;
 	text-align: center;
+	img{
+		width: 200px;
+		height: 150px;
+	}
 }
 </style>

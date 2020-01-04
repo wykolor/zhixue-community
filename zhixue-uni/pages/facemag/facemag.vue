@@ -13,7 +13,7 @@
 				</text>
 				<text>有效期:{{v.endTime}}</text>
 			</view>
-			<error-tip v-if="!imgList.length"></error-tip>
+			<error-tip style="width: 100%;" v-if="!imgList.length"></error-tip>
 		</view>
 		<view class="uploader" @click="upload">
 			<text>+</text>
@@ -66,6 +66,7 @@
 			display: flex;
 			justify-content:flex-start;
 			flex-wrap: wrap;
+			text-align: center;
 			.up_face {
 				width:31%;
 				margin:0 1.15% 20rpx;
