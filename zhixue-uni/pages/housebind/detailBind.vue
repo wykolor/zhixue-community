@@ -66,7 +66,7 @@
 					case 4:
 						// 跳转
 						uni.navigateTo({
-							url:"successInfo"
+							url:"successInfo?type=1"  //住户绑定
 						})
 						break;
 					default:

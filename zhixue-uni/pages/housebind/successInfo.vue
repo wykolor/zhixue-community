@@ -14,8 +14,12 @@
 				infoMes:''
 			}
 		},
-		onLoad() {
-			this.$api.hsbindApi.infoMesReq({"keyWord":"membertxt"}).then(res=>{
+		onLoad(option) {
+			let keyWord = "membertxt"
+			if(option.type==0){
+				keyWord = "visitorMptxt"
+			}
+			this.$api.hsbindApi.infoMesReq({"keyWord":keyWord}).then(res=>{
 				console.log(res.data.value)
 				this.infoMes = res.data.value
 			})

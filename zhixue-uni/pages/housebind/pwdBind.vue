@@ -31,7 +31,7 @@
 				}).then(res=>{
 					if(res.code == 100000){
 						uni.navigateTo({
-							url:"successInfo"
+							url:"successInfo?type=1"
 						})
 					}else{
 						Toast.fail(res.message);

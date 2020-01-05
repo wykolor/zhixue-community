@@ -13,6 +13,7 @@
 				</text>
 				<text>有效期:{{v.endTime}}</text>
 			</view>
+			<error-tip style="width: 100%;" v-if="!imgList.length"></error-tip>
 		</view>
 		<view class="uploader" @click="upload">
 			<text>+</text>
@@ -21,11 +22,15 @@
 </template>
 
 <script>
+	import ErrorTip from "../../components/error/error.vue";
 	export default {
 		data() {
 			return {
 				imgList:[]
 			}
+		},
+		components:{
+			"error-tip":ErrorTip,
 		},
 		onLoad() {
 			// 获取人脸列表
@@ -57,17 +62,18 @@
 		.content {
 			width:100%;
 			margin: 0 auto;
-			padding:2% 0;
+			padding:1% 0;
 			display: flex;
 			justify-content:flex-start;
 			flex-wrap: wrap;
+			text-align: center;
 			.up_face {
 				width:31%;
-				margin:20rpx 1.15% 0;
+				margin:0 1.15% 20rpx;
 				font-size: 12px;
 				image {
 					width: 100%;
-					height: 8rem;
+					height: 9rem;
 				}
 				.name{
 					overflow: hidden;
@@ -98,7 +104,7 @@
 			height: 60px;
 			width: 60px;
 			text-align: center;
-			line-height: 60px;
+			line-height: 56px;
 			text{
 				font-size:34px;
 				color:#ddd;

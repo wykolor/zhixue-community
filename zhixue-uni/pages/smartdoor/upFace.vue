@@ -16,6 +16,7 @@
 
 <script>
 	import Dialog from '../../wxcomponents/vant/dialog/dialog';
+	import Toast from '../../wxcomponents/vant/toast/toast';
 	export default{
 		data(){
 			return{
@@ -37,9 +38,9 @@
 					  })
 					}).catch(() => {
 						//不进行绑定
-						uni.navigateBack({
+						/* uni.navigateBack({
 							delta:1
-						});
+						}); */
 					});
 				}
 			})
@@ -47,13 +48,28 @@
 		},
 		methods:{
 			upload(){
+				Toast.loading({
+				  message: '上传中...',
+				  duration:10000
+				});
 				uni.chooseImage({
 					count: 1,
-					sourceType:['camera'],
-					success: (res) => {
-						console.log(res)
+					sourceType: ['camera'],
+					sizeType:'compressed',
+					success: (res) => {						
+						console.log(wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64"))
 						this.img = res.tempFilePaths[0]
-						this.base64 = 'data:image/jpeg;base64,'+wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64")
+						wx.getFileSystemManager().readFile({
+							filePath:res.tempFilePaths[0],
+							encoding:"base64",
+							success:res=>{
+								this.base64 = 'data:image/jpeg;base64,'+res
+								Toast.clear()
+							}
+						 })
+					},
+					fail:(res)=>{
+						console.log("选取失败！")
 					}
 				})
 			},

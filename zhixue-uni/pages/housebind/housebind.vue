@@ -25,11 +25,11 @@
 			}
 		},
 		onReady() {
-			console.log(111)
+			let code = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate
 			// 获取楼栋
 			this.$api.hsbindApi.buildReq({
 				"type":"building",
-				"code":"es-index"
+				"code":code
 			}).then(res=>{
 				this.columns = res.data.map((v,i)=>{
 					return {"type":v.type,"text":v.name,"code":v.code}
