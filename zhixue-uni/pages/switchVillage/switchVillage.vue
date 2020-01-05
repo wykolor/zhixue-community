@@ -66,8 +66,13 @@
 				uni.showModal({
 					title:"确认切换小区吗?",
 					confirmColor:"#07c160",
-					success:() => {
-						this.changeCommunity(communityCode)
+					success:(res) => {
+						if (res.confirm) {
+							// 用户点击了确定按钮
+							this.changeCommunity(communityCode)
+						} else if (res.cancel) {
+							console.log("取消切换")
+						}
 					}
 				})
 			}

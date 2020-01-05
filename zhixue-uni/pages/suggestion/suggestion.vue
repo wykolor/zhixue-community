@@ -28,9 +28,19 @@
 					content:this.value
 				}).then(res => {
 					if(res.code===100000){
-						
+						uni.showToast({
+							title:"反馈成功！",
+							icon:"success",
+							duration:2000,
+							success() {
+								uni.navigateBack();
+							}
+						})
 					}else{
-						
+						uni.showToast({
+							title:res.message,
+							iocn:"none"
+						})
 					}
 				})
 			}

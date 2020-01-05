@@ -106,15 +106,14 @@ export default {
 			articleList: [] // 文章列表
 		};
 	},
-	onLoad() {
-	   this.getBannerList();
-	   this.getAppList();
-	   this.getImageList();
-	   this.getArticleList();
-	   this.getnotReadNum();
-	},
 	onShow(){
-		 this.getCommunity();
+		this.getBack();
+		this.getBannerList();
+		this.getAppList();
+		this.getImageList();
+		this.getArticleList();
+		this.getnotReadNum();
+		this.getCommunity();
 	},
 	methods: {
 		// 获得轮播图
@@ -177,6 +176,11 @@ export default {
 		// 进入二级界面
 		goSecond(item){
 			_goSecond(item);
+		},
+		getBack(){
+			this.$api.indexApi.rollBackUserInfoReq({openId:getApp().globalData.openId}).then(res=>{
+				
+			})
 		},
 		goVisitor(){
 			uni.navigateTo({

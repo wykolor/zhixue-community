@@ -61,7 +61,13 @@
 					openId:getApp().globalData.openId,
 					...options
 				}).then(res => {
-					 //  ... 更新用户信息
+					//  更新用户信息
+					this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+						// 存入全局globalData
+						if(res.code === 100000){
+							getApp().globalData.userInfo = res.data;
+						}
+					})
 				})
 			}
 			

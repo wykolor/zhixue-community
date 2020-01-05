@@ -38,9 +38,9 @@
 					  })
 					}).catch(() => {
 						//不进行绑定
-						/* uni.navigateBack({
+						uni.navigateBack({
 							delta:1
-						}); */
+						});
 					});
 				}
 			})
