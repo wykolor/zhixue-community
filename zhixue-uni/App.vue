@@ -1,5 +1,4 @@
 <script>
-import uniLofin from "./utils/login.js"	
 export default {
 	globalData:{
 		notReadNum:0,

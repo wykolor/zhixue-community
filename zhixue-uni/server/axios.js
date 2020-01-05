@@ -1,9 +1,10 @@
 import axios from "@/js_sdk/gangdiedao-uni-axios";
-import uniLogin from "../utils/login.js";
+
+import baseURL from "./env.js";
+
 // 创建自定义接口服务实例
 const http = axios.create({
-  baseURL: "http://mpestate.dev.smartyface.cn", // 测试服务器
-  // baseURL: "http://mpestate.prd.smartyface.cn/",   // 生产机
+  baseURL:baseURL,
   timeout: 6000, // 不可超过 manifest.json 中配置 networkTimeout的超时时间
   // #ifdef H5
   withCredentials: true,
@@ -44,10 +45,14 @@ let _login = "/api/v1/wechat/login";
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(
   config => {
+	
     // 加载样式开启
     showFullScreenLoading();
-    const token = uni.getStorageSync("token");
-    token && (config.headers.Authorization = token);
+	// 配置请求白名单 除了登录接口 其他都加上请求头token
+	if(!config.url.includes(_login)){
+		const token = uni.getStorageSync("token");
+		token && (config.headers.Authorization = token);  
+	}
     return config;
   },
   error => {
@@ -72,6 +77,16 @@ http.interceptors.response.use(
     // 登录过期
     if (status === 401) {
       uni.clearStorageSync("token");
+	  uni.showToast({
+		  title:"抱歉,登录过期!",
+		  icon:"none",
+		  duration:1000,
+		  success() {
+		  	uni.redirectTo({
+		  		url: '/pages/startup/startup'
+		  	});
+		  }
+	  })
     }
     tryHideFullScreenLoading();
     return Promise.reject(error.message);

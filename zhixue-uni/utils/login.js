@@ -39,7 +39,6 @@
 			  provider: 'weixin',
 			  success: function (loginRes) {
 				const { code } = loginRes;
-				console.log(loginRes)
 				zxLogin(code,resolve,reject);
 			}
 		});
