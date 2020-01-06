@@ -107,7 +107,7 @@ export default {
 		};
 	},
 	onShow(){
-		this.getBack();
+		// this.getBack();
 		this.getBannerList();
 		this.getAppList();
 		this.getImageList();

@@ -44,7 +44,7 @@ let _login = "/api/v1/wechat/login";
 
 // 拦截器 在请求之前拦截
 http.interceptors.request.use(
-  config => {
+	config => {
 	
     // 加载样式开启
     showFullScreenLoading();
@@ -81,7 +81,7 @@ http.interceptors.response.use(
 			icon:"none",
 		    duration: 2000
 		});
-		return
+		return false;
 	}
     // 登录过期
 	let { status } = error.response;

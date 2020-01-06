@@ -29,7 +29,9 @@
 				:thumb="item.image"
 			>
 				<view slot="footer">
-					<van-button size="small" type="primary" round icon="phone">立即订购</van-button>
+					<template>
+						<van-button size="small" type="primary" round icon="phone" @click="callUp(item.mobile)">立即订购</van-button>
+					</template>
 				</view>
 			</van-card>
 			<error-tip v-if="!helpList.length"></error-tip>
@@ -143,13 +145,13 @@
 				})
 			},
 			// 拨打电话
-			callUp(e){
+			callUp(mobile){
 				uni.makePhoneCall({
-					phoneNumber:e.target.id,
+					phoneNumber:mobile,
 					success() {
 					},
 					fail() {
-						console.log("失败")
+						
 					}
 				})
 			}

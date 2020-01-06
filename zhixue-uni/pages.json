@@ -109,11 +109,6 @@
       }
     },
     {
-      // 测试界面
-      "path": "pages/test/index",
-      "style": {}
-    },
-    {
       // 外部链接
       "path": "pages/outUrl/outUrl",
       "style": {}

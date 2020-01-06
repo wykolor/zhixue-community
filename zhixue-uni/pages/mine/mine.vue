@@ -11,7 +11,7 @@
 		</view>
 		<van-cell-group :border="false">
 			<template v-for="item in appList">
-				<van-cell  :title="item.appName" :icon="item.image" isLink @click="goSecond(item)" :key="item.id"></van-cell>
+				<van-cell  :title="item.appName" :icon="item.image" isLink @click="goSecond(item)" :key="item.id" :value="item.appName == '物业电话' ? mobile : ''"></van-cell>
 			</template>
 		</van-cell-group>
 	</view>
@@ -24,10 +24,12 @@ export default {
 	data() {
 		return {
 			userInfo:null,
-			appList:[]
+			appList:[],
+			mobile:""
 		};
 	},
 	onShow(){
+		this.mobile = getApp().globalData.communityInfo.mobile || "";
 		this.userInfo = uni.getStorageSync("userInfo") || null;
 		this.getAppList();
 	},
