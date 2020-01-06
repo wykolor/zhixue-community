@@ -5,7 +5,7 @@ import baseURL from "./env.js";
 // 创建自定义接口服务实例
 const http = axios.create({
   baseURL:baseURL,
-  timeout: 6000, // 不可超过 manifest.json 中配置 networkTimeout的超时时间
+  timeout: 20000, // 不可超过 manifest.json 中配置 networkTimeout的超时时间
   // #ifdef H5
   withCredentials: true,
   // #endif
@@ -73,8 +73,18 @@ http.interceptors.response.use(
     return response.data;
   },
   error => {
-    let { status } = error.response;
+	// 请求超时
+	if (!error.response){
+		tryHideFullScreenLoading();
+		uni.showToast({
+		    title: '请求超时,请重试!',
+			icon:"none",
+		    duration: 2000
+		});
+		return
+	}
     // 登录过期
+	let { status } = error.response;
     if (status === 401) {
       uni.clearStorageSync("token");
 	  uni.showToast({
@@ -87,7 +97,7 @@ http.interceptors.response.use(
 		  	});
 		  }
 	  })
-    }
+    }	
     tryHideFullScreenLoading();
     return Promise.reject(error.message);
   }
@@ -121,11 +131,4 @@ export function post(url, params, headers) {
     headers
   });
 }
-// json格式发送
-export function JSpost(url, params) {
-  return http({
-    method: "post",
-    url: url,
-    data: params
-  });
-}
+
