@@ -107,7 +107,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.getBack();
+		// this.getBack();
 	},
 	onShow(){
 		// this.getBack();
