@@ -57,7 +57,25 @@
 			changeCommunity(communityCode){
 				this.$api.switchVillageApi.changeCommunityReq({communityCode}).then(res => {
 					if(res.code === 100000){
-						
+						this.updateUseInfo();
+					}
+				})
+			},
+			// 更新用户信息
+			updateUseInfo(){
+				this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+					// 存入全局globalData
+					if(res.code === 100000){
+						getApp().globalData.userInfo = res.data;
+						uni.showToast({
+							title:"切换成功",
+							icon:"success",
+							success() {
+								uni.switchTab({
+									url:"/pages/index/index"
+								})
+							}
+						})
 					}
 				})
 			},

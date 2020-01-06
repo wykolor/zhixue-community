@@ -4,7 +4,7 @@
     <van-nav-bar title="智旭" :border="false" fixed>
       <view class="nav-left" slot="left">
         <text class="iconfont iconweizhi1"></text>
-        <text class="address">{{position}}</text>
+        <text class="address">{{communityName}}</text>
       </view>
       <text class="nav-right iconfont iconzuji" slot="right" @click="goVisitor"></text>
     </van-nav-bar>
@@ -99,12 +99,15 @@ export default {
 					color: "#FF3333"
 				}
 			},
-			position:"", // 小区地址
+			communityName:"", // 小区地址
 			appList: [], // app列表
 			bannerList: [], // 轮播图列表
 			serverList: [], // 服务列表
 			articleList: [] // 文章列表
 		};
+	},
+	onLoad() {
+		this.getBack();
 	},
 	onShow(){
 		// this.getBack();
@@ -164,12 +167,14 @@ export default {
 		  });
 		},
 		// 获取小区信息
+			
 		getCommunity() {
-			let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
-			this.$api.switchVillageApi.communityDetailReq({esCode}).then(res => {
+			console.log(getApp())
+			// let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
+			this.$api.switchVillageApi.communityDetailReq({esCode:getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate}).then(res => {
 				if (res.code === 100000) {
 					getApp().globalData.communityInfo = res.data;
-					this.position = getApp().globalData.communityInfo.position;
+					this.communityName = getApp().globalData.communityInfo.communityName;
 				}
 			});
 		},
