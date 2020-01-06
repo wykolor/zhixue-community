@@ -6,6 +6,8 @@ const buildurl = "/api/v1/esHourseConf/listTree"
 const roomCode = '/api/v1/esHourseConf/checkBindRoomPasswd'
 // 房产是否绑定
 const isBindUrl = '/api/v1/esHourseConf/detail' 
+// 绑定房间
+const sureBindUrl = "/api/v1/esHourseConf/bindRoom"
 // 智能门禁 社区成员添加
 const addMberUrl = "/api/v1/esMember/add"
 // 智能门禁 人员类型
@@ -31,5 +33,8 @@ export default {
 	},
 	infoMesReq:function(Obj){
 		return get(infoUrl,Obj)
+	},
+	sureBindReq:function(Obj){
+		return get(sureBindUrl,Obj)
 	}
 }

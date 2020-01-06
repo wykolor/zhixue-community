@@ -18,6 +18,8 @@
 			let keyWord = "membertxt"
 			if(option.type==0){
 				keyWord = "visitorMptxt"
+			}else if(option.type==2){
+				keyWord = "hourseBindtxt"
 			}
 			this.$api.hsbindApi.infoMesReq({"keyWord":keyWord}).then(res=>{
 				console.log(res.data.value)

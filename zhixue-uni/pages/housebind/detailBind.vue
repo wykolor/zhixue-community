@@ -64,10 +64,14 @@
 						this.switchOpt("room")
 						break;
 					case 4:
-						// 跳转
-						uni.navigateTo({
-							url:"successInfo?type=1"  //住户绑定
-						})
+						// 进行绑定以及跳转
+						this.$api.hsbindApi.sureBindReq({'hourseCode':this.code}).then(res=>{
+							if(res.code==100000){
+								uni.navigateTo({
+									url:"successInfo?type=2"  //住户绑定
+								})
+							}						
+						})				
 						break;
 					default:
 						break;
