@@ -179,9 +179,10 @@
       "style": {
         "navigationBarTitleText": "房产绑定",
         "usingComponents": {
-          "van-picker": "/wxcomponents/vant/picker/index",
-          "van-button": "/wxcomponents/vant/button/index",
-          "van-divider": "/wxcomponents/vant/divider/index"
+			"van-button": "/wxcomponents/vant/button/index",
+			"van-card": "/wxcomponents/vant/card/index",
+			"van-radio": "/wxcomponents/vant/radio/index",
+			"van-radio-group": "/wxcomponents/vant/radio-group/index"
         }
       }
     },

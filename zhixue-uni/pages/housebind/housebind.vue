@@ -1,15 +1,24 @@
 <template>
 	<view class="housbind">
-		<van-picker :columns="columns" @change="onChange" />
+		<!-- <van-picker :columns="columns" @change="onChange" />
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
 		</view>
-		<!-- 密钥绑定 -->
 		<view class="pwd_bind">
 			<van-divider contentPosition="center">通过秘钥绑定</van-divider>
-			<!-- <i>&#xe612</i> -->
 			<view @click="goBindPwd" class="pwd_icon">
 				<text class="iconfont iconyuechi"></text>
+			</view>
+		</view> -->
+		<view class="house">
+			<img :src="imageURL" alt="">
+			<view class="detail">
+				<text>1栋1单元</text>
+				<text>审核通过</text>
+				<van-radio-group :value="radio" bind:change="onChange">
+				  <van-radio name="1">默认房产</van-radio>
+				</van-radio-group>
+				<text>删除</text>
 			</view>
 		</view>
 	</view>
@@ -21,7 +30,9 @@
 		data(){
 			return{				
 				columns: [],
-				code:null
+				code:null,
+				imageURL:require('../../static/img/tabbar/home-active.png'),
+				radio: '1'
 			}
 		},
 		onReady() {
@@ -61,7 +72,7 @@
 
 <style lang="scss">
 	.housbind{
-		.button_box{
+		/* .button_box{
 			padding:0 5%;
 		}
 		.pwd_bind{
@@ -70,6 +81,29 @@
 				padding-top: 2%;
 				text{
 					font-size: 70rpx;
+				}
+			}
+		} */
+		.house{
+			width: 100%;
+			display: flex;
+			justify-content:flex-start;			
+			height: 200rpx;
+			font-size: 12px;
+			background-color: #fafafa;
+			img{
+				width: 40%;
+				height: 200rpx;
+			}
+			.detail{
+				width:60%;
+				padding:0 10px;
+				text{
+					display: block;
+					line-height:24px;
+				}
+				text:last-child{
+					text-align: right;
 				}
 			}
 		}
