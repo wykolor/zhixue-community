@@ -173,6 +173,19 @@
         }
       }
     },
+	// 房产绑定列表
+	{
+	  "path": "pages/housebind/houseList",
+	  "style": {
+	    "navigationBarTitleText": "房产绑定",
+	    "usingComponents": {
+	      "van-button": "/wxcomponents/vant/button/index",
+		  "van-toast": "/wxcomponents/vant/toast/index",		  
+		  "van-radio": "/wxcomponents/vant/radio/index",
+		  "van-radio-group": "/wxcomponents/vant/radio-group/index"
+	    }
+	  }
+	},
 	// 房产绑定
     {
       "path": "pages/housebind/housebind",
@@ -180,9 +193,8 @@
         "navigationBarTitleText": "房产绑定",
         "usingComponents": {
 			"van-button": "/wxcomponents/vant/button/index",
-			"van-card": "/wxcomponents/vant/card/index",
-			"van-radio": "/wxcomponents/vant/radio/index",
-			"van-radio-group": "/wxcomponents/vant/radio-group/index"
+			"van-picker": "/wxcomponents/vant/picker/index",
+			"van-divider": "path/to/@vant/weapp/dist/divider/index"
         }
       }
     },

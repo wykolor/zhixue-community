@@ -70,9 +70,9 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.housbind{
-		/* .button_box{
+		.button_box{
 			padding:0 5%;
 		}
 		.pwd_bind{
@@ -81,29 +81,6 @@
 				padding-top: 2%;
 				text{
 					font-size: 70rpx;
-				}
-			}
-		} */
-		.house{
-			width: 100%;
-			display: flex;
-			justify-content:flex-start;			
-			height: 200rpx;
-			font-size: 12px;
-			background-color: #fafafa;
-			img{
-				width: 40%;
-				height: 200rpx;
-			}
-			.detail{
-				width:60%;
-				padding:0 10px;
-				text{
-					display: block;
-					line-height:24px;
-				}
-				text:last-child{
-					text-align: right;
 				}
 			}
 		}
