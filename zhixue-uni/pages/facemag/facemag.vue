@@ -99,6 +99,7 @@
 			width: 60px;
 			text-align: center;
 			line-height: 56px;
+			z-index:9;
 			text{
 				font-size:34px;
 				color:#07c160;

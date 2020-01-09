@@ -13,8 +13,9 @@
 					</van-radio-group>
 				</view>
 			</view>
-			<text class="del">删除</text>
+			<text class="del" @click="remove(v.hourseCode)">删除</text>
 		</view>
+		<error-tip style="width: 100%;" v-if="!houseArr.length"></error-tip>
 		<view class="uploader" @click="goBind">
 			<text>+</text>
 		</view>
@@ -26,6 +27,7 @@
 <script>
 	import Dialog from '../../wxcomponents/vant/dialog/dialog';
 	import Notify from '../../wxcomponents/vant/notify/notify';
+	import ErrorTip from "../../components/error/error.vue";
 	export default{
 		data(){
 			return{	
@@ -33,6 +35,9 @@
 				radio: '1',
 				houseArr:[]
 			}
+		},
+		components:{
+			"error-tip":ErrorTip,
 		},
 		onReady() {
 			this.initList()
@@ -80,6 +85,28 @@
 				  })
 				}).catch(() => {
 					console.log("取消切换")
+				});
+				
+			},
+			remove(housecode){
+				Dialog.confirm({
+				  title: '提示',
+				  confirmButtonText:"确定",
+				  message: '是否要删除该房产'
+				}).then(() => {
+				  // 确定
+				  this.$api.hsbindApi.delReq({
+				  	"hourseCode":housecode
+				  }).then(res=>{
+				  	if(res.code==100000){
+				  		Notify({ type: 'success', message: '删除成功！' });
+						this.initList()
+				  	}else{
+						Notify({ type: 'danger', message: '删除失败！'+res.message });
+					}
+				  })
+				}).catch(() => {
+					console.log("取消删除")
 				});
 				
 			}
@@ -154,6 +181,7 @@
 			width: 60px;
 			text-align: center;
 			line-height: 56px;
+			z-index:9;
 			text{
 				font-size:34px;
 				color:#07c160;

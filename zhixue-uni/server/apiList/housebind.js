@@ -20,6 +20,8 @@ const bindWayUrl = "/api/v1/esConfig/hourseConfig"
 const houseListUrl = "/api/v1/esHourseConf/detail"
 // 切换默认选择
 const defaultRadio = "/api/v1/esHourseConf/changeDefault"
+// 删除房产
+const delHouseUrl = "/api/v1/esHourseConf/remove"
 export default {
 	// 楼栋列表
 	buildReq:function(Obj){
@@ -51,5 +53,8 @@ export default {
 	},
 	switchReq:function(Obj){
 		return get(defaultRadio,Obj)
+	},
+	delReq:function(Obj){
+		return get(delHouseUrl,Obj)
 	}
 }
