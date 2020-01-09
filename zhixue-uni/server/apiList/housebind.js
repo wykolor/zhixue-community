@@ -14,6 +14,12 @@ const addMberUrl = "/api/v1/esMember/add"
 const peopleType = "/personTypeList"
 // 提示内容
 const infoUrl = "/api/v1/esConfig/committxt"
+// 获取绑定方式
+const bindWayUrl = "/api/v1/esConfig/hourseConfig"
+// 获取房产列表
+const houseListUrl = "/api/v1/esHourseConf/detail"
+// 切换默认选择
+const defaultRadio = "/api/v1/esHourseConf/changeDefault"
 export default {
 	// 楼栋列表
 	buildReq:function(Obj){
@@ -36,5 +42,14 @@ export default {
 	},
 	sureBindReq:function(Obj){
 		return get(sureBindUrl,Obj)
+	},
+	bindWayReq:function(Obj){
+		return get(bindWayUrl,Obj)
+	},
+	hsListReq:function(Obj){
+		return get(houseListUrl,Obj)
+	},
+	switchReq:function(Obj){
+		return get(defaultRadio,Obj)
 	}
 }

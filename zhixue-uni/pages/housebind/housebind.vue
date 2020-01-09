@@ -1,6 +1,6 @@
 <template>
 	<view class="housbind">
-		<!-- <van-picker :columns="columns" @change="onChange" />
+		<van-picker :columns="columns" @change="onChange" />
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
 		</view>
@@ -8,17 +8,6 @@
 			<van-divider contentPosition="center">通过秘钥绑定</van-divider>
 			<view @click="goBindPwd" class="pwd_icon">
 				<text class="iconfont iconyuechi"></text>
-			</view>
-		</view> -->
-		<view class="house">
-			<img :src="imageURL" alt="">
-			<view class="detail">
-				<text>1栋1单元</text>
-				<text>审核通过</text>
-				<van-radio-group :value="radio" bind:change="onChange">
-				  <van-radio name="1">默认房产</van-radio>
-				</van-radio-group>
-				<text>删除</text>
 			</view>
 		</view>
 	</view>

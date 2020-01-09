@@ -180,9 +180,11 @@
 	    "navigationBarTitleText": "房产绑定",
 	    "usingComponents": {
 	      "van-button": "/wxcomponents/vant/button/index",
+		  "van-dialog": "/wxcomponents/vant/dialog/index",
 		  "van-toast": "/wxcomponents/vant/toast/index",		  
 		  "van-radio": "/wxcomponents/vant/radio/index",
-		  "van-radio-group": "/wxcomponents/vant/radio-group/index"
+		  "van-radio-group": "/wxcomponents/vant/radio-group/index",
+		  "van-notify": "/wxcomponents/vant/notify/index"
 	    }
 	  }
 	},
@@ -194,7 +196,7 @@
         "usingComponents": {
 			"van-button": "/wxcomponents/vant/button/index",
 			"van-picker": "/wxcomponents/vant/picker/index",
-			"van-divider": "path/to/@vant/weapp/dist/divider/index"
+			"van-divider": "/wxcomponents/vant/divider/index"
         }
       }
     },

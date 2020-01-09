@@ -8,7 +8,7 @@
 					状态：
 					<text class="passing" v-if="v.status=='checkIng'">审核中</text> 
 					<text class="nopass" v-if="v.status=='checkFail'">未通过</text> 
-					<text class="nopass" v-if="v.status=='notCheck'">未审核</text> 
+					<text v-if="v.status=='notCheck'">未审核</text> 
 					<text class="passed" v-if="v.status=='checkSuccess'">已通过</text> 
 				</text>
 				<text>有效期:{{v.endTime}}</text>
@@ -48,12 +48,6 @@
 		}
 	}
 </script>
-<style>
-	#face_box .van-uploader__upload{
-		border: 1px solid #ebedf0 !important;
-		border-radius: 40px !important;
-	}
-</style>
 <style scoped lang="scss">
 	
 	#face_box {
@@ -96,10 +90,10 @@
 			}
 		}
 		.uploader{
-			position: absolute;
+			position: fixed;
 			bottom:1rem;
 			right: 1rem;
-			border: 1px solid #ebedf0;
+			border: 1px solid #07c160;
 			border-radius:50%;
 			height: 60px;
 			width: 60px;
@@ -107,7 +101,7 @@
 			line-height: 56px;
 			text{
 				font-size:34px;
-				color:#ddd;
+				color:#07c160;
 			}
 		}
 	}
