@@ -7,8 +7,9 @@
 			<input class="input" maxlength="1" :value="code[2]"></input>
 			<input class="input" maxlength="1" :value="code[3]"></input>
 			<input class="input" maxlength="1" :value="code[4]"></input>
+			<input class="input" maxlength="1" :value="code[5]"></input>
 		</view>
-		<input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="number" />
+		<input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="text" />
 		<van-button type="primary" size="large" round @click="goNext">下一步</van-button>
 	</view>
 </template>

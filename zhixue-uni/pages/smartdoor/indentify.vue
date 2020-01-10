@@ -153,5 +153,12 @@
 		.expTime{
 			margin-top:50rpx;
 		}
+		/deep/ .van-picker-column__item--selected{
+			font-weight: 800 !important;
+			color:#000 !important;
+		}
+		/deep/ .van-picker-column__item{
+			color:#888;
+		}
 	}
 </style>

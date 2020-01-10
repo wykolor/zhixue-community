@@ -1,6 +1,9 @@
 <template>
 	<view class="housbind">
-		<van-picker :columns="columns" @change="onChange" />
+		<van-picker 
+		:columns="columns" 
+		active-class="selected"
+		@change="onChange"/>
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
 		</view>
@@ -61,6 +64,13 @@
 
 <style lang="scss" scoped>
 	.housbind{
+		& /deep/ .van-picker-column__item--selected{
+			font-weight: 800 !important;
+			color:#000 !important;
+		}
+		& /deep/ .van-picker-column__item{
+			color:#888;
+		}
 		.button_box{
 			padding:0 5%;
 		}

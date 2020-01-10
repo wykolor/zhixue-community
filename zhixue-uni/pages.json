@@ -227,7 +227,10 @@
 		{
 			"path": "pages/housebind/successInfo",
 			"style": {
-				"navigationBarTitleText": "绑定成功"
+				"navigationBarTitleText": "绑定成功",
+				"usingComponents": {
+					"van-icon": "/wxcomponents/vant/icon/index"
+				}
 			}
 		},
 		// 智能门禁——上传人脸

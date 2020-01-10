@@ -102,13 +102,20 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.detailbind{
 		margin-top: 2rem;
 		view{
 			text-align: center;
 			.button_box{
 				padding: 0 5%;
+			}
+			/deep/ .van-picker-column__item--selected{
+				font-weight: 800 !important;
+				color:#000 !important;
+			}
+			/deep/ .van-picker-column__item{
+				color:#888;
 			}
 		}
 	}

@@ -251,6 +251,9 @@ export default {
   }
   .home-app-list {
     background-color: #fff;
+	& /deep/ .van-grid-item__text{
+		font-size: 14px !important;
+	}
   }
   .home-article {
     width: 100%;
@@ -279,7 +282,7 @@ export default {
       }
       .art-list-info {
         width: 60%;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         color: #aaa;
         letter-spacing: 1px;
         & > view {
@@ -287,7 +290,7 @@ export default {
         }
         .art-info-title {
           @include wy-ellipsis;
-          font-size: 1rem;
+          font-size: 1.2rem;
           color: #333;
         }
         // .art-info-time {

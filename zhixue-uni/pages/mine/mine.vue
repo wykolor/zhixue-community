@@ -43,7 +43,13 @@ export default {
 		},
 		// 二级界面
 		goSecond(item){
-			_goSecond(item);
+			if(item.appName=="物业电话"){
+				uni.makePhoneCall({
+				    phoneNumber:this.mobile 
+				});
+			}else{
+				_goSecond(item);
+			}
 		}
 	}
 }
@@ -69,6 +75,11 @@ export default {
 			}
 		}
 	}
-		
+	/deep/ .van-cell{
+		font-size: 16px !important;
+		.van-icon__image{
+			vertical-align: top;
+		}
+	}		
 }
 </style>

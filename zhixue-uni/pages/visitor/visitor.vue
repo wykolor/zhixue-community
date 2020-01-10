@@ -40,8 +40,15 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.visitor{
+		& /deep/ .van-picker-column__item--selected{
+			font-weight: 800 !important;
+			color:#000 !important;
+		}
+		& /deep/ .van-picker-column__item{
+			color:#888;
+		}
 		text-align: center;
 		margin-top: 2rem;
 		.button_box{
