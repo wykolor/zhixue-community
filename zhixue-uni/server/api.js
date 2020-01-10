@@ -35,6 +35,8 @@ import faceApi from "./apiList/facemag.js"
 
 // 我的模块
 import mineApi from "./apiList/mine.js";
+// 智能设备首页
+import deviceApi from "./apiList/smartIndex.js";
 
 export const api = {
   testApi,
@@ -50,5 +52,6 @@ export const api = {
   hsbindApi,
   wyintroApi,
   mineApi,
-  faceApi
+  faceApi,
+  deviceApi
 };
