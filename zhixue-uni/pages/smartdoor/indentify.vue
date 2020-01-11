@@ -7,7 +7,6 @@
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goSubmit">提交注册</van-button>
 		</view>
-		<van-toast id="van-toast" />
 		<van-popup :show="show" position="bottom">
 			<van-picker
 			:columns="columns"
@@ -26,6 +25,7 @@
 			  @input="onInput"
 			/>
 		</van-popup>
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
@@ -59,6 +59,7 @@
 				this.columns = res.data.map((v,i)=>{
 					return {"text":v.categrayName,"flagEndTime":v.flagEndTime,"value":v.value}
 				})
+				
 			})
 		},
 		methods:{
@@ -75,7 +76,7 @@
 							url:"../housebind/successInfo?type=1"
 						})
 					}else{
-						Toast.fail(res.message);
+						Toast.fail(res.message)
 					}
 				})
 			},

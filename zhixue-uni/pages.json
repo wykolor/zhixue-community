@@ -252,6 +252,7 @@
 				"navigationBarTitleText": "智能门禁",
 				"usingComponents": {
 					"van-dialog": "/wxcomponents/vant/dialog/index",
+					"van-toast": "/wxcomponents/vant/toast/index",
 					"van-button": "/wxcomponents/vant/button/index",
 					"van-picker": "/wxcomponents/vant/picker/index",
 					"van-popup": "/wxcomponents/vant/popup/index",

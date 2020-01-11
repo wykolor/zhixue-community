@@ -119,7 +119,7 @@
 		font-size: 16px;
 	}
 	.housbind{
-		background-color: #fafafa;
+		background-color: #f2f2f2;
 		position:absolute;
 		top:0;
 		left:0;

@@ -1,16 +1,20 @@
 <template>
 	<view class="pwd_bind">
 		<text>输入密钥</text>
-		<view class="pwd_inpt">
+		<!-- <view class="pwd_inpt">
 			<input class="input" maxlength="1" :value="code[0]"></input>
 			<input class="input" maxlength="1" :value="code[1]"></input>
 			<input class="input" maxlength="1" :value="code[2]"></input>
 			<input class="input" maxlength="1" :value="code[3]"></input>
 			<input class="input" maxlength="1" :value="code[4]"></input>
 			<input class="input" maxlength="1" :value="code[5]"></input>
+		</view> -->
+		<!-- <input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="text" /> -->
+		<view style="height:100px;margin-top: 20px;">
+		    <validcode :maxlength="6" :isPwd="false" @finish="getCode"></validcode>
 		</view>
-		<input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="text" />
 		<van-button type="primary" size="large" round @click="goNext">下一步</van-button>
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
@@ -39,9 +43,9 @@
 					}
 				})
 			},
-			inputEvent(res){
-				console.log("input 1 input code  components : ", res.detail.value);	
-				this.pwd = res.detail.value
+			getCode(val) {
+				console.log(val);
+				this.pwd = val
 			}
 		}
 	}

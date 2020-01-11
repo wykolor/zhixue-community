@@ -24,6 +24,7 @@
 				<van-button type="primary" size="large" round @click="goNext(4)">下一步</van-button>
 			</view>
 		</view>
+		<van-toast id="van-toast" />
 	</view>
 </template>
 

@@ -11,6 +11,7 @@
 			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
 		</view>
 		<van-dialog id="van-dialog" />
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
