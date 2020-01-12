@@ -71,6 +71,8 @@
 								uni.navigateTo({
 									url:"successInfo?type=2"  //住户绑定
 								})
+							}else{
+								Toast.fail(res.message)
 							}						
 						})				
 						break;

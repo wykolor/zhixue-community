@@ -12,6 +12,8 @@
 					<text class="passed" v-if="v.status=='checkSuccess'">已通过</text> 
 				</text>
 				<text>有效期:{{v.endTime}}</text>
+				<text class="upphoto" @click="godownPhoto(v.code)">下发照片</text>
+				<text class="delicon" @click="delPhoto(v.code)">x</text>
 			</view>
 			<error-tip style="width: 100%;" v-if="!imgList.length"></error-tip>
 		</view>
@@ -44,6 +46,20 @@
 				uni.navigateTo({
 					url:"../smartdoor/upFace"
 				})
+			},
+			delPhoto(code){
+				this.$api.faceApi.delphotoReq({
+					code
+				}).then(res=>{
+					console.log(res)
+				})
+			},
+			godownPhoto(code){
+				this.$api.faceApi.repeatReq({
+					code
+				}).then(res=>{
+					
+				})
 			}
 		}
 	}
@@ -52,6 +68,12 @@
 	
 	#face_box {
 		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		background-color: #f2f2f2;
 		font-size:1rem;
 		.content {
 			width:100%;
@@ -62,8 +84,10 @@
 			flex-wrap: wrap;
 			text-align: center;
 			.up_face {
-				width:31%;
-				margin:0 1.15% 20rpx;
+				position: relative;
+				width:30%;
+				background-color: #fff;
+				margin:20rpx 1.5% 20rpx;
 				font-size: 12px;
 				image {
 					width: 100%;
@@ -86,6 +110,22 @@
 					.nopass{
 						color: #F56C6C;
 					}
+				}
+				.upphoto{
+					background-color:#07C160;
+					display:block;
+					color: #fff;
+				}
+				.delicon{
+					position: absolute;
+					right: -6px;
+					top: -6px;
+					display:block;
+					color:#fff;
+					background-color: #969799;
+					height: 18px;
+					width: 18px;
+					border-radius:50%;
 				}
 			}
 		}

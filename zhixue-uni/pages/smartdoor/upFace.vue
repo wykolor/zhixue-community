@@ -22,7 +22,8 @@
 		data(){
 			return{
 				img:"",
-				base64:""
+				base64:"",
+				passObj:{rodeg:0}
 			}
 		},
 		onLoad() {
@@ -57,7 +58,8 @@
 					count: 1,
 					sourceType: ['camera'],
 					sizeType:'compressed',
-					success: (res) => {						
+					success: (res) => {
+						this.passObj.fileName = res.tempFilePaths[0].substring(7,)
 						console.log(wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64"))
 						this.img = res.tempFilePaths[0]
 						wx.getFileSystemManager().readFile({
@@ -65,6 +67,7 @@
 							encoding:"base64",
 							success:res=>{
 								this.base64 = 'data:image/jpeg;base64,'+res
+								this.passObj.baseStr = this.base64
 								Toast.clear()
 							}
 						 })
@@ -75,9 +78,20 @@
 				})
 			},
 			goNextbind(){
-				uni.navigateTo({
-					url:"./indentify?imgurl="+this.base64
-				})
+				this.$api.visitorApi.userIndentyReq(this.passObj).then(res=>{
+					console.log(res)
+					if (res.code == 100000) {
+						Toast.success("人脸识别成功")
+						setTimeout(() => {
+							// 进行校验
+							uni.navigateTo({
+								url:"./indentify?imgurl="+res.data.image
+							})
+						}, 1000)
+					} else {
+						Toast.fail("人脸识别失败，请重新上传！")				
+					}
+				})				
 			}
 		}
 	}
