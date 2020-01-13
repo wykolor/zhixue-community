@@ -1,5 +1,7 @@
 <template>
 	<view class="upface">
+		<camera device-position="back" flash="off" style="margin-left: 50rpx;width:400rpx; height:500rpx;">
+		</camera>
 		<!-- 上传人脸 -->
 		<view class="scanbox" @click="upload">
 			<!-- 人头 -->
@@ -8,7 +10,8 @@
 		</view>
 		<text>点击上传人像</text>
 		<view class="button_box">
-			<van-button type="primary" size="large" round @click="goNextbind">下一步</van-button>
+			<!-- <van-button type="primary" size="large" round @click="goNextbind">下一步</van-button> -->
+			<van-button type="primary" size="large" round @click="goTakePhoto">拍照</van-button>
 		</view>
 		<van-dialog id="van-dialog" />
 		<van-toast id="van-toast" />
@@ -26,9 +29,9 @@
 				passObj:{rodeg:0}
 			}
 		},
-		onLoad() {
+		onShow() {
 			this.$api.hsbindApi.isBIndReq({}).then(res=>{
-				if(res.data.hourseCode === null){
+				if(res.data.flag === false){
 					Dialog.confirm({
 					  title: '请先绑定房产',
 					  confirmButtonText:"去绑定",
@@ -89,9 +92,16 @@
 							})
 						}, 1000)
 					} else {
-						Toast.fail("人脸识别失败，请重新上传！")				
+						Toast.fail(res.message)				
 					}
-				})				
+				})
+			},
+			goTakePhoto(){
+				uni.createCameraContext().takePhoto({
+					success:(res)=>{
+						
+					}
+				})
 			}
 		}
 	}

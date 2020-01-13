@@ -20,11 +20,15 @@
 		<view class="uploader" @click="upload">
 			<text>+</text>
 		</view>
+		<van-dialog id="van-dialog" />
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
 <script>
 	import ErrorTip from "../../components/error/error.vue";
+	import Dialog from '../../wxcomponents/vant/dialog/dialog';
+	import Toast from '../../wxcomponents/vant/toast/toast';
 	export default {
 		data() {
 			return {
@@ -36,30 +40,48 @@
 		},
 		onLoad() {
 			// 获取人脸列表
-			this.$api.faceApi.facelistReq({}).then(res=>{
-				console.log(res)
-				this.imgList = res.data
-			})
+			this.initFaceList()
 		},
 		methods: {
+			initFaceList(){
+				this.$api.faceApi.facelistReq({}).then(res=>{
+					console.log(res)
+					this.imgList = res.data
+				})
+			},
 			upload(){
 				uni.navigateTo({
 					url:"../smartdoor/upFace"
 				})
 			},
 			delPhoto(code){
-				this.$api.faceApi.delphotoReq({
-					code
-				}).then(res=>{
-					console.log(res)
+				Dialog.confirm({
+				  title: '提示',
+				  message: '是否删除该人脸照片？'
+				}).then(() => {
+				  this.$api.faceApi.delphotoReq({code}).then(res=>{
+				  	if(res.code==100000){
+				  		Toast.success('删除成功！');
+						this.initFaceList()
+				  	}else{
+				  		Toast.fail('删除失败！');
+				  	}
+				  })
 				})
 			},
 			godownPhoto(code){
-				this.$api.faceApi.repeatReq({
-					code
-				}).then(res=>{
-					
-				})
+				Dialog.confirm({
+				  title: '提示',
+				  message: '确定下发该张照片？'
+				}).then(() => {
+				  this.$api.faceApi.repeatReq({code}).then(res=>{
+				  	if(res.code==100000){
+						Toast.success('下发成功！');
+					}else{
+						Toast.fail('下发失败！');
+					}
+				  })
+				})				
 			}
 		}
 	}

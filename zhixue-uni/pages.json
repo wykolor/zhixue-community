@@ -128,7 +128,9 @@
 			"style": {
 				"navigationBarTitleText": "人脸管理",
 				"usingComponents": {
-					"van-uploader": "/wxcomponents/vant/uploader/index"
+					"van-uploader": "/wxcomponents/vant/uploader/index",
+					"van-dialog": "/wxcomponents/vant/dialog/index",
+					"van-toast": "/wxcomponents/vant/toast/index"
 				}
 			}
 		},

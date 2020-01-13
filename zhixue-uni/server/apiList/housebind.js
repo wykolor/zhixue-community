@@ -5,7 +5,7 @@ const buildurl = "/api/v1/esHourseConf/listTree"
 // 房间码校验
 const roomCode = '/api/v1/esHourseConf/checkBindRoomPasswd'
 // 房产是否绑定
-const isBindUrl = '/api/v1/esHourseConf/detail' 
+const isBindUrl = '/api/v1/esHourseConf/checkHourse'
 // 绑定房间
 const sureBindUrl = "/api/v1/esHourseConf/bindRoom"
 // 智能门禁 社区成员添加
