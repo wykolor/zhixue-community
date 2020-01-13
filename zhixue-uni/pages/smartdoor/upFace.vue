@@ -1,17 +1,12 @@
 <template>
 	<view class="upface">
-		<camera device-position="back" flash="off" style="margin-left: 50rpx;width:400rpx; height:500rpx;">
+		<camera v-show="img==''" device-position="back" flash="off" style="margin:20px auto;width:400rpx; height:500rpx;">
 		</camera>
-		<!-- 上传人脸 -->
-		<view class="scanbox" @click="upload">
-			<!-- 人头 -->
-			<text v-show="img==''">+</text>
-			<image :src="img" mode=""></image>
-		</view>
-		<text>点击上传人像</text>
+		<image :src="img" v-show="img!=''"></image>
 		<view class="button_box">
-			<!-- <van-button type="primary" size="large" round @click="goNextbind">下一步</van-button> -->
-			<van-button type="primary" size="large" round @click="goTakePhoto">拍照</van-button>
+			<van-button type="primary" size="large" round @click="goTakePhoto" v-if="img==''">拍照</van-button>
+			<van-button type="primary" size="large" round  @click="reTakePhoto" v-if="img!=''">重拍</van-button>
+			<van-button type="primary" size="large" round @click="goNextbind" v-if="img!=''">下一步</van-button>
 		</view>
 		<van-dialog id="van-dialog" />
 		<van-toast id="van-toast" />
@@ -30,6 +25,10 @@
 			}
 		},
 		onShow() {
+			Toast.loading({
+			  message: '加载中',
+			  duration:2000
+			});
 			this.$api.hsbindApi.isBIndReq({}).then(res=>{
 				if(res.data.flag === false){
 					Dialog.confirm({
@@ -52,34 +51,6 @@
 			
 		},
 		methods:{
-			upload(){
-				Toast.loading({
-				  message: '上传中...',
-				  duration:10000
-				});
-				uni.chooseImage({
-					count: 1,
-					sourceType: ['camera'],
-					sizeType:'compressed',
-					success: (res) => {
-						this.passObj.fileName = res.tempFilePaths[0].substring(7,)
-						console.log(wx.getFileSystemManager().readFileSync(res.tempFilePaths[0], "base64"))
-						this.img = res.tempFilePaths[0]
-						wx.getFileSystemManager().readFile({
-							filePath:res.tempFilePaths[0],
-							encoding:"base64",
-							success:res=>{
-								this.base64 = 'data:image/jpeg;base64,'+res
-								this.passObj.baseStr = this.base64
-								Toast.clear()
-							}
-						 })
-					},
-					fail:(res)=>{
-						console.log("选取失败！")
-					}
-				})
-			},
 			goNextbind(){
 				this.$api.visitorApi.userIndentyReq(this.passObj).then(res=>{
 					console.log(res)
@@ -98,10 +69,26 @@
 			},
 			goTakePhoto(){
 				uni.createCameraContext().takePhoto({
+					quality:'high',
 					success:(res)=>{
-						
+						this.img = res.tempImagePath
+						this.passObj.fileName = res.tempImagePath.substring(7,)
+						wx.getFileSystemManager().readFile({
+							filePath:res.tempImagePath,
+							encoding:"base64",
+							success:res=>{
+								this.base64 = 'data:image/jpeg;base64,'+res
+								this.passObj.baseStr = this.base64
+							}
+						 })
+					},
+					fail: () => {
+						Toast.fail("拍摄失败！")
 					}
 				})
+			},
+			reTakePhoto(){
+				this.img = ""
 			}
 		}
 	}
@@ -111,26 +98,16 @@
 	.upface{
 		width: 100%;
 		text-align: center;
-		.scanbox{
-			width:300rpx;
-			height:300rpx;
-			border: 1px dashed #ddd;
-			border-radius:10rpx;
-			margin: 100rpx auto 2rem;
-			line-height: 290rpx;
-			text-align: center;
-			text{
-				font-size:140rpx;
-				color:#ddd;
-			}
-			image{
-				width:300rpx;
-				height:300rpx;
-				border-radius:10rpx;
-			}				
+		image{
+			width:400rpx;
+			height:500rpx;
+			margin-top:20px;
 		}
 		.button_box{
-			padding:20% 10%;
+			padding:10% 10%;
+			/deep/ .van-button{
+				margin-bottom:20px;
+			}
 		}
 	}
 </style>
