@@ -1,11 +1,14 @@
 <template>
 	<view class="upface">
-		<camera v-show="img==''" device-position="back" flash="off" style="margin:20px auto;width:400rpx; height:500rpx;">
+		<camera v-show="img=='' && isband" :device-position="position" flash="off">
 		</camera>
 		<image :src="img" v-show="img!=''"></image>
 		<view class="button_box">
-			<van-button type="primary" size="large" round @click="goTakePhoto" v-if="img==''">拍照</van-button>
-			<van-button type="primary" size="large" round  @click="reTakePhoto" v-if="img!=''">重拍</van-button>
+			<text class="iconfont iconfanzhuanshexiangtou" @click="reverse"></text>
+			<text class="iconfont iconxiangji" @click="goTakePhoto"></text>
+			<text class="rephoto" @click="reTakePhoto">重拍</text>
+		</view>
+		<view style="padding: 10%;">
 			<van-button type="primary" size="large" round @click="goNextbind" v-if="img!=''">下一步</van-button>
 		</view>
 		<van-dialog id="van-dialog" />
@@ -21,7 +24,9 @@
 			return{
 				img:"",
 				base64:"",
-				passObj:{rodeg:0}
+				passObj:{rodeg:0},
+				position:'front',
+				isband:false
 			}
 		},
 		onShow() {
@@ -36,22 +41,30 @@
 					  confirmButtonText:"去绑定",
 					  message: '检测到您还未绑定房产，进行房产绑定后才能使用此功能哦~'
 					}).then(() => {
-					  // 跳转进行绑定
-					  uni.navigateTo({
-					  	url:"../housebind/housebind"
-					  })
+						this.$api.hsbindApi.bindWayReq({}).then(res=>{
+							if(res.code==100000){
+								uni.navigateTo({
+									url:res.data.value,//跳转的路径			 
+								})
+							}else{
+								Toast.fail(res.message)
+							}				
+						})
 					}).catch(() => {
 						//不进行绑定
 						uni.navigateBack({
 							delta:1
 						});
 					});
+				}else{
+					this.isband = true
 				}
 			})
 			
 		},
 		methods:{
 			goNextbind(){
+				console.log(this.base64)
 				this.$api.visitorApi.userIndentyReq(this.passObj).then(res=>{
 					console.log(res)
 					if (res.code == 100000) {
@@ -77,7 +90,8 @@
 							filePath:res.tempImagePath,
 							encoding:"base64",
 							success:res=>{
-								this.base64 = 'data:image/jpeg;base64,'+res
+								console.log(res)
+								this.base64 = 'data:image/jpeg;base64,'+res.data
 								this.passObj.baseStr = this.base64
 							}
 						 })
@@ -89,6 +103,13 @@
 			},
 			reTakePhoto(){
 				this.img = ""
+			},
+			reverse(){
+				if(this.position == 'front'){
+					this.position = 'back'
+				}else{
+					this.position = 'front'
+				}
 			}
 		}
 	}
@@ -99,15 +120,34 @@
 		width: 100%;
 		text-align: center;
 		image{
-			width:400rpx;
-			height:500rpx;
+			width:500rpx;
+			height:600rpx;
 			margin-top:20px;
+			margin-bottom: -4px;
+		}
+		camera{
+			margin:20px auto;
+			width:500rpx; 
+			height:600rpx;
 		}
 		.button_box{
-			padding:10% 10%;
-			/deep/ .van-button{
-				margin-bottom:20px;
+			padding:0 10%;
+			margin-top: 30px;
+			display: flex;
+			justify-content: space-around;
+			text{
+				font-size: 40px;
+				display: inline-block;
 			}
+			.rephoto{
+				width: 40px;
+				height:40px;
+				line-height: 40px;
+				border-radius: 50%;
+				background-color: rgb(242, 130, 106);
+				color: #fff;
+				font-size:14px;
+			}			
 		}
 	}
 </style>

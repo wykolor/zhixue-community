@@ -280,6 +280,46 @@
 					"van-cell-group": "/wxcomponents/vant/cell-group/index"
 				}
 			}
+		},
+		// 一标三实——人员控制
+		{
+			"path": "pages/personControll/personControll",
+			"style": {
+				"navigationBarTitleText": "一标三实",
+				"disableScroll": true,
+				"app-plus":{
+					"bounce" : "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
+				},
+				"usingComponents": {
+					"van-search": "/wxcomponents/vant/search/index",
+					"van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+					"van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+					"van-tag": "/wxcomponents/vant/tag/index",
+					"van-popup": "/wxcomponents/vant/popup/index",
+					"van-picker": "/wxcomponents/vant/picker/index",
+					"van-toast": "/wxcomponents/vant/toast/index"
+				}
+			}
+		},
+		// 报警通知
+		{
+			"path": "pages/alertnotice/alertnotice",
+			"style": {
+				"navigationBarTitleText": "报警通知",
+				"disableScroll": true,
+				"app-plus":{
+					"bounce" : "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
+				},
+				"usingComponents": {
+					"van-grid": "/wxcomponents/vant/grid/index",
+					"van-grid-item": "/wxcomponents/vant/grid-item/index",
+					"van-cell-group": "/wxcomponents/vant/cell-group/index",
+					"van-tag": "/wxcomponents/vant/tag/index",
+					"van-search": "/wxcomponents/vant/search/index",
+					"van-popup": "/wxcomponents/vant/popup/index",
+					"van-datetime-picker": "/wxcomponents/vant/datetime-picker/index"
+				}
+			}
 		}
 	],
 

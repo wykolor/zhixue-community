@@ -1,6 +1,6 @@
 <template>
 	<view class="indentify">
-		<text @click="binduser">关联用户:{{relaUser}}</text>
+		<text @click="binduser">关联用户:<text style="color: #007AFF;margin-left: 10px;">{{relaUser}}</text></text>
 		<text v-if="expFlag" class="expTime">人脸有效期:{{faceExp}}</text>
 		<input type="text" value="" class="number" placeholder="请输入身份证号码" v-model="numberCode"/>
 		<input type="text" value="" placeholder="请输入真实姓名" v-model="name"/>
@@ -16,7 +16,7 @@
 			show-toolbar 
 			title="选择关系"/>
 			<van-datetime-picker
-			  type="datetime"
+			  type="date"
 			  :show-toolbar="false"
 			  v-if="expFlag"
 			  :value="currentDate"
@@ -49,7 +49,8 @@
 				// 关联用户有效期
 				relaUser:"本人",
 				faceExp:"",
-				expFlag:false //人脸选择有效期开关
+				expFlag:false ,//人脸选择有效期开关
+				relaUserEng:''
 			}
 		},
 		onLoad(option) {
@@ -68,7 +69,8 @@
 					"identity":this.numberCode,
 					"image":this.imgUrl,
 					"memberName":this.name,
-					"reason":this.reason
+					"endTime":this.faceExp,
+					"relationType":this.relaUserEng
 				}).then(res=>{
 					if(res.code == 100000){
 						// 成功
@@ -83,6 +85,7 @@
 			onChange(event){
 				console.log(event.detail.value.flagEndTime)
 				this.relaUser = event.detail.value.text
+				this.relaUserEng = event.detail.value.value
 				if(event.detail.value.flagEndTime){
 					this.expFlag = true
 				}else{
@@ -104,7 +107,8 @@
 				let hour=now.getHours();     //返回日期中的小时数（0到23）
 				let minute=now.getMinutes(); //返回日期中的分钟数（0到59）
 				let second=now.getSeconds(); //返回日期中的秒数（0到59）
-				return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+				// return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+				return year+"-"+month+"-"+date;
 			},
 			onConfirm(){
 				this.show = false
@@ -133,6 +137,9 @@
 		input.number{
 			margin-top:50rpx;
 		}
+		/* text:first-child{
+			text-decoration:underline;
+		} */
 		textarea{
 			width:80%;
 			margin: 0 auto;

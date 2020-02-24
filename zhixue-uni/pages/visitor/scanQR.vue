@@ -1,11 +1,14 @@
 <template>
 	<view class="scan_QR">
-		<camera v-show="img==''" device-position="back" flash="off" style="margin:20px auto;width:400rpx; height:500rpx;">
+		<camera v-show="img==''" :device-position="position" flash="off" style="margin:20px auto;width:500rpx; height:600rpx;">
 		</camera>
 		<image :src="img" v-show="img!=''"></image>
 		<view class="button_box">
-			<van-button type="primary" size="large" round @click="goTakePhoto" v-if="img==''">拍照</van-button>
-			<van-button type="primary" size="large" round  @click="reTakePhoto" v-if="img!=''">重拍</van-button>
+			<text class="iconfont iconfanzhuanshexiangtou" @click="reverse"></text>
+			<text class="iconfont iconxiangji" @click="goTakePhoto"></text>
+			<text class="rephoto" @click="reTakePhoto">重拍</text>
+		</view>
+		<view style="padding: 10%;">
 			<van-button type="primary" size="large" round @click="goNextbind" v-if="img!=''">下一步</van-button>
 		</view>
 		<van-toast id="van-toast" />
@@ -41,7 +44,7 @@
 							})
 						}, 1000)
 					} else {
-						Toast.fail("人脸识别失败，请重新上传！")				
+						Toast.fail("人脸识别失败，失败原因:"+res.message)				
 					}
 				})
 				
@@ -56,7 +59,7 @@
 							filePath:res.tempImagePath,
 							encoding:"base64",
 							success:res=>{
-								this.base64 = 'data:image/jpeg;base64,'+res
+								this.base64 = 'data:image/jpeg;base64,'+res.data
 								this.passObj.baseStr = this.base64
 							}
 						 })
@@ -68,6 +71,13 @@
 			},
 			reTakePhoto(){
 				this.img = ""
+			},
+			reverse(){
+				if(this.position == 'front'){
+					this.position = 'back'
+				}else{
+					this.position = 'front'
+				}
 			}
 		}
 	}
@@ -78,14 +88,28 @@
 		width: 100%;
 		text-align: center;
 		image{
-			width:400rpx;
-			height:500rpx;
+			width:500rpx;
+			height:600rpx;
 			margin-top:20px;
+			margin-bottom: -4px;
 		}
 		.button_box{
-			padding:10% 10%;
-			/deep/ .van-button{
-				margin-bottom:20px;
+			padding:0 10%;
+			margin-top: 30px;
+			display: flex;
+			justify-content: space-around;
+			text{
+				font-size: 40px;
+				display: inline-block;
+			}
+			.rephoto{
+				width: 40px;
+				height:40px;
+				line-height: 40px;
+				border-radius: 50%;
+				background-color: rgb(242, 130, 106);
+				color: #fff;
+				font-size:14px;
 			}
 		}
 	}

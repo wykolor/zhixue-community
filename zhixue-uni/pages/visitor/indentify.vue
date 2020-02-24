@@ -30,7 +30,8 @@
 					"identity":this.numberCode,
 					"image":this.imgUrl,
 					"memberName":this.name,
-					"reason":this.reason
+					"reason":this.reason,
+					"esCode":getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate
 				}).then(res=>{
 					if(res.code == 100000){
 						// 成功

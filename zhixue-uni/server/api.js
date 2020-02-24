@@ -37,7 +37,10 @@ import faceApi from "./apiList/facemag.js"
 import mineApi from "./apiList/mine.js";
 // 智能设备首页
 import deviceApi from "./apiList/smartIndex.js";
-
+// 一标三实
+import personCtrlApi from './apiList/personControll.js'
+// 报警通知
+import alertNoticeApi from './apiList/alertnotice.js'
 export const api = {
   testApi,
   indexApi,
@@ -53,5 +56,7 @@ export const api = {
   wyintroApi,
   mineApi,
   faceApi,
-  deviceApi
+  deviceApi,
+  personCtrlApi,
+  alertNoticeApi
 };

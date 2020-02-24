@@ -14,6 +14,7 @@
 		    <validcode :maxlength="6" :isPwd="false" @finish="getCode"></validcode>
 		</view>
 		<van-button type="primary" size="large" round @click="goNext">下一步</van-button>
+		<text class="warning" @click="showMore">{{warnMes}}</text>
 		<van-toast id="van-toast" />
 	</view>
 </template>
@@ -25,7 +26,8 @@
 			return{
 				isFocus:false,
 				code: '',
-				pwd:""
+				pwd:"",
+				warnMes:'没有密钥？'
 			}
 		},
 		methods:{
@@ -46,6 +48,9 @@
 			getCode(val) {
 				console.log(val);
 				this.pwd = val
+			},
+			showMore(){
+				this.warnMes = "请联系物业处电话："+getApp().globalData.communityInfo.mobile
 			}
 		}
 	}
@@ -66,6 +71,10 @@
 				border-radius: 50%;
 				border: 1px solid #ddd;
 			}
+		}
+		.warning{
+			margin-top:600rpx;
+			display: block;
 		}
 	}
 	.code-input-input {
