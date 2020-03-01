@@ -1,20 +1,16 @@
 <template>
 	<view class="pwd_bind">
 		<text>输入密钥</text>
-		<!-- <view class="pwd_inpt">
-			<input class="input" maxlength="1" :value="code[0]"></input>
-			<input class="input" maxlength="1" :value="code[1]"></input>
-			<input class="input" maxlength="1" :value="code[2]"></input>
-			<input class="input" maxlength="1" :value="code[3]"></input>
-			<input class="input" maxlength="1" :value="code[4]"></input>
-			<input class="input" maxlength="1" :value="code[5]"></input>
-		</view> -->
-		<!-- <input @input="inputEvent" class="code-input-input" v-model="code" maxlength="6" type="text" /> -->
 		<view style="height:100px;margin-top: 20px;">
 		    <validcode :maxlength="6" :isPwd="false" @finish="getCode"></validcode>
 		</view>
 		<van-button type="primary" size="large" round @click="goNext">下一步</van-button>
-		<text class="warning" @click="showMore">{{warnMes}}</text>
+		<view class="warning">
+			<text @click="showMore">
+				{{warnMes}}
+			</text>
+			<text @click="gophone">{{mobile}}</text>			
+		</view>		
 		<van-toast id="van-toast" />
 	</view>
 </template>
@@ -27,7 +23,8 @@
 				isFocus:false,
 				code: '',
 				pwd:"",
-				warnMes:'没有密钥？'
+				warnMes:'没有密钥？',
+				mobile:''
 			}
 		},
 		methods:{
@@ -50,7 +47,13 @@
 				this.pwd = val
 			},
 			showMore(){
-				this.warnMes = "请联系物业处电话："+getApp().globalData.communityInfo.mobile
+				this.warnMes = "请联系物业处电话："
+				this.mobile = getApp().globalData.communityInfo.mobile
+			},
+			gophone(){
+				uni.makePhoneCall({
+				    phoneNumber:this.mobile
+				});
 			}
 		}
 	}
