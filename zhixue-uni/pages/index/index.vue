@@ -84,6 +84,32 @@
         </van-tab>
       </van-tabs>
     </view>
+	<!-- 钱包弹窗 -->
+	<van-popup :show="showPopup" close-icon="close"  @close="showPopup=false" custom-class="wallet-popup" closeable  :close-on-click-overlay="false" round custom-style="height: 70%;width: 80%;background:#F15E51" overlay-style="background:rgba(0,0,0,.3)">
+		<view class="logo-info">
+			<image src="/static/img/logo.png" style="width: 80px;height: 80px;"></image>
+		</view>
+		<view class="wallet-info-unopen" v-if="!isOpen">
+			<view>智旭社区</view>
+			<view>送给你一个红包</view>
+			<view class="big">恭喜发财，大吉大利</view>
+			<view class="open-text-box">
+				<view class="open-text" @click="isOpen=true">￥</view>
+			</view>
+		</view>
+		<view class="wallet-info-open" v-else>
+			<view class="wallet-detail-box">
+				<view class="wallet-detail">
+					<view class="">获取现金熊猫币(个)</view>
+					<view class="">+0.26个</view>
+					<view class="">查看钱包</view>
+				</view>
+			</view>
+			<view class="wallet-footer">
+				熊猫币自动存入钱包，可用来兑换礼品哟！
+			</view>
+		</view>
+	</van-popup>
   </view>
 </template>
 
@@ -103,7 +129,9 @@ export default {
 			appList: [], // app列表
 			bannerList: [], // 轮播图列表
 			serverList: [], // 服务列表
-			articleList: [] // 文章列表
+			articleList: [], // 文章列表
+			showPopup:true, // 是否展示钱包弹窗
+			isOpen:false // 钱包开否
 		};
 	},
 	onLoad() {
@@ -167,7 +195,6 @@ export default {
 		  });
 		},
 		// 获取小区信息
-			
 		getCommunity() {
 			console.log(getApp())
 			// let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
@@ -300,6 +327,88 @@ export default {
         }
       }
     }
+  }
+  & /deep/ .wallet-popup{
+	box-sizing: border-box;
+	text-align: center;
+	padding-top: 1.2rem;
+	color: #EBCD99;
+	line-height: 1.5;
+	.logo-info{
+		// text-align: center;
+	}
+	.van-popup__close-icon--top-right{
+		color: rgba(0,0,0,.4);
+	}
+	// 红包未开样式
+	.wallet-info-unopen{
+		height: 60%;
+		box-sizing: border-box;
+		padding: 1rem 0 0;
+		.big{
+			font-size: 1.2rem;
+			margin: 1.6rem 0;
+			font-weight: bold;
+			letter-spacing: 1px;
+		}
+		.open-text-box{
+			position: relative;
+			height: 4rem;
+			border-bottom-left-radius: 60%;
+			border-bottom-right-radius: 60%;
+			box-shadow: 0 7px 3px #A21610;
+			.open-text{
+				display: inline-block;
+				width:80px;
+				height: 80px;
+				border-radius: 50%;
+				line-height: 80px;
+				background: #F9D759;
+				font-size: 3rem;
+				color: #EF9A39;
+				font-weight: bold;
+				position: absolute;
+				left: 0;
+				right: 0;
+				margin: auto;
+				bottom: -40px;
+				box-shadow: 1px 6px 5px #931E04;
+			}
+		}
+	}
+	// 红包点开样式
+	.wallet-info-open{
+		color: #FAAF52;
+		height: 60%;
+		box-sizing: border-box;
+		.wallet-detail-box{
+			position: relative;
+			height: 100%;
+			.wallet-detail{
+				background: #F7CF9B;
+				padding: 1rem;
+				width: 80%;
+				border-radius: 10px;
+				box-sizing: border-box;
+				margin: 0 auto;
+				height: 100%;
+				&>view{
+					margin-bottom: 2rem;
+				}
+			}
+		}
+		.wallet-footer{
+			background: #F3482F;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			height: 33%;
+			box-sizing: border-box;
+			padding-top: 30%;
+			text-align: center;
+		}
+	}
   }
 }
 </style>

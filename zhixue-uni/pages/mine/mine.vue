@@ -1,8 +1,11 @@
 <template>
 	<view class="mine">
 		<view class="mine-header">
-			<van-cell :title="userInfo.nickName" v-if="userInfo" size="large" center :border="false">
+			<van-cell :title="userInfo.nickName" url="/pages/wallet/wallet" use-label-slot v-if="userInfo" size="large" center :border="false">
 				<van-icon slot="icon" :name="userInfo.avatarUrl" size="4rem" custom-style="margin-right:10px"></van-icon>
+				<view class="" slot="label" >
+					熊猫币:0.26个
+				</view>
 			</van-cell>
 			<van-cell v-else title="登录/注册"  size="large" isLink center :border="false" url="/pages/authUserInfo/authUserInfo">
 				<van-icon slot="icon" name="smile" size="4rem" custom-style="margin-right:10px"></van-icon>

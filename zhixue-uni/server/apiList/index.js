@@ -18,6 +18,7 @@ const communityDetail = "/api/v1/estateCommunity/detail";
 
 // 回滚用户信息
 const rollBackUserInfo ="/api/v1/wechat/rollBackUserInfo";
+
 export default {
 	// 轮播图
 	esBannerReq:function(esBannerObj){

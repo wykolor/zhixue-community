@@ -26,21 +26,31 @@ import switchVillageApi from "./apiList/switchVillage.js";
 
 // 消息模块
 import newApi from "./apiList/news.js";
+
 // 访客模块
 import visitorApi from "./apiList/visitor.js";
+
 // 物业介绍
 import wyintroApi from "./apiList/wyintro.js";
+
 // 人脸管理
 import faceApi from "./apiList/facemag.js"
 
 // 我的模块
 import mineApi from "./apiList/mine.js";
+
 // 智能设备首页
 import deviceApi from "./apiList/smartIndex.js";
+
 // 一标三实
 import personCtrlApi from './apiList/personControll.js'
+
 // 报警通知
 import alertNoticeApi from './apiList/alertnotice.js'
+
+// 钱包模块
+import walletApi from "./apiList/wallet.js";
+
 export const api = {
   testApi,
   indexApi,
@@ -58,5 +68,6 @@ export const api = {
   faceApi,
   deviceApi,
   personCtrlApi,
-  alertNoticeApi
+  alertNoticeApi,
+  walletApi
 };
