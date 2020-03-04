@@ -13,13 +13,16 @@
 				<view class="order-time"><text>{{date}}</text><van-icon name="arrow-down" /></view>
 			</picker>
 			<van-cell v-for="item in orderList" :key="item.id" :title="item.reason" :label="item.createTime">
-				<text class="my-value" :class="{active:item.type==1}">{{item.type==1?`+${item.costCoin}个`:`-${item.costCoin}个`}}</text>
+				<text class="my-value" :class="{active:item.type==0}">{{item.type==0?`+${item.costCoin}个`:`-${item.costCoin}个`}}</text>
 			</van-cell>
+			<error-tip v-if="!orderList.length"></error-tip>
+			<van-divider content-position="center" custom-style="width:70%;margin:20px auto" v-if="finished">没有更多了~</van-divider>
 		</van-cell-group>
 	</view>
 </template>
 
 <script>
+	import ErrorTip from "../../components/error/error.vue";
 	export default {
 		data() {
 			const currentDate = this.getDate({
@@ -27,37 +30,20 @@
 			})
 			return {
 				userInfo:null,
+				currentPage:1,
+				keyWord:"",
+				totalPage:Number,
+				finished:false,
 				date:currentDate, // 日期
-				orderList:[
-					{
-						"costCoin": 0.26,
-						"createTime": "2020-03-03 14:07:08",
-						"reason": "获得熊猫币",
-						"type": 0,
-					},
-					{
-						"costCoin": 0.20,
-						"createTime": "2020-03-03 14:07:08",
-						"reason": "消费熊猫币",
-						"type": 1,
-					},
-					{
-						"costCoin": 0.26,
-						"createTime": "2020-03-03 14:07:08",
-						"reason": "获得熊猫币",
-						"type": 0,
-					},
-					{
-						"costCoin": 0.26,
-						"createTime": "2020-03-03 14:07:08",
-						"reason": "消费熊猫币",
-						"type": 1,
-					},
-				]
+				orderList:[]
 			};
 		},
 		onShow(){
 			this.userInfo = uni.getStorageSync("userInfo") || null;
+			this.getOrderList();
+		},
+		components:{
+			"error-tip":ErrorTip,
 		},
 		computed: {
 		    startDate() {
@@ -67,9 +53,26 @@
 				return this.getDate('end');
 			}
 		},
+		// 下拉刷新
+		onPullDownRefresh(){
+			this.currentPage = 1;
+			this.totalPage = Number;
+			this.finished = false;
+			this.getOrderList();
+		},
+		// 上拉加载
+		onReachBottom(){
+			this.currentPage++;
+			this.getOrderList();
+		},
 		methods:{
 			bindDateChange: function(e) {
-				this.date = e.target.value
+				this.date = e.target.value;
+				// 恢复初始化分页
+				this.currentPage = 1;
+				this.totalPage = Number;
+				this.finished = false;
+				this.getOrderList();
 			},
 			getDate(type) {
 				const date = new Date();
@@ -83,6 +86,33 @@
 				}
 				month = month > 9 ? month : '0' + month;;
 				return `${year}-${month}`;
+			},
+			// 获取消费明细
+			getOrderList(){
+				// 如果当前页码大于总页数
+				if(this.currentPage > this.totalPage){
+					this.finished = true;
+					return false;
+				}
+				this.$api.walletApi.accountDetailListReq({
+					month:this.date,
+					page:this.currentPage,
+					keyWord:this.keyWord,
+					size:10
+				}).then(res => {
+					// 停止下拉刷新
+					uni.stopPullDownRefresh();
+					let { listData,paginationData,code} = res;
+					if(code === 100000){
+						if(this.currentPage===1){
+							this.orderList = listData;
+							this.totalPage = paginationData.totalPages;
+						}else{
+							this.orderList = this.orderList.concat(listData);
+						}
+						
+					}
+				})
 			}
 		}
 	}

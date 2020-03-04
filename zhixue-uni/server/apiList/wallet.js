@@ -12,6 +12,9 @@ const dayReward = "/api/v1/pandaCoin/dayReward";
 // 判断是否有红包
 const flagHaveDayReward = "/api/v1/pandaCoin/flagHaveDayReward";
 
+// 删除今日红包
+const deleteDayReward = "/api/v1/pandaCoin/deleteDayReward";
+
 export default {
 	accountDetailListReq:function(accountDetailListObj){
 		return post(accountDetailList,accountDetailListObj)
@@ -20,9 +23,12 @@ export default {
 		return post(addByDayReward,addByDayRewardObj)
 	},
 	dayRewardReq:function(dayRewardObj){
-		return post(dayReward,dayRewardObj)
+		return get(dayReward,dayRewardObj)
 	},
-	flagHaveDayReward:function(flagHaveDayRewardObj){
-		return post(flagHaveDayReward,flagHaveDayRewardObj)
+	flagHaveDayRewardReq:function(flagHaveDayRewardObj){
+		return get(flagHaveDayReward,flagHaveDayRewardObj)
 	},
+	deleteDayRewardReq:function(deleteDayRewardObj){
+		return get(deleteDayReward,deleteDayRewardObj)
+	}
 }

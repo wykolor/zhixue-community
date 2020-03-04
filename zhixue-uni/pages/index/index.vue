@@ -90,23 +90,24 @@
 			<image src="/static/img/logo.png" style="width: 80px;height: 80px;"></image>
 		</view>
 		<view class="wallet-info-unopen" v-if="!isOpen">
-			<view>智旭社区</view>
+			<view>{{redNoOpenInfo.rewardInfo.title}}</view>
 			<view>送给你一个红包</view>
-			<view class="big">恭喜发财，大吉大利</view>
+			<view class="big">{{redNoOpenInfo.rewardInfo.coverTxt}}</view>
 			<view class="open-text-box">
-				<view class="open-text" @click="isOpen=true">￥</view>
+				<view class="open-text" @click="addByDayReward">￥</view>
 			</view>
+			<!-- <view class="footer-box"></view> -->
 		</view>
 		<view class="wallet-info-open" v-else>
 			<view class="wallet-detail-box">
 				<view class="wallet-detail">
 					<view class="">获取现金熊猫币(个)</view>
-					<view class="">+0.26个</view>
-					<view class="">查看钱包</view>
+					<view class="">+{{redNoOpenInfo.coin}}个</view>
+					<view class="" @click="checkWallet">查看钱包</view>
 				</view>
 			</view>
 			<view class="wallet-footer">
-				熊猫币自动存入钱包，可用来兑换礼品哟！
+				{{redNoOpenInfo.rewardInfo.openTxt}}
 			</view>
 		</view>
 	</van-popup>
@@ -125,26 +126,28 @@ export default {
 					color: "#FF3333"
 				}
 			},
+			redNoOpenInfo:{}, // 红包未开前的信息
+			redOpenInfo:{},	  // 红包已开之后的信息
 			communityName:"", // 小区地址
 			appList: [], // app列表
 			bannerList: [], // 轮播图列表
 			serverList: [], // 服务列表
 			articleList: [], // 文章列表
-			showPopup:true, // 是否展示钱包弹窗
+			showPopup:false, // 是否展示钱包弹窗
 			isOpen:false // 钱包开否
 		};
 	},
 	onLoad() {
-		// this.getBack();
+		this.$api.walletApi.deleteDayRewardReq();
 	},
 	onShow(){
-		// this.getBack();
 		this.getBannerList();
 		this.getAppList();
 		this.getImageList();
 		this.getArticleList();
 		this.getnotReadNum();
 		this.getCommunity();
+		this.flagHaveDayReward();
 	},
 	methods: {
 		// 获得轮播图
@@ -196,7 +199,6 @@ export default {
 		},
 		// 获取小区信息
 		getCommunity() {
-			console.log(getApp())
 			// let esCode = getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate;
 			this.$api.switchVillageApi.communityDetailReq({esCode:getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate}).then(res => {
 				if (res.code === 100000) {
@@ -218,6 +220,47 @@ export default {
 			uni.navigateTo({
 				url:"../visitor/visitor"
 			})
+		},
+		// 判断红包是否打开
+		flagHaveDayReward(){
+			this.$api.walletApi.flagHaveDayRewardReq().then(res => {
+				if(res.code===100004){
+					// 没有红包
+					this.showPopup = false;
+				}else if(res.code === 100000){
+					// 有红包
+					this.showPopup = true;
+					// 获取红包信息
+					this.dayReward();
+				}
+			})
+		},
+		// 获取今日红包信息
+		dayReward(){
+			this.$api.walletApi.dayRewardReq().then(res => {
+				if(res.code === 100000){
+					this.redNoOpenInfo = res.data;
+					// this.isOpen = true;
+				}
+				
+			})
+		},
+		// 打开红包
+		addByDayReward(){
+			this.$api.walletApi.addByDayRewardReq({
+				code:this.redNoOpenInfo.code
+			}).then(res=>{
+				if(res.code === 100000){
+					this.isOpen = true;
+				}
+			})
+		},
+		// 查看钱包
+		checkWallet(){
+			uni.navigateTo({
+			    url: '/pages/wallet/wallet'
+			});
+			this.showPopup = false;
 		}
 	}
 };

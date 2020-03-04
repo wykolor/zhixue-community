@@ -1,7 +1,7 @@
 <template>
 	<view class="mine">
 		<view class="mine-header">
-			<van-cell :title="userInfo.nickName" url="/pages/wallet/wallet" use-label-slot v-if="userInfo" size="large" center :border="false">
+			<van-cell :title="userInfo.nickName" label-class="my-label" url="/pages/wallet/wallet" use-label-slot v-if="userInfo" size="large" center :border="false">
 				<van-icon slot="icon" :name="userInfo.avatarUrl" size="4rem" custom-style="margin-right:10px"></van-icon>
 				<view class="" slot="label" >
 					熊猫币:0.26个
@@ -75,6 +75,9 @@ export default {
 			}
 			image{
 				border-radius: 50%;
+			}
+			.my-label{
+				color: #fff;
 			}
 		}
 	}

@@ -323,14 +323,17 @@
 				}
 			}
 		}
+		// 钱包消费明细
 	    ,{
             "path" : "pages/wallet/wallet",
             "style" : {
 				"navigationBarTitleText": "个人中心",
+				"enablePullDownRefresh": true,
 				"usingComponents": {
 					"van-cell-group": "/wxcomponents/vant/cell-group/index",
 					"van-cell": "/wxcomponents/vant/cell/index",
-					"van-icon": "/wxcomponents/vant/icon/index"
+					"van-icon": "/wxcomponents/vant/icon/index",
+					"van-divider": "/wxcomponents/vant/divider/index"
 				}
 			}
         }
