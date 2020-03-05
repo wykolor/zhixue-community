@@ -320,6 +320,24 @@
 					"van-datetime-picker": "/wxcomponents/vant/datetime-picker/index"
 				}
 			}
+		},
+		// 商品兑换——扫描二维码
+		{
+			"path": "pages/goodsExchange/scanGoodsQR",
+			"style": {
+				"navigationBarTitleText": "扫描二维码"
+			}
+		},
+		{
+			"path": "pages/goodsExchange/goodsDetail",
+			"style": {
+				"navigationBarTitleText": "商品兑换",
+				"usingComponents": {
+					"van-button": "/wxcomponents/vant/button/index",
+					"van-dialog": "/wxcomponents/vant/dialog/index",
+					"van-toast": "/wxcomponents/vant/toast/index"
+				}
+			}
 		}
 	],
 

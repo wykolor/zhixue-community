@@ -41,6 +41,8 @@ import deviceApi from "./apiList/smartIndex.js";
 import personCtrlApi from './apiList/personControll.js'
 // 报警通知
 import alertNoticeApi from './apiList/alertnotice.js'
+// 商品兑换
+import goodsExgApi from './apiList/goodsexchange.js'
 export const api = {
   testApi,
   indexApi,
@@ -58,5 +60,6 @@ export const api = {
   faceApi,
   deviceApi,
   personCtrlApi,
-  alertNoticeApi
+  alertNoticeApi,
+  goodsExgApi
 };
