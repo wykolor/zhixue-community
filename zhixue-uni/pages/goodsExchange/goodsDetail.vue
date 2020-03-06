@@ -16,32 +16,40 @@
 <script>
 	import Dialog from '../../wxcomponents/vant/dialog/dialog';
 	import Toast from '../../wxcomponents/vant/toast/toast';
-	export default{
-		data(){
-			return{
-				goodsInfo:null,
-				productCode:null
+	export default {
+		data() {
+			return {
+				goodsInfo: null,
+				productCode: null
 			}
 		},
 		onLoad(option) {
 			console.log(option.productCode)
 			this.productCode = option.productCode
-			this.$api.goodsExgApi.goodsDeatilReq({'productCode':option.productCode}).then(res=>{
+			this.$api.goodsExgApi.goodsDeatilReq({
+				'productCode': option.productCode
+			}).then(res => {
 				this.goodsInfo = res.data
 				console.log(this.goodsInfo)
 			})
 		},
-		methods:{
-			goExchange(){
+		methods: {
+			goExchange() {
 				Dialog.confirm({
-				  title: '兑换商品',
-				  message: '确定要兑换该商品吗？'
+					title: '兑换商品',
+					message: '确定要兑换该商品吗？'
 				}).then(() => {
-				  this.$api.goodsExgApi.goodconsumeReq({'productCode':this.productCode}).then(res=>{
-					  
-				  })
+					this.$api.goodsExgApi.goodconsumeReq({
+						'productCode': this.productCode
+					}).then(res => {
+						if(res.code == 100000){
+							Toast.success(res.message)
+						}else{
+							Toast.fail(res.message)
+						}
+					})
 				}).catch(() => {
-				  // on cancel
+					Toast('取消兑换');
 				});
 			}
 		}
@@ -49,28 +57,31 @@
 </script>
 
 <style lang="scss" scoped>
-	view{
-		.intro{
+	view {
+		.intro {
 			background-color: #fff;
 			border-radius: 6px;
 			box-shadow: 0 8px 12px #ebedf0;
 			padding: 24px;
-			width:70%;
+			width: 70%;
 			min-height: 200px;
-			margin:60px auto;
-			img{
+			margin: 60px auto;
+
+			img {
 				width: 80%;
-				height:180px;
+				height: 180px;
 				display: block;
 				margin: 0 auto;
 			}
-			text{
+
+			text {
 				display: block;
-				line-height:24px;
+				line-height: 24px;
 			}
 		}
-		.button{
-			width:70%;
+
+		.button {
+			width: 70%;
 			margin: 0 auto;
 		}
 	}
