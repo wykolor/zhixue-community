@@ -139,7 +139,7 @@ export default {
 		};
 	},
 	onLoad() {
-		this.$api.walletApi.deleteDayRewardReq();
+		// this.$api.walletApi.deleteDayRewardReq();
 	},
 	onShow(){
 		this.getBannerList();
@@ -218,6 +218,9 @@ export default {
 			})
 		},
 		goVisitor(){
+			/* uni.navigateTo({
+				url:"../visitor/visitorInfoList"
+			}) */
 			uni.navigateTo({
 				url:"../visitor/visitor"
 			})

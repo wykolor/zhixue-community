@@ -51,6 +51,8 @@ import alertNoticeApi from './apiList/alertnotice.js'
 // 钱包模块
 import walletApi from "./apiList/wallet.js";
 
+// 商品兑换
+import goodsExgApi from './apiList/goodsexchange.js'
 export const api = {
   testApi,
   indexApi,
@@ -69,5 +71,6 @@ export const api = {
   deviceApi,
   personCtrlApi,
   alertNoticeApi,
-  walletApi
+  walletApi,
+  goodsExgApi
 };

@@ -1,7 +1,7 @@
 {
 	"pages": [
 		// pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		
+
 		{ // 启动页
 			"path": "pages/startup/startup",
 			"style": {}
@@ -178,6 +178,22 @@
 				}
 			}
 		},
+		// 访客功能——申请列表
+		{
+			"path": "pages/visitor/visitorInfoList",
+			"style": {
+				"navigationBarTitleText": "访客申请",
+				"usingComponents": {
+					"van-tab": "/wxcomponents/vant/tab/index",
+					"van-tabs": "/wxcomponents/vant/tabs/index",
+					"van-toast": "/wxcomponents/vant/toast/index",
+					"van-image": "/wxcomponents/vant/image/index",
+					"van-button": "/wxcomponents/vant/button/index",
+					"van-tag": "/wxcomponents/vant/tag/index",
+					"van-popup": "/wxcomponents/vant/popup/index"
+				}
+			}
+		},
 		// 房产绑定列表
 		{
 			"path": "pages/housebind/houseList",
@@ -290,8 +306,8 @@
 			"style": {
 				"navigationBarTitleText": "一标三实",
 				"disableScroll": true,
-				"app-plus":{
-					"bounce" : "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
 				},
 				"usingComponents": {
 					"van-search": "/wxcomponents/vant/search/index",
@@ -310,8 +326,8 @@
 			"style": {
 				"navigationBarTitleText": "报警通知",
 				"disableScroll": true,
-				"app-plus":{
-					"bounce" : "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
+				"app-plus": {
+					"bounce": "none" // 取消APP端iOS回弹,避免与下拉刷新冲突,以及bounce边缘1秒卡顿
 				},
 				"usingComponents": {
 					"van-grid": "/wxcomponents/vant/grid/index",
@@ -323,11 +339,29 @@
 					"van-datetime-picker": "/wxcomponents/vant/datetime-picker/index"
 				}
 			}
+		},
+		// 商品兑换——扫描二维码
+		{
+			"path": "pages/goodsExchange/scanGoodsQR",
+			"style": {
+				"navigationBarTitleText": "扫描二维码"
+			}
+		},
+		{
+			"path": "pages/goodsExchange/goodsDetail",
+			"style": {
+				"navigationBarTitleText": "商品兑换",
+				"usingComponents": {
+					"van-button": "/wxcomponents/vant/button/index",
+					"van-dialog": "/wxcomponents/vant/dialog/index",
+					"van-toast": "/wxcomponents/vant/toast/index"
+				}
+			}
 		}
 		// 钱包消费明细
-	    ,{
-            "path" : "pages/wallet/wallet",
-            "style" : {
+		, {
+			"path": "pages/wallet/wallet",
+			"style": {
 				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": true,
 				"usingComponents": {
@@ -337,8 +371,8 @@
 					"van-divider": "/wxcomponents/vant/divider/index"
 				}
 			}
-        }
-    ],
+		}
+	],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "white", // 导航栏标题颜色及状态栏前景颜色，仅支持 black/white
