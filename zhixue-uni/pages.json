@@ -140,7 +140,8 @@
 			"path": "pages/newsDetail/newsDetail",
 			"style": {
 				"usingComponents": {
-					"van-cell": "/wxcomponents/vant/cell/index"
+					"van-cell": "/wxcomponents/vant/cell/index",
+					"van-icon": "/wxcomponents/vant/icon/index"
 				}
 			}
 		},

@@ -87,7 +87,8 @@
 	<!-- 钱包弹窗 -->
 	<van-popup :show="showPopup" close-icon="close"  @close="showPopup=false" custom-class="wallet-popup" closeable  :close-on-click-overlay="false" round custom-style="height: 70%;width: 80%;background:#F15E51" overlay-style="background:rgba(0,0,0,.3)">
 		<view class="logo-info">
-			<image src="/static/img/logo.png" style="width: 80px;height: 80px;"></image>
+			<image v-if="this.$scope.globalData.userInfo.avatarUrl" :src="this.$scope.globalData.userInfo.avatarUrl" style="width: 80px;height: 80px;"></image>
+			<image v-else src="/static/img/logo.png" style="width: 80px;height: 80px;"></image>
 		</view>
 		<view class="wallet-info-unopen" v-if="!isOpen">
 			<view>{{redNoOpenInfo.rewardInfo.title}}</view>
