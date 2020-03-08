@@ -1,9 +1,10 @@
 <template>
-	<view>
+	<view class="goods-detail">
 		<view class="intro">
 			<img :src="goodsInfo.image" alt="">
-			<text>商品简介:{{goodsInfo.info}}</text>
+			<text>商品简介：{{goodsInfo.info}}</text>
 		</view>
+		<view class="goods-detail-price"><text>{{goodsInfo.costCoin}}</text> 熊猫币</view>
 		<!-- 按钮 -->
 		<view class="button">
 			<van-button type="primary" block round @click="goExchange">兑换商品</van-button>
@@ -24,13 +25,11 @@
 			}
 		},
 		onLoad(option) {
-			console.log(option.productCode)
 			this.productCode = option.productCode
 			this.$api.goodsExgApi.goodsDeatilReq({
 				'productCode': option.productCode
 			}).then(res => {
 				this.goodsInfo = res.data
-				console.log(this.goodsInfo)
 			})
 		},
 		methods: {
@@ -44,6 +43,9 @@
 					}).then(res => {
 						if(res.code == 100000){
 							Toast.success(res.message)
+							uni.redirectTo({
+								url:"/pages/wallet/wallet"
+							})
 						}else{
 							Toast.fail(res.message)
 						}
@@ -57,7 +59,7 @@
 </script>
 
 <style lang="scss" scoped>
-	view {
+	.goods-detail{
 		.intro {
 			background-color: #fff;
 			border-radius: 6px;
@@ -65,21 +67,26 @@
 			padding: 24px;
 			width: 70%;
 			min-height: 200px;
-			margin: 60px auto;
-
+			margin: 60px auto 20px;
 			img {
 				width: 80%;
 				height: 180px;
 				display: block;
 				margin: 0 auto;
 			}
-
 			text {
 				display: block;
 				line-height: 24px;
 			}
 		}
-
+		.goods-detail-price{
+			text-align: right;
+			padding: 0.8rem;
+			font-size: 0.9rem;
+			text{
+				color: red;
+			}
+		}
 		.button {
 			width: 70%;
 			margin: 0 auto;

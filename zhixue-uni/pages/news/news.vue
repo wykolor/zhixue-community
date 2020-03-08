@@ -4,11 +4,12 @@
 			<van-tab :title="item.title" v-for="item in allList" :key="item.title" :name="item.title" >
 				<van-cell-group :border="false">
 					<navigator :url="'/pages/newsDetail/newsDetail?messageCode='+value.code"  v-for="value in item.list" :key="value.id">
-						<van-cell custom-class="news-cell" :title="value.title" :label="value.content">
+						<van-cell custom-class="news-cell" :use-label-slot="true" :title="value.title">
 							<view class="new-value">
 								<text>{{value.createTime}}</text>
 								<text class="news-is-read" v-if="value.readType=='esMessageNotRead'">1</text>
 							</view>
+							<view class="van-multi-ellipsis--l2" slot="label">{{value.content}}</view>
 							<van-icon slot="icon" :name="item.icon" color="#07c160" size="1.4rem" custom-style="margin-right:5px;" />
 						</van-cell>
 					</navigator>
@@ -166,6 +167,7 @@
 </script>
 
 <style lang="scss" scoped>
+@import "wxcomponents/vant/common/index.wxss";
 $length:16px;
 .news{
 	@include init-style;

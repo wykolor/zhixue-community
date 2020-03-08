@@ -1,14 +1,12 @@
 <template>
 	<view class="mine">
 		<view class="mine-header">
-			<van-cell :title="userInfo.nickName" label-class="my-label" url="/pages/wallet/wallet" use-label-slot v-if="userInfo" size="large" center :border="false">
-				<van-icon slot="icon" :name="userInfo.avatarUrl" size="4rem" custom-style="margin-right:10px"></van-icon>
-				<view class="" slot="label" >
-					熊猫币:0.26个
+			<van-cell  size="large" isLink center label-class="my-label" use-label-slot :border="false" :url="userInfo.nickName?'/pages/wallet/wallet':'/pages/authUserInfo/authUserInfo'">
+				<text slot="title">{{userInfo.nickName?userInfo.nickName:'登录/注册'}}</text>
+				<van-icon slot="icon" :name="userInfo.avatarUrl?userInfo.avatarUrl:'smile'" size="4rem" custom-style="margin-right:10px"></van-icon>
+				<view class="" slot="label" @click.stop="goWallet">
+					熊猫币:{{userInfo.wxUserEstateConfResp.pandaCoin}}个
 				</view>
-			</van-cell>
-			<van-cell v-else title="登录/注册"  size="large" isLink center :border="false" url="/pages/authUserInfo/authUserInfo">
-				<van-icon slot="icon" name="smile" size="4rem" custom-style="margin-right:10px"></van-icon>
 			</van-cell>
 			
 		</view>
@@ -26,14 +24,14 @@ import { _goSecond } from "../../utils/base.js";
 export default {
 	data() {
 		return {
-			userInfo:null,
+			userInfo:{},
 			appList:[],
 			mobile:""
 		};
 	},
 	onShow(){
+		this.getUserInfo();
 		this.mobile = getApp().globalData.communityInfo.mobile || "";
-		this.userInfo = uni.getStorageSync("userInfo") || null;
 		this.getAppList();
 	},
 	methods:{
@@ -41,6 +39,20 @@ export default {
 			this.$api.mineApi.esAppMineReq().then(res => {
 				if(res.code === 100000){
 					this.appList = res.data;
+				}
+			})
+		},
+		goWallet(){
+			uni.navigateTo({
+				url: '/pages/wallet/wallet'
+			});
+		},
+		getUserInfo(){
+			this.userInfo = getApp().globalData.userInfo;
+			this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+				// 存入全局globalData
+				if(res.code === 100000){
+					this.userInfo = res.data;
 				}
 			})
 		},

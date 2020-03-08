@@ -1,10 +1,11 @@
 <template>
 	<view class="wallet">
 		<view class="wallet-header">
-			<van-cell label-class="my-label" :title="userInfo.nickName" use-label-slot size="large" center :border="false">
-				<van-icon slot="icon" :name="userInfo.avatarUrl" size="4rem" custom-style="margin-right:10px"></van-icon>
-				<view class="" slot="label" >
-					钱包:0.26个熊猫币
+			<van-cell  size="large" center label-class="my-label" use-label-slot :border="false" :url="userInfo.nickName?'':'/pages/authUserInfo/authUserInfo'">
+				<text slot="title">{{userInfo.nickName?userInfo.nickName:'登录/注册'}}</text>
+				<van-icon slot="icon" :name="userInfo.avatarUrl?userInfo.avatarUrl:'smile'" size="4rem" custom-style="margin-right:10px"></van-icon>
+				<view class="" slot="label" @click.stop="goWallet">
+					熊猫币:{{userInfo.wxUserEstateConfResp.pandaCoin}}个
 				</view>
 			</van-cell>
 		</view>
@@ -29,7 +30,7 @@
 				format: true
 			})
 			return {
-				userInfo:null,
+				userInfo:{},
 				currentPage:1,
 				keyWord:"",
 				totalPage:Number,
@@ -39,7 +40,7 @@
 			};
 		},
 		onShow(){
-			this.userInfo = uni.getStorageSync("userInfo") || null;
+			this.getUserInfo();
 			this.getOrderList();
 		},
 		components:{
@@ -86,6 +87,16 @@
 				}
 				month = month > 9 ? month : '0' + month;;
 				return `${year}-${month}`;
+			},
+			// 获取用户信息
+			getUserInfo(){
+				this.userInfo = getApp().globalData.userInfo;
+				this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+					// 存入全局globalData
+					if(res.code === 100000){
+						this.userInfo = res.data;
+					}
+				})
 			},
 			// 获取消费明细
 			getOrderList(){

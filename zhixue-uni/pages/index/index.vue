@@ -85,32 +85,34 @@
       </van-tabs>
     </view>
 	<!-- 钱包弹窗 -->
-	<van-popup :show="showPopup" close-icon="close"  @close="showPopup=false" custom-class="wallet-popup" closeable  :close-on-click-overlay="false" round custom-style="height: 70%;width: 80%;background:#F15E51" overlay-style="background:rgba(0,0,0,.3)">
-		<view class="logo-info">
-			<image v-if="this.$scope.globalData.userInfo.avatarUrl" :src="this.$scope.globalData.userInfo.avatarUrl" style="width: 80px;height: 80px;"></image>
-			<image v-else src="/static/img/logo.png" style="width: 80px;height: 80px;"></image>
-		</view>
-		<view class="wallet-info-unopen" v-if="!isOpen">
-			<view>{{redNoOpenInfo.rewardInfo.title}}</view>
-			<view>送给你一个红包</view>
-			<view class="big">{{redNoOpenInfo.rewardInfo.coverTxt}}</view>
-			<view class="open-text-box">
-				<view class="open-text" @click="addByDayReward">￥</view>
+	<van-popup :show="showPopup"   custom-class="wallet-popup"  :close-on-click-overlay="false" custom-style="height: 80%;width: 80%;background:rgba(0,0,0,0)" overlay-style="background:rgba(0,0,0,.3)">
+		<view class="wrapper-box">
+			<view class="logo-info">
+				<image v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" style="width: 70px;height: 70px;border-radius: 50%;"></image>
+				<image v-else src="/static/img/logo.png" style="width: 70px;height: 70px; border-radius: 50%;"></image>
 			</view>
-			<!-- <view class="footer-box"></view> -->
-		</view>
-		<view class="wallet-info-open" v-else>
-			<view class="wallet-detail-box">
-				<view class="wallet-detail">
-					<view class="">获取现金熊猫币(个)</view>
-					<view class="">+{{redNoOpenInfo.coin}}个</view>
-					<view class="" @click="checkWallet">查看钱包</view>
+			<view class="wallet-info-unopen" v-if="!isOpen">
+				<view>{{redNoOpenInfo.rewardInfo.title}}</view>
+				<view>送给你一个红包</view>
+				<view class="big">{{redNoOpenInfo.rewardInfo.coverTxt}}</view>
+				<view class="open-text-box">
+					<view class="open-text" @click="addByDayReward">开</view>
 				</view>
 			</view>
-			<view class="wallet-footer">
-				{{redNoOpenInfo.rewardInfo.openTxt}}
+			<view class="wallet-info-open" v-else>
+				<view class="wallet-detail-box">
+					<view class="wallet-detail">
+						<view class="">获取现金熊猫币(个)</view>
+						<view class="">+{{redNoOpenInfo.coin}}个</view>
+						<view class="" @click="checkWallet">查看钱包</view>
+					</view>
+				</view>
+				<view class="wallet-footer">
+					{{redNoOpenInfo.rewardInfo.openTxt}}
+				</view>
 			</view>
 		</view>
+		<view class="close-btn" @click="showPopup=false"><van-icon name="close" color="#666" size="1.2rem"/></view>
 	</van-popup>
   </view>
 </template>
@@ -135,11 +137,19 @@ export default {
 			serverList: [], // 服务列表
 			articleList: [], // 文章列表
 			showPopup:false, // 是否展示钱包弹窗
-			isOpen:false // 钱包开否
+			isOpen:false, // 红包开否
+			userInfo:null
 		};
 	},
 	onLoad() {
 		// this.$api.walletApi.deleteDayRewardReq();
+	},
+	onHide(){
+		if(this.showPopup&&this.isOpen){
+			this.showPopup = false;
+			this.isOpen = false;
+		}
+		
 	},
 	onShow(){
 		this.getBannerList();
@@ -149,6 +159,7 @@ export default {
 		this.getnotReadNum();
 		this.getCommunity();
 		this.flagHaveDayReward();
+		this.userInfo = getApp().globalData.userInfo || null;
 	},
 	methods: {
 		// 获得轮播图
@@ -244,9 +255,7 @@ export default {
 			this.$api.walletApi.dayRewardReq().then(res => {
 				if(res.code === 100000){
 					this.redNoOpenInfo = res.data;
-					// this.isOpen = true;
 				}
-				
 			})
 		},
 		// 打开红包
@@ -256,7 +265,24 @@ export default {
 			}).then(res=>{
 				if(res.code === 100000){
 					this.isOpen = true;
+					// 更新用户信息
+					this.updateUseInfo();
 				}
+			})
+		},
+		// 更新用户信息
+		updateUseInfo(){
+			this.$api.authApi.updateUserInfoReq({
+				openId:getApp().globalData.openId,
+				...this.userInfo
+			}).then(res => {
+				// 
+				this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+					// 存入全局globalData
+					if(res.code === 100000){
+						getApp().globalData.userInfo = res.data;
+					}
+				})
 			})
 		},
 		// 查看钱包
@@ -378,11 +404,22 @@ export default {
   & /deep/ .wallet-popup{
 	box-sizing: border-box;
 	text-align: center;
-	padding-top: 1.2rem;
 	color: #EBCD99;
 	line-height: 1.5;
-	.logo-info{
-		// text-align: center;
+	.wrapper-box{
+		background: #F15E51;
+		height: 90%;
+		border-radius: 1.2rem;
+	}
+	// 关闭按钮
+	.close-btn{
+		color: #ccc;
+		position: absolute;
+		bottom: 5px;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		font-size: 1.2rem;
 	}
 	.van-popup__close-icon--top-right{
 		color: rgba(0,0,0,.4);
@@ -411,7 +448,7 @@ export default {
 				border-radius: 50%;
 				line-height: 80px;
 				background: #F9D759;
-				font-size: 3rem;
+				font-size: 2.4rem;
 				color: #EF9A39;
 				font-weight: bold;
 				position: absolute;
@@ -426,13 +463,13 @@ export default {
 	// 红包点开样式
 	.wallet-info-open{
 		color: #FAAF52;
-		height: 60%;
+		height: 50%;
 		box-sizing: border-box;
 		.wallet-detail-box{
 			position: relative;
 			height: 100%;
 			.wallet-detail{
-				background: #F7CF9B;
+				background: #fff;
 				padding: 1rem;
 				width: 80%;
 				border-radius: 10px;
@@ -448,12 +485,14 @@ export default {
 			background: #F3482F;
 			width: 100%;
 			position: absolute;
-			bottom: 0;
+			bottom: 50px;
 			left: 0;
 			height: 33%;
 			box-sizing: border-box;
 			padding-top: 30%;
 			text-align: center;
+			border-bottom-left-radius: 1.2rem;
+			border-bottom-right-radius: 1.2rem;
 		}
 	}
   }
