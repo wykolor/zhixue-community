@@ -188,12 +188,12 @@ export default {
 			})
 		},
 		goVisitor(){
-			/* uni.navigateTo({
-				url:"../visitor/visitorInfoList"
-			}) */
 			uni.navigateTo({
-				url:"../visitor/visitor"
+				url:"../visitor/visitorInfoList"
 			})
+			/* uni.navigateTo({
+				url:"../visitor/visitor"
+			}) */
 		}
 	}
 };

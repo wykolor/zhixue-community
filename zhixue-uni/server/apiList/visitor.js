@@ -5,6 +5,14 @@ const cmty = "/api/v1/estateCommunity/enableList";
 const indenty = "/api/v1/esMember/visitor/mpadd"
 // 头像验证
 const userIndenty = "/api/v1/common/face/checkWithBase64"
+// 历史列表
+const historyUrl = "/api/v1/visitor/history"
+// 同意/拒绝
+const accessUrl = "/api/v1/visitor/agreeOrDisAgree"
+// 再次申请访问
+const applyagainUrl = "/api/v1/visitor/applyAgin"
+// 访客消息
+const visitorMesUrl = "/api/v1/visitor/visitMessage"
 export default {
 	// 轮播图
 	cmtyReq:function(Obj){
@@ -15,5 +23,17 @@ export default {
 	},
 	userIndentyReq:function(obj){
 		return post(userIndenty,obj)
+	},
+	historyReq:function(obj){
+		return get(historyUrl,obj)
+	},
+	accessReq:function(obj){
+		return get(accessUrl,obj)
+	},
+	applyagainReq:function(obj){
+		return get(applyagainUrl,obj)
+	},
+	vsMesReq:function(obj){
+		return get(visitorMesUrl,obj)
 	}
 }
