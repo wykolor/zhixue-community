@@ -186,7 +186,8 @@
 					"van-toast": "/wxcomponents/vant/toast/index",
 					"van-image": "/wxcomponents/vant/image/index",
 					"van-button": "/wxcomponents/vant/button/index",
-					"van-tag": "/wxcomponents/vant/tag/index"
+					"van-tag": "/wxcomponents/vant/tag/index",
+					"van-popup": "/wxcomponents/vant/popup/index"
 				}
 			}
 		},

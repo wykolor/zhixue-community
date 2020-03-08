@@ -188,8 +188,11 @@ export default {
 			})
 		},
 		goVisitor(){
-			uni.navigateTo({
+			/* uni.navigateTo({
 				url:"../visitor/visitorInfoList"
+			}) */
+			uni.navigateTo({
+				url:"../visitor/visitor"
 			})
 		}
 	}

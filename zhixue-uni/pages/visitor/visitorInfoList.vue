@@ -16,14 +16,14 @@
 							</view>							
 							<view class="info">
 								<text>申请人：</text>
-								<text>申请电话：133821884<van-tag type="danger" size="large">拨打</van-tag></text>
+								<view>申请电话：13382188448&nbsp;<van-tag type="success" size="large">拨打</van-tag></view>
 								<text>访问到期时间：</text>
 								<text>申请理由：</text>
 							</view>
 						</view>
 						<view class="btn_box">
-							<van-button type="primary">同意申请</van-button>
-							<van-button type="primary" plain>拒绝申请</van-button>
+							<van-button type="primary" @click="goAgree">同意申请</van-button>
+							<van-button type="primary" plain @click="refuseAgree">拒绝申请</van-button>
 						</view>
 					</view>
 				</view>
@@ -58,6 +58,18 @@
 				</view>
 			</van-tab>
 		</van-tabs>
+		<van-popup :show="show" @close="onClose">
+			<view class="infobox">
+				<view class="">
+					<view>申请人：</view>
+					<view>申请日期：</view>
+				</view>
+				<view class="">
+					<van-button type="primary" plain>取消</van-button>
+					<van-button type="primary">确定</van-button>
+				</view>
+			</view>
+		</van-popup>
 	</view>
 </template>
 
@@ -65,7 +77,8 @@
 	export default{
 		data(){
 			return{
-				active:0
+				active:0,
+				show:false
 			}
 		},
 		onLoad(option) {
@@ -74,6 +87,12 @@
 		methods:{
 			onChange(event) {
 				console.log(event.detail.name)
+			},
+			goAgree(){
+				this.show = true
+			},
+			refuseAgree(){
+				
 			}
 		}
 	}
@@ -108,7 +127,7 @@
 						flex: 1;
 					}
 					.info{
-						flex: 2;
+						flex: 3;
 						margin-left:40rpx;
 						text{
 							line-height:60rpx;
@@ -134,6 +153,11 @@
 					line-height:40rpx !important;
 				}
 			}
+		}
+		.infobox{
+			width:600rpx;
+			height:440rpx;
+			background:#fff;
 		}
 	}
 	

@@ -6,10 +6,12 @@
 			</view>
 			<text>点击扫码，兑换商品</text>
 		</view>
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
 <script>
+	import Toast from '../../wxcomponents/vant/toast/toast';
 	export default{
 		data(){
 			return{
@@ -29,6 +31,7 @@
 					},
 					fail: (res) => {
 						console.log('扫码失败')
+						Toast('扫码失败');
 					}
 				})
 			}
@@ -47,8 +50,9 @@
 				width:50%;
 				height:50%;
 				margin: 0 auto;
-				border:1px solid #ccc;
+				border:1px dashed #ccc;
 				margin-bottom: 20px;
+				border-radius: 6px;
 			}
 		}
 	}
