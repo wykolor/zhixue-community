@@ -2,7 +2,8 @@
 	<view class="indentify">
 		<input type="text" value="" class="number" placeholder="请输入身份证号码" v-model="numberCode"/>
 		<input type="text" value="" placeholder="请输入真实姓名" v-model="name"/>
-		<textarea value="" placeholder="请输入理由" v-model="reason"/>
+		<input type="text" value="" placeholder="请输入业主电话" v-model="phone"/>
+		<textarea value="" placeholder="请输入理由,15字数以内" v-model="reason" maxlength="15"/>
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goSubmit" :disabled="numberCode==null">提交</van-button>
 		</view>
@@ -18,7 +19,8 @@
 				name:"",
 				reason:"",
 				numberCode:null,
-				imgUrl:null
+				imgUrl:null,
+				phone:null
 			}
 		},
 		onLoad(option) {
@@ -31,7 +33,8 @@
 					"image":this.imgUrl,
 					"memberName":this.name,
 					"reason":this.reason,
-					"esCode":getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate
+					"esCode":getApp().globalData.userInfo.wxUserEstateConfResp.currentEstate,
+					"esMobile":this.phone
 				}).then(res=>{
 					if(res.code == 100000){
 						// 成功

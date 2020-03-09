@@ -16,11 +16,11 @@
 							</view>							
 							<view class="info">
 								<text>姓名：{{v.esMemberName}}</text>
-								<text>访问小区：</text>
+								<text>访问小区：{{v.esName}}</text>
 								<text>访问人：{{v.memberName}}</text>
-								<view @click="gophone(v.esMobile)">访问电话：{{v.esMobile}}<van-tag type="success" size="large">拨打</van-tag></view>
+								<view @click="gophone(v.esMobile)">访问电话：{{v.esMobile}} <van-tag type="success" size="large">拨打</van-tag></view>
 								<text>访问房屋：</text>
-								<text>审核状态：</text>
+								<text>审核状态：{{v.status==esvisitorNotCheck?'未审核':v.status==esvisitorCheckSuccess?'审核成功':'拒绝申请'}}</text>
 								<text>访问到期时间：{{v.endTime}}</text>
 							</view>
 						</view>
@@ -51,28 +51,30 @@
 							</view>
 						</view>
 						<view class="btn_box">
-							<van-button type="primary" @click="goAgree">同意申请</van-button>
-							<van-button type="primary" plain @click="refuseAgree">拒绝申请</van-button>
+							<van-button type="primary" @click="goAgree(v.code)">同意申请</van-button>
+							<van-button type="primary" plain @click="refuseAgree(v.code)">拒绝申请</van-button>
 						</view>
 					</view>
 				</view>			
 			</van-tab>
 		</van-tabs>
-		<view class="uploader">
+		<view class="uploader" v-show="active==0" @click="goVisit">
 			<text>申请访问</text>
 		</view>
 		<van-popup :show="show" @close="onClose">
 			<view class="infobox">
 				<view class="detail">
 					<view>申请人：</view>
-					<view>申请日期：
-					</view>				
+					<view>有效日期：<text @click="showpicker">1天</text></view>
 				</view>
 				<view class="btn_box">
-					<van-button type="primary" plain>取 消</van-button>
-					<van-button type="primary">确 定</van-button>
+					<van-button type="primary" plain @click="show=false">取 消</van-button>
+					<van-button type="primary" @click="subApply">确 定</van-button>
 				</view>
 			</view>
+		</van-popup>
+		<van-popup :show="showday" @close="showday=false">
+			<van-picker :columns="dayArr" @change="onChange"/>
 		</van-popup>
 		<van-dialog id="van-dialog" />
 	</view>
@@ -86,7 +88,11 @@
 				active:0,
 				show:false,
 				listArr:[],
-				listInfoArr:[]
+				listInfoArr:[],
+				code:null,
+				expireDay:1,
+				dayArr:['一天','二天','三天'],
+				showday:false
 			}
 		},
 		onLoad(option) {
@@ -95,7 +101,7 @@
 				console.log(res)
 				this.listArr = res.data
 			})
-			this.$api.visitorApi.historyReq({}).then(res=>{
+			this.$api.visitorApi.vsMesReq({}).then(res=>{
 				console.log('ls',res)
 				this.listInfoArr = res.data
 			})
@@ -103,25 +109,39 @@
 		methods:{
 			onChange(event) {
 				console.log(event.detail.name)
+				this.active = event.detail.name
 			},
-			goAgree(){
+			goAgree(code){
 				this.show = true
+				this.code = code
 			},
-			refuseAgree(){
+			subApply(){
+				this.$api.visitorApi.accessReq({
+					"code":this.code,
+					"day":this.expireDay,
+					"type":"esvisitorCheckSuccess"
+				}).then(res=>{
+				
+				})
+			},
+			refuseAgree(code){
 				Dialog.confirm({
 				  title: '提示',
 				  message: '你确定要拒绝本次申请吗？'
 				}).then(() => {
 					this.$api.visitorApi.accessReq({
-						"code": "string",
-						"day": 0,
-						"type": "string"
+						"code":code,
+						"day":0,
+						"type":"esvisitorCheckRefuse"
 					}).then(res=>{
 					
 					})
 				}).catch(() => {
 				  // on cancel
 				});
+			},
+			showpicker(){
+				this.showday = true
 			},
 			onClose(){
 				this.show = false
@@ -131,6 +151,11 @@
 					code
 				}).then(res=>{
 				
+				})
+			},
+			goVisit(){
+				uni.navigateTo({
+					url:'./visitor'
 				})
 			},
 			gophone(phone){
