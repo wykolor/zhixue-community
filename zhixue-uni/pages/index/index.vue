@@ -19,7 +19,7 @@
         indicator-active-color="pink"
         indicator-color="#fff"
       >
-        <swiper-item v-for="item in bannerList" :key="item.id">
+        <swiper-item v-for="item in bannerList" :key="item.id" @click="goSwiperItem(item)">
           <image :src="item.image" style="width: 100%;height: 100%;"></image>
         </swiper-item>
       </swiper>
@@ -96,7 +96,7 @@
 				<view>送给你一个红包</view>
 				<view class="big">{{redNoOpenInfo.rewardInfo.coverTxt}}</view>
 				<view class="open-text-box">
-					<view class="open-text" @click="addByDayReward">开</view>
+					<view class="open-text" @click="addByDayReward">開</view>
 				</view>
 			</view>
 			<view class="wallet-info-open" v-else>
@@ -112,7 +112,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="close-btn" @click="showPopup=false"><van-icon name="close" color="#666" size="1.2rem"/></view>
+		<view class="close-btn" @click="showPopup=false"><van-icon name="close" color="#666" size="2rem"/></view>
 	</van-popup>
   </view>
 </template>
@@ -149,7 +149,6 @@ export default {
 			this.showPopup = false;
 			this.isOpen = false;
 		}
-		
 	},
 	onShow(){
 		this.getBannerList();
@@ -223,18 +222,37 @@ export default {
 		goSecond(item){
 			_goSecond(item);
 		},
+		// 回滚用户信息
 		getBack(){
 			this.$api.indexApi.rollBackUserInfoReq({openId:getApp().globalData.openId}).then(res=>{
 				
 			})
 		},
+		// 去访客界面
 		goVisitor(){
-			/* uni.navigateTo({
-				url:"../visitor/visitorInfoList"
-			}) */
 			uni.navigateTo({
 				url:"../visitor/visitor"
 			})
+		},
+		// 轮播图跳转
+		goSwiperItem(item){
+			switch (item.sinkType){
+				case "page":
+					uni.navigateTo({
+						url:item.pageUrl
+					})
+					break;
+				case "html":
+					uni.navigateTo({
+						url:`/pages/outUrl/outUrl?outUrl=${item.pageUrl}`
+					})
+					break;
+				case "no":
+				case "":
+					break;
+				default:
+					break;
+			}
 		},
 		// 判断红包是否打开
 		flagHaveDayReward(){

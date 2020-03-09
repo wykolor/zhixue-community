@@ -37,20 +37,22 @@
 				})
 			},
 			getUserInfo(info){
+				console.log(info)
 				let [ failMsg, okMsg ] = ["getUserInfo:fail auth deny","getUserInfo:ok"];
 				let { errMsg, userInfo } = info.detail;
+				
 				if(errMsg === failMsg){
 					// 拒绝授权 ...
+					uni.showToast({
+					    title: '授权取消或失败',
+					    duration: 2000
+					});
 				}else if(errMsg === okMsg){
 					// 授权成功
 					uni.setStorageSync("userInfo",userInfo);
 					// 更新用户信息
 					this.updateUseInfo(userInfo);
 				}
-				// 返回上一步
-				uni.navigateBack({
-					delta:1
-				});
 			},
 			// 更新用户信息
 			updateUseInfo(userInfo){
@@ -58,13 +60,18 @@
 					openId:getApp().globalData.openId,
 					...userInfo
 				}).then(res => {
-					// 
-					this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
-						// 存入全局globalData
-						if(res.code === 100000){
-							getApp().globalData.userInfo = res.data;
-						}
-					})
+					if(res.code === 100000){
+						this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
+							// 存入全局globalData
+							if(res.code === 100000){
+								getApp().globalData.userInfo = res.data;
+								// 返回上一步
+								uni.navigateBack({
+									delta:1
+								});
+							}
+						})
+					}
 				})
 			}
 		}

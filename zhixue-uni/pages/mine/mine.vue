@@ -8,7 +8,6 @@
 					熊猫币:{{userInfo.wxUserEstateConfResp.pandaCoin}}个
 				</view>
 			</van-cell>
-			
 		</view>
 		<van-cell-group :border="false">
 			<template v-for="item in appList">
@@ -30,8 +29,9 @@ export default {
 		};
 	},
 	onShow(){
-		this.getUserInfo();
+		this.userInfo = getApp().globalData.userInfo || {};
 		this.mobile = getApp().globalData.communityInfo.mobile || "";
+		this.getUserInfo();
 		this.getAppList();
 	},
 	methods:{
@@ -48,7 +48,6 @@ export default {
 			});
 		},
 		getUserInfo(){
-			this.userInfo = getApp().globalData.userInfo;
 			this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
 				// 存入全局globalData
 				if(res.code === 100000){

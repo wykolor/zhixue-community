@@ -40,6 +40,7 @@
 			};
 		},
 		onShow(){
+			this.userInfo = getApp().globalData.userInfo || {};
 			this.getUserInfo();
 			this.getOrderList();
 		},
@@ -90,7 +91,6 @@
 			},
 			// 获取用户信息
 			getUserInfo(){
-				this.userInfo = getApp().globalData.userInfo;
 				this.$api.authApi.detailReq({ openId:getApp().globalData.openId }).then(res => {
 					// 存入全局globalData
 					if(res.code === 100000){
