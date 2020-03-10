@@ -13,6 +13,8 @@ const accessUrl = "/api/v1/visitor/agreeOrDisAgree"
 const applyagainUrl = "/api/v1/visitor/applyAgin"
 // 访客消息
 const visitorMesUrl = "/api/v1/visitor/visitMessage"
+// 访问天数
+const visitDayUrl = "/api/v1/visitor/visitorDay"
 export default {
 	// 轮播图
 	cmtyReq:function(Obj){
@@ -35,5 +37,8 @@ export default {
 	},
 	vsMesReq:function(obj){
 		return get(visitorMesUrl,obj)
+	},
+	visitDayReq:function(obj){
+		return get(visitDayUrl,obj)
 	}
 }

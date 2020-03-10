@@ -189,7 +189,7 @@
 					"van-tag": "/wxcomponents/vant/tag/index",
 					"van-popup": "/wxcomponents/vant/popup/index",
 					"van-dialog": "/wxcomponents/vant/dialog/index",
-					"van-picker": "/wxcomponents/vant/picker/index"
+					"van-field": "/wxcomponents/vant/field/index"
 				}
 			}
 		},

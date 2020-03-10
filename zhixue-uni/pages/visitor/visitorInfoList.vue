@@ -19,13 +19,13 @@
 								<text>访问小区：{{v.esName}}</text>
 								<text>访问人：{{v.memberName}}</text>
 								<view @click="gophone(v.esMobile)">访问电话：{{v.esMobile}} <van-tag type="success" size="large">拨打</van-tag></view>
-								<text>访问房屋：</text>
+								<text>访问房屋：{{v.visitHourseName}}</text>
 								<text>审核状态：{{v.status==esvisitorNotCheck?'未审核':v.status==esvisitorCheckSuccess?'审核成功':'拒绝申请'}}</text>
 								<text>访问到期时间：{{v.endTime}}</text>
 							</view>
 						</view>
 						<view class="btn_box">
-							<van-button type="primary" @click="goAgreeagain(v.code)">再次申请访问</van-button>
+							<van-button type="primary" @click="goAgreeagain(v.code,v.esMemberName)">再次申请访问</van-button>
 						</view>
 					</view>
 				</view>
@@ -51,7 +51,7 @@
 							</view>
 						</view>
 						<view class="btn_box">
-							<van-button type="primary" @click="goAgree(v.code)">同意申请</van-button>
+							<van-button type="primary" @click="goAgree(v.code,v.esMemberName)">同意申请</van-button>
 							<van-button type="primary" plain @click="refuseAgree(v.code)">拒绝申请</van-button>
 						</view>
 					</view>
@@ -62,19 +62,35 @@
 			<text>申请访问</text>
 		</view>
 		<van-popup :show="show" @close="onClose">
-			<view class="infobox">
+			<view class="infobox" v-show="active==1">
 				<view class="detail">
-					<view>申请人：</view>
-					<view>有效日期：<text @click="showpicker">1天</text></view>
+					<view>申请人：{{esMemberName}}</view>
+					<view>有效日期：
+						<text @click="showpicker">1天</text>
+					</view>
 				</view>
 				<view class="btn_box">
 					<van-button type="primary" plain @click="show=false">取 消</van-button>
 					<van-button type="primary" @click="subApply">确 定</van-button>
 				</view>
 			</view>
-		</van-popup>
-		<van-popup :show="showday" @close="showday=false">
-			<van-picker :columns="dayArr" @change="onChange"/>
+			<view class="infobox" v-show="active==0">
+				<view class="detail">
+					<view style="text-align: center;">确认再次访问{{esMemberName}}吗?</view>
+					<view>
+						<van-field
+						    :value="reason"
+						    type="textarea"
+						    placeholder="请输入理由"
+						    autosize
+						  />
+					</view>
+				</view>
+				<view class="btn_box">
+					<van-button type="primary" plain @click="show=false">取 消</van-button>
+					<van-button type="primary">确 定</van-button>
+				</view>
+			</view>
 		</van-popup>
 		<van-dialog id="van-dialog" />
 	</view>
@@ -91,8 +107,10 @@
 				listInfoArr:[],
 				code:null,
 				expireDay:1,
-				dayArr:['一天','二天','三天'],
-				showday:false
+				showday:false,
+				esMemberName:null,
+				visitDay:null,
+				reason:null
 			}
 		},
 		onLoad(option) {
@@ -105,15 +123,21 @@
 				console.log('ls',res)
 				this.listInfoArr = res.data
 			})
+			// 获取访问天数
+			this.$api.visitorApi.visitDayReq({}).then(res=>{
+				console.log(res)
+				this.visitDay = res.data
+			})
 		},
 		methods:{
 			onChange(event) {
 				console.log(event.detail.name)
 				this.active = event.detail.name
 			},
-			goAgree(code){
+			goAgree(code,esMemberName){
 				this.show = true
 				this.code = code
+				this.esMemberName = esMemberName
 			},
 			subApply(){
 				this.$api.visitorApi.accessReq({
@@ -146,12 +170,14 @@
 			onClose(){
 				this.show = false
 			},
-			goAgreeagain(){
-				this.$api.visitorApi.applyagainReq({
+			goAgreeagain(code,esMemberName){
+				this.show = true
+				this.esMemberName = esMemberName
+				/* this.$api.visitorApi.applyagainReq({
 					code
 				}).then(res=>{
 				
-				})
+				}) */
 			},
 			goVisit(){
 				uni.navigateTo({
@@ -176,6 +202,9 @@
 <style lang="scss" scoped>
 	/deep/ .van-tabs__line{
 		background-color: #07c160;
+	}
+	/deep/ .van-popup--center{
+		border-radius: 8px;
 	}
 	.vsinfo{
 		position: absolute;
@@ -231,7 +260,7 @@
 		}
 		.infobox{
 			width:600rpx;
-			height:440rpx;
+			height:380rpx;
 			background:#fff;
 			.detail{
 				line-height: 40px;
@@ -241,7 +270,7 @@
 			.btn_box{
 				display: flex;
 				justify-content: space-around;
-				margin-top:65px;
+				margin-top:34px;
 				/deep/ .van-button{
 					width:120px;
 				}
