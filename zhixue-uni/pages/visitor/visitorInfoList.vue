@@ -93,11 +93,13 @@
 			</view>
 		</van-popup>
 		<van-dialog id="van-dialog" />
+		<van-toast id="van-toast" />
 	</view>
 </template>
 
 <script>
 	import Dialog from '../../wxcomponents/vant/dialog/dialog';
+	import Toast from '../../wxcomponents/vant/toast/toast';
 	export default{
 		data(){
 			return{
@@ -173,11 +175,12 @@
 			goAgreeagain(code,esMemberName){
 				this.show = true
 				this.esMemberName = esMemberName
-				/* this.$api.visitorApi.applyagainReq({
-					code
+				this.$api.visitorApi.applyagainReq({
+					code,
+					'reason':this.reason
 				}).then(res=>{
-				
-				}) */
+					console.log(res)
+				})
 			},
 			goVisit(){
 				uni.navigateTo({

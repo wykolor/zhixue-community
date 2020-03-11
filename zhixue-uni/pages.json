@@ -189,7 +189,18 @@
 					"van-tag": "/wxcomponents/vant/tag/index",
 					"van-popup": "/wxcomponents/vant/popup/index",
 					"van-dialog": "/wxcomponents/vant/dialog/index",
-					"van-field": "/wxcomponents/vant/field/index"
+					"van-field": "/wxcomponents/vant/field/index",
+					"van-panel": "/wxcomponents/vant/panel/index"
+				}
+			}
+		},
+		// 访客功能——申请消息提示页
+		{
+			"path":"pages/visitor/applyInfo",
+			"style":{
+				"navigationBarTitleText": "申请提示",
+				"usingComponents": {
+					"van-panel": "/wxcomponents/vant/panel/index"
 				}
 			}
 		},

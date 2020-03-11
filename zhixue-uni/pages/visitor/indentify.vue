@@ -39,7 +39,7 @@
 					if(res.code == 100000){
 						// 成功
 						uni.navigateTo({
-							url:"../housebind/successInfo?type=0"  //0为访客
+							url:"./applyInfo?phone="+this.phone
 						})
 					}else{
 						Toast.fail(res.message);
