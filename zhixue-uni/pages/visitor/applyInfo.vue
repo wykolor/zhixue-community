@@ -2,7 +2,9 @@
 	<view>
 		<van-panel title="申请提示" :desc="infoMes" :status="time">
 		</van-panel>
-		<text class="iconfont iconhandoright"></text>拨打电话{{phone}}
+		<view class="callphone">
+			<text class="iconfont iconhandoright"></text><text @click="gophone">拨打电话:{{phone}}</text>
+		</view>
 		<view class="backhome" @click="goback">
 			<van-icon name="wap-home-o" color="#07c160" size="36px"/>
 		</view>
@@ -24,6 +26,18 @@
 				console.log(res.data.value)
 				this.infoMes = res.data.value
 			})
+		},
+		methods:{
+			gophone(){
+				uni.makePhoneCall({
+					phoneNumber:this.phone,
+					success() {
+					},
+					fail() {
+						
+					}
+				})
+			}
 		}
 	}
 </script>
@@ -44,5 +58,10 @@
 		/deep/ .van-icon{
 			margin-top: 10px;
 		}
+	}
+	.callphone{
+		position: fixed;
+		bottom:2.5rem;
+		left: 1rem;
 	}
 </style>

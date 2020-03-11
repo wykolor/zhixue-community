@@ -30,10 +30,10 @@ export default {
 		return get(historyUrl,obj)
 	},
 	accessReq:function(obj){
-		return get(accessUrl,obj)
+		return post(accessUrl,obj)
 	},
 	applyagainReq:function(obj){
-		return get(applyagainUrl,obj)
+		return post(applyagainUrl,obj)
 	},
 	vsMesReq:function(obj){
 		return get(visitorMesUrl,obj)

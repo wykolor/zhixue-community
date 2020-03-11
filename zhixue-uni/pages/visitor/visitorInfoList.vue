@@ -83,12 +83,13 @@
 						    type="textarea"
 						    placeholder="请输入理由"
 						    autosize
+							@change="getReason"
 						  />
 					</view>
 				</view>
 				<view class="btn_box">
 					<van-button type="primary" plain @click="show=false">取 消</van-button>
-					<van-button type="primary">确 定</van-button>
+					<van-button type="primary" @click="sureApplyAgain">确 定</van-button>
 				</view>
 			</view>
 		</van-popup>
@@ -112,7 +113,9 @@
 				showday:false,
 				esMemberName:null,
 				visitDay:null,
-				reason:null
+				reason:"",
+				againcode:null,
+				showpop:false
 			}
 		},
 		onLoad(option) {
@@ -121,17 +124,25 @@
 				console.log(res)
 				this.listArr = res.data
 			})
-			this.$api.visitorApi.vsMesReq({}).then(res=>{
-				console.log('ls',res)
-				this.listInfoArr = res.data
-			})
+			
 			// 获取访问天数
 			this.$api.visitorApi.visitDayReq({}).then(res=>{
 				console.log(res)
 				this.visitDay = res.data
 			})
+			// 获取访客消息列表
+			this.loadApplyList()
 		},
 		methods:{
+			loadApplyList(){
+				this.$api.visitorApi.vsMesReq({}).then(res=>{
+					console.log('ls',res)
+					this.listInfoArr = res.data
+				})
+			},
+			getDay(event){
+				const value = event.detail;
+			},
 			onChange(event) {
 				console.log(event.detail.name)
 				this.active = event.detail.name
@@ -147,7 +158,9 @@
 					"day":this.expireDay,
 					"type":"esvisitorCheckSuccess"
 				}).then(res=>{
-				
+					Toast(res.message)
+					this.show = false
+					this.loadApplyList()
 				})
 			},
 			refuseAgree(code){
@@ -160,7 +173,8 @@
 						"day":0,
 						"type":"esvisitorCheckRefuse"
 					}).then(res=>{
-					
+						Toast(res.message)
+						this.loadApplyList()
 					})
 				}).catch(() => {
 				  // on cancel
@@ -175,11 +189,16 @@
 			goAgreeagain(code,esMemberName){
 				this.show = true
 				this.esMemberName = esMemberName
+				this.againcode = code
+			},
+			sureApplyAgain(){
 				this.$api.visitorApi.applyagainReq({
-					code,
+					'code':this.againcode,
 					'reason':this.reason
 				}).then(res=>{
 					console.log(res)
+					Toast(res.message)
+					this.show = false
 				})
 			},
 			goVisit(){
@@ -197,6 +216,9 @@
 						
 					}
 				})
+			},
+			getReason(event){
+				this.reason = event.detail
 			}
 		}
 	}
