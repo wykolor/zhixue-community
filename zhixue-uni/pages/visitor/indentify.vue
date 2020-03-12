@@ -1,6 +1,6 @@
 <template>
 	<view class="indentify">
-		<input type="text" value="" class="number" placeholder="请输入身份证号码" v-model="numberCode"/>
+		<input type="text" value="" class="number" placeholder="请输入证件号码" v-model="numberCode"/>
 		<input type="text" value="" placeholder="请输入真实姓名" v-model="name"/>
 		<input type="text" value="" placeholder="请输入业主电话" v-model="phone"/>
 		<textarea value="" placeholder="请输入理由,15字数以内" v-model="reason" maxlength="15"/>

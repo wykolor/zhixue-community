@@ -65,10 +65,19 @@
 			<view class="infobox" v-show="active==1">
 				<view class="detail">
 					<view>申请人：{{esMemberName}}</view>
-					<view>有效日期：
-						<text @click="showpicker">1天</text>
+					<view class="uni-list">
+						<view class="uni-list-cell">
+							<view class="uni-list-cell-left">
+								有效日期：
+							</view>
+							<view class="uni-list-cell-db">
+								<picker @change="bindPickerChange" :value="index" :range="visitDay">
+									<view class="uni-input">{{visitDay[index]}}天</view>
+								</picker>
+							</view>
+						</view>
 					</view>
-				</view>
+				</view>				
 				<view class="btn_box">
 					<van-button type="primary" plain @click="show=false">取 消</van-button>
 					<van-button type="primary" @click="subApply">确 定</van-button>
@@ -112,10 +121,11 @@
 				expireDay:1,
 				showday:false,
 				esMemberName:null,
-				visitDay:null,
+				visitDay:[],
 				reason:"",
 				againcode:null,
-				showpop:false
+				showpop:false,
+				index: 0,
 			}
 		},
 		onLoad(option) {
@@ -134,6 +144,10 @@
 			this.loadApplyList()
 		},
 		methods:{
+			bindPickerChange(e) {
+			    console.log('picker发送选择改变，携带值为', e.target.value)
+			    this.index = e.target.value
+			},
 			loadApplyList(){
 				this.$api.visitorApi.vsMesReq({}).then(res=>{
 					console.log('ls',res)
@@ -155,7 +169,7 @@
 			subApply(){
 				this.$api.visitorApi.accessReq({
 					"code":this.code,
-					"day":this.expireDay,
+					"day":this.index,
 					"type":"esvisitorCheckSuccess"
 				}).then(res=>{
 					Toast(res.message)
@@ -291,6 +305,14 @@
 				line-height: 40px;
 				margin-left: 20px;
 				margin-top: 20px;
+				.uni-list-cell{
+					>view{
+						display: inline-block;
+						.uni-input{
+							color:#409eff;
+						}
+					}
+				}
 			}
 			.btn_box{
 				display: flex;

@@ -68,7 +68,7 @@
 				this.$api.visitorApi.userIndentyReq(this.passObj).then(res=>{
 					console.log(res)
 					if (res.code == 100000) {
-						Toast.success("人脸识别成功")
+						Toast.success("识别成功！")
 						setTimeout(() => {
 							// 进行校验
 							uni.navigateTo({

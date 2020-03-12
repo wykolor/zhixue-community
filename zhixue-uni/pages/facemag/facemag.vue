@@ -57,7 +57,7 @@
 			delPhoto(code) {
 				Dialog.confirm({
 					title: '提示',
-					message: '是否删除该人脸照片？'
+					message: '是否删除该照片？'
 				}).then(() => {
 					this.$api.faceApi.delphotoReq({
 						code

@@ -1,8 +1,8 @@
 <template>
 	<view class="indentify">
 		<text @click="binduser">关联用户:<text style="color: #007AFF;margin-left: 10px;">{{relaUser}}</text></text>
-		<text v-if="expFlag" class="expTime">人脸有效期:{{faceExp}}</text>
-		<input type="text" value="" class="number" placeholder="请输入身份证号码" v-model="numberCode"/>
+		<text v-if="expFlag" class="expTime">成员有效期:{{faceExp}}</text>
+		<input type="text" value="" class="number" placeholder="请输入证件号码" v-model="numberCode"/>
 		<input type="text" value="" placeholder="请输入真实姓名" v-model="name"/>
 		<view class="button_box">
 			<van-button type="primary" size="large" round @click="goSubmit">提交注册</van-button>

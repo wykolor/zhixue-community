@@ -43,6 +43,9 @@
 </script>
 
 <style lang="scss" scoped>
+	/deep/ .van-panel__header-value{
+		color: #969799;
+	}
 	.backhome{
 		position: fixed;
 		bottom:1rem;
