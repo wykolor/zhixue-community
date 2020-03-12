@@ -129,7 +129,7 @@
 			//人脸管理
 			"path": "pages/facemag/facemag",
 			"style": {
-				"navigationBarTitleText": "人脸管理",
+				"navigationBarTitleText": "成员管理",
 				"usingComponents": {
 					"van-uploader": "/wxcomponents/vant/uploader/index",
 					"van-dialog": "/wxcomponents/vant/dialog/index",
@@ -191,7 +191,22 @@
 					"van-image": "/wxcomponents/vant/image/index",
 					"van-button": "/wxcomponents/vant/button/index",
 					"van-tag": "/wxcomponents/vant/tag/index",
-					"van-popup": "/wxcomponents/vant/popup/index"
+					"van-popup": "/wxcomponents/vant/popup/index",
+					"van-dialog": "/wxcomponents/vant/dialog/index",
+					"van-field": "/wxcomponents/vant/field/index",
+					"van-panel": "/wxcomponents/vant/panel/index",
+					"van-picker": "/wxcomponents/vant/picker/index"
+				}
+			}
+		},
+		// 访客功能——申请消息提示页
+		{
+			"path":"pages/visitor/applyInfo",
+			"style":{
+				"navigationBarTitleText": "申请提示",
+				"usingComponents": {
+					"van-panel": "/wxcomponents/vant/panel/index",
+					"van-icon": "/wxcomponents/vant/icon/index"
 				}
 			}
 		},

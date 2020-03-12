@@ -65,7 +65,7 @@
 						<text @click="chooseType">{{initPersonType}}</text>
 					</view>
 					<view class="suggest_box">
-						<textarea :value="inputResult" placeholder="请输入处理结果" maxlength="50"/>
+						<textarea v-model="inputResult"  placeholder="请输入处理结果" maxlength="50"/>
 					</view>
 				</view>
 				<view class="btn_box">
@@ -216,6 +216,7 @@
 						return {'text':v.categrayName,'value':v.value}
 					})
 					this.initPersonType = res.data[0].categrayName
+					this.type = res.data[0].value
 				})
 			},
 			// 处理异常
@@ -226,12 +227,12 @@
 						return {'text':v.categrayName,'value':v.value}
 					})
 					this.initPersonType = res.data[0].categrayName
+					this.type = res.data[0].value
 				})
 			},
 			goDealWith(type,id,peopleType){
 				this.show = true
 				this.id = id
-				this.type = peopleType
 				if(type==1){
 					this.newAddType()
 					this.warnMes="新增"
@@ -250,8 +251,9 @@
 				this.showType = false
 			},
 			onChange(event){
-				console.log(event.detail.value.text)
+				console.log(event.detail.value)
 				this.initPersonType = event.detail.value.text
+				this.type = event.detail.value.value
 			},
 			chooseType(){
 				this.showType = true

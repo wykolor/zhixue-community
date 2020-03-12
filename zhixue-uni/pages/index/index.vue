@@ -231,8 +231,9 @@ export default {
 		// 去访客界面
 		goVisitor(){
 			uni.navigateTo({
-				url:"../visitor/visitor"
-			})
+				url:'../visitor/visitorInfoList'
+			}) 
+
 		},
 		// 轮播图跳转
 		goSwiperItem(item){
